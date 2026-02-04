@@ -23,7 +23,7 @@ export function ComparedAchievementPanel({
       }`}
     >
       <div className="achievement-panel__points-container">
-        {t("available_points")} {" "}
+        {t("available_points")}{" "}
         <KrakenIcon className="achievement-panel__content-icon" />{" "}
         {achievements.achievementsPointsTotal}
       </div>

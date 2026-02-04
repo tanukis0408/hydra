@@ -9,7 +9,6 @@ import { ClockIcon, TrophyIcon } from "@primer/octicons-react";
 import { Award } from "lucide-react";
 import { WrappedFullscreenModal } from "./wrapped-tab";
 import "./user-stats-box.scss";
-import KrakenIcon from "@renderer/assets/icons/kraken.svg?react";
 
 export function UserStatsBox() {
   const [showWrappedModal, setShowWrappedModal] = useState(false);

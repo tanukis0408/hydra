@@ -52,7 +52,7 @@ Sentry.init({
 
 // Dev helper: grant a local developer subscription (safe for development only)
 // Usage: open DevTools console and run `window.__grantDevSubscription()`
-;(window as any).__grantDevSubscription = async function () {
+(window as any).__grantDevSubscription = async function () {
   try {
     const now = Date.now();
     const future = new Date(now + 1000 * 60 * 60 * 24 * 365).toISOString();

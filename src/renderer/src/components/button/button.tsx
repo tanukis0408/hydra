@@ -93,9 +93,7 @@ export function Button({
         {...props}
       >
         <Ripple disabled={disabled} />
-        {icon && !loading && (
-          <span className="button__icon">{icon}</span>
-        )}
+        {icon && !loading && <span className="button__icon">{icon}</span>}
         {loading && (
           <svg className="button__spinner" viewBox="0 0 24 24">
             <circle

@@ -176,12 +176,20 @@ app.on("browser-window-created", (_, window) => {
 const handleRunGame = async (shop: GameShop, objectId: string) => {
   const gameKey = levelKeys.game(shop, objectId);
   const game = await gamesSublevel.get(gameKey).catch((error) => {
-    logger.error("Error fetching game from database", { shop, objectId, error });
+    logger.error("Error fetching game from database", {
+      shop,
+      objectId,
+      error,
+    });
     return null;
   });
 
   if (!game?.executablePath) {
-    logger.error("Game not found or no executable path", { shop, objectId, gameKey });
+    logger.error("Game not found or no executable path", {
+      shop,
+      objectId,
+      gameKey,
+    });
     return;
   }
 

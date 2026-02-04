@@ -1,4 +1,5 @@
 @use "./globals.scss" as g;
+@use "sass:color" as color;
 
 // Material You Button Mixins
 @mixin button-filled {
@@ -15,7 +16,7 @@
 
   &:hover {
     box-shadow: g.$shadow-2;
-    background-color: darken(g.$primary, 5%);
+    background-color: color.adjust(g.$primary, $lightness: -5%);
   }
 
   &:active {

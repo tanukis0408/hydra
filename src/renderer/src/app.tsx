@@ -306,58 +306,58 @@ export function App() {
   return (
     <ThemeProvider>
       <>
-      {window.electron.platform === "win32" && (
-        <div className="title-bar">
-          <h4>
-            Kraken
-            {hasActiveSubscription && (
-              <span className="title-bar__cloud-text"> Cloud</span>
-            )}
-          </h4>
-          <div style={{ marginLeft: "auto" }}>
-            <ThemeToggle />
+        {window.electron.platform === "win32" && (
+          <div className="title-bar">
+            <h4>
+              Kraken
+              {hasActiveSubscription && (
+                <span className="title-bar__cloud-text"> Cloud</span>
+              )}
+            </h4>
+            <div style={{ marginLeft: "auto" }}>
+              <ThemeToggle />
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <Toast
-        visible={toast.visible}
-        title={toast.title}
-        message={toast.message}
-        type={toast.type}
-        onClose={handleToastClose}
-        duration={toast.duration}
-      />
+        <Toast
+          visible={toast.visible}
+          title={toast.title}
+          message={toast.message}
+          type={toast.type}
+          onClose={handleToastClose}
+          duration={toast.duration}
+        />
 
-      <KrakenCloudModal
-        visible={isHydraCloudModalVisible}
-        onClose={hideHydraCloudModal}
-        feature={hydraCloudFeature}
-      />
+        <KrakenCloudModal
+          visible={isHydraCloudModalVisible}
+          onClose={hideHydraCloudModal}
+          feature={hydraCloudFeature}
+        />
 
-      <ArchiveDeletionModal
-        visible={showArchiveDeletionModal}
-        archivePaths={archivePaths}
-        onClose={() => setShowArchiveDeletionModal(false)}
-      />
+        <ArchiveDeletionModal
+          visible={showArchiveDeletionModal}
+          archivePaths={archivePaths}
+          onClose={() => setShowArchiveDeletionModal(false)}
+        />
 
-      <main>
-        <Sidebar />
+        <main>
+          <Sidebar />
 
-        <article className="container">
-          <Header />
+          <article className="container">
+            <Header />
 
-          <section
-            ref={contentRef}
-            id="scrollableDiv"
-            className="container__content"
-          >
-            <Outlet />
-          </section>
-        </article>
-      </main>
+            <section
+              ref={contentRef}
+              id="scrollableDiv"
+              className="container__content"
+            >
+              <Outlet />
+            </section>
+          </article>
+        </main>
 
-      <BottomPanel />
+        <BottomPanel />
       </>
     </ThemeProvider>
   );

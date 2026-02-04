@@ -1,4 +1,5 @@
 @use "../../scss/globals.scss" as g;
+@use "sass:color" as color;
 @use "../../scss/material-tokens.scss" as m;
 
 .button {
@@ -51,12 +52,12 @@
 
     &:hover:not(:disabled) {
       box-shadow: m.$shadow-2;
-      background-color: lighten(g.$primary, 3%);
+      background-color: color.adjust(g.$primary, $lightness: 3%);
     }
 
     &:active:not(:disabled) {
       box-shadow: m.$shadow-1;
-      background-color: darken(g.$primary, 5%);
+      background-color: color.adjust(g.$primary, $lightness: -5%);
     }
 
     &:focus-visible {
@@ -167,7 +168,7 @@
 
     &:hover:not(:disabled) {
       box-shadow: g.$shadow-2;
-      background-color: lighten(g.$error, 3%);
+      background-color: color.adjust(g.$error, $lightness: 3%);
     }
 
     &:active:not(:disabled) {
