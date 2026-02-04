@@ -2,9 +2,9 @@ appId: gg.krakenlauncher.kraken
 productName: Kraken
 directories:
   buildResources: build
-  extraResources:
-    - ludusavi
-    - hydra-python-rpc
+extraResources:
+  - ludusavi
+  - hydra-python-rpc
   - seeds
   - from: node_modules/create-desktop-shortcuts/src/windows.vbs
   - from: resources/achievement.wav
@@ -18,7 +18,7 @@ files:
 asarUnpack:
   - resources/**
 win:
-  executableName: Hydra
+  executableName: Kraken
   extraResources:
     - from: binaries/aria2c.exe
     - from: binaries/7z.exe
