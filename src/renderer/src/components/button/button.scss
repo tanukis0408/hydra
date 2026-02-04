@@ -1,63 +1,42 @@
 @use "../../scss/globals.scss";
+@use "../../scss/mixins.scss" as mixins;
 
 .button {
-  padding: globals.$spacing-unit globals.$spacing-unit * 2;
-  background-color: globals.$muted-color;
-  border-radius: 8px;
-  border: solid 1px transparent;
-  transition: all ease 0.2s;
-  cursor: pointer;
-  min-height: 40px;
-  display: flex;
+  // Base button layout
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: globals.$spacing-unit;
+  min-height: 40px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
 
-  &:active {
-    opacity: globals.$active-opacity;
-  }
-
-  &:disabled {
-    opacity: globals.$disabled-opacity;
-    cursor: not-allowed;
-  }
+  // Default to a filled Material You button style
+  @include mixins.button-filled;
+  @include mixins.text-label-medium;
 
   &--primary {
-    &:hover {
-      background-color: #dadbe1;
-    }
-
-    &:disabled {
-      background-color: globals.$muted-color;
-    }
+    // uses default filled style
   }
 
   &--outline {
-    background-color: transparent;
-    border: solid 1px globals.$border-color;
-    color: globals.$muted-color;
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-
-    &:disabled {
-      background-color: transparent;
-    }
+    @include mixins.button-outlined;
   }
 
   &--dark {
+    @include mixins.button-filled;
     background-color: globals.$dark-background-color;
-    color: globals.$muted-color;
+    color: globals.$on-surface;
   }
 
   &--danger {
-    border-color: transparent;
+    @include mixins.button-filled;
     background-color: globals.$danger-color;
-    color: globals.$muted-color;
+    color: globals.$on-primary;
 
     &:hover {
-      background-color: #b3203f;
+      background-color: darken(globals.$danger-color, 5%);
     }
   }
 }

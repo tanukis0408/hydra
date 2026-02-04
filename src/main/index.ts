@@ -29,7 +29,10 @@ autoUpdater.setFeedURL({
 autoUpdater.logger = logger;
 
 const gotTheLock = app.requestSingleInstanceLock();
-if (!gotTheLock) app.quit();
+if (!gotTheLock) {
+  logger.warn("Second instance detected, quitting");
+  app.quit();
+}
 
 if (process.platform !== "linux") {
   app.commandLine.appendSwitch("--no-sandbox");
@@ -60,104 +63,109 @@ if (process.defaultApp) {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(async () => {
-  electronApp.setAppUserModelId("gg.hydralauncher.hydra");
+  try {
+    electronApp.setAppUserModelId("gg.hydralauncher.hydra");
 
-  protocol.handle("local", (request) => {
-    const filePath = request?.url?.slice("local:".length) || "";
-    return net.fetch(url.pathToFileURL(decodeURI(filePath)).toString());
-  });
-
-  protocol.handle("gradient", (request) => {
-    const gradientCss = decodeURIComponent(
-      request?.url?.slice("gradient:".length) || ""
-    );
-
-    // Parse gradient CSS safely without regex to prevent ReDoS
-    let direction = "45deg";
-    let color1 = "#4a90e2";
-    let color2 = "#7b68ee";
-
-    // Simple string parsing approach - more secure than regex
-    if (
-      gradientCss &&
-      gradientCss.startsWith("linear-gradient(") &&
-      gradientCss.endsWith(")")
-    ) {
-      const content = gradientCss.slice(16, -1); // Remove "linear-gradient(" and ")"
-      const parts = content.split(",").map((part) => part.trim());
-
-      if (parts.length >= 3) {
-        direction = parts[0];
-        color1 = parts[1];
-        color2 = parts[2];
-      }
-    }
-
-    let x1 = "0%",
-      y1 = "0%",
-      x2 = "100%",
-      y2 = "100%";
-
-    if (direction === "to right") {
-      y2 = "0%";
-    } else if (direction === "to bottom") {
-      x2 = "0%";
-    } else if (direction === "45deg") {
-      y1 = "100%";
-      y2 = "0%";
-    } else if (direction === "225deg") {
-      x1 = "100%";
-      x2 = "0%";
-    } else if (direction === "315deg") {
-      x1 = "100%";
-      y1 = "100%";
-      x2 = "0%";
-      y2 = "0%";
-    }
-    // Note: "135deg" case removed as it uses all default values
-
-    const svgContent = `
-      <svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
-        <defs>
-          <linearGradient id="grad" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}">
-            <stop offset="0%" style="stop-color:${color1};stop-opacity:1" />
-            <stop offset="100%" style="stop-color:${color2};stop-opacity:1" />
-          </linearGradient>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grad)" />
-      </svg>
-    `;
-
-    return new Response(svgContent, {
-      headers: { "Content-Type": "image/svg+xml" },
+    protocol.handle("local", (request) => {
+      const filePath = request?.url?.slice("local:".length) || "";
+      return net.fetch(url.pathToFileURL(decodeURI(filePath)).toString());
     });
-  });
 
-  await loadState();
+    protocol.handle("gradient", (request) => {
+      const gradientCss = decodeURIComponent(
+        request?.url?.slice("gradient:".length) || ""
+      );
 
-  const language = await db
-    .get<string, string>(levelKeys.language, {
-      valueEncoding: "utf8",
-    })
-    .catch(() => "en");
+      // Parse gradient CSS safely without regex to prevent ReDoS
+      let direction = "45deg";
+      let color1 = "#4a90e2";
+      let color2 = "#7b68ee";
 
-  if (language) i18n.changeLanguage(language);
+      // Simple string parsing approach - more secure than regex
+      if (
+        gradientCss &&
+        gradientCss.startsWith("linear-gradient(") &&
+        gradientCss.endsWith(")")
+      ) {
+        const content = gradientCss.slice(16, -1); // Remove "linear-gradient(" and ")"
+        const parts = content.split(",").map((part) => part.trim());
 
-  // Check if starting from a "run" deep link - don't show main window in that case
-  const deepLinkArg = process.argv?.find((arg) =>
-    arg?.startsWith("hydralauncher://")
-  );
-  const isRunDeepLink = deepLinkArg?.startsWith("hydralauncher://run");
+        if (parts.length >= 3) {
+          direction = parts[0];
+          color1 = parts[1];
+          color2 = parts[2];
+        }
+      }
 
-  if (!process.argv?.includes("--hidden") && !isRunDeepLink) {
-    WindowManager.createMainWindow();
-  }
+      let x1 = "0%",
+        y1 = "0%",
+        x2 = "100%",
+        y2 = "100%";
 
-  WindowManager.createNotificationWindow();
-  WindowManager.createSystemTray(language || "en");
+      if (direction === "to right") {
+        y2 = "0%";
+      } else if (direction === "to bottom") {
+        x2 = "0%";
+      } else if (direction === "45deg") {
+        y1 = "100%";
+        y2 = "0%";
+      } else if (direction === "225deg") {
+        x1 = "100%";
+        x2 = "0%";
+      } else if (direction === "315deg") {
+        x1 = "100%";
+        y1 = "100%";
+        x2 = "0%";
+        y2 = "0%";
+      }
+      // Note: "135deg" case removed as it uses all default values
 
-  if (deepLinkArg) {
-    handleDeepLinkPath(deepLinkArg);
+      const svgContent = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+          <defs>
+            <linearGradient id="grad" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}">
+              <stop offset="0%" style="stop-color:${color1};stop-opacity:1" />
+              <stop offset="100%" style="stop-color:${color2};stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grad)" />
+        </svg>
+      `;
+
+      return new Response(svgContent, {
+        headers: { "Content-Type": "image/svg+xml" },
+      });
+    });
+
+    await loadState();
+
+    const language = await db
+      .get<string, string>(levelKeys.language, {
+        valueEncoding: "utf8",
+      })
+      .catch(() => "en");
+
+    if (language) i18n.changeLanguage(language);
+
+    // Check if starting from a "run" deep link - don't show main window in that case
+    const deepLinkArg = process.argv?.find((arg) =>
+      arg?.startsWith("hydralauncher://")
+    );
+    const isRunDeepLink = deepLinkArg?.startsWith("hydralauncher://run");
+
+    if (!process.argv?.includes("--hidden") && !isRunDeepLink) {
+      WindowManager.createMainWindow();
+    }
+
+    WindowManager.createNotificationWindow();
+    WindowManager.createSystemTray(language || "en");
+
+    if (deepLinkArg) {
+      handleDeepLinkPath(deepLinkArg);
+    }
+  } catch (error) {
+    logger.error("Fatal error in app initialization:", error);
+    app.quit();
   }
 });
 
@@ -167,10 +175,13 @@ app.on("browser-window-created", (_, window) => {
 
 const handleRunGame = async (shop: GameShop, objectId: string) => {
   const gameKey = levelKeys.game(shop, objectId);
-  const game = await gamesSublevel.get(gameKey);
+  const game = await gamesSublevel.get(gameKey).catch((error) => {
+    logger.error("Error fetching game from database", { shop, objectId, error });
+    return null;
+  });
 
   if (!game?.executablePath) {
-    logger.error("Game not found or no executable path", { shop, objectId });
+    logger.error("Game not found or no executable path", { shop, objectId, gameKey });
     return;
   }
 
@@ -276,14 +287,32 @@ app.on("window-all-closed", () => {
 let canAppBeClosed = false;
 
 app.on("before-quit", async (e) => {
-  await Lock.releaseLock();
+  await Lock.releaseLock().catch((error) => {
+    logger.error("Error releasing app lock", error);
+  });
 
   if (!canAppBeClosed) {
     e.preventDefault();
-    /* Disconnects libtorrent */
-    PythonRPC.kill();
-    Aria2.kill();
-    await clearGamesPlaytime();
+
+    try {
+      /* Disconnects libtorrent */
+      PythonRPC.kill();
+    } catch (error) {
+      logger.error("Error killing PythonRPC", error);
+    }
+
+    try {
+      Aria2.kill();
+    } catch (error) {
+      logger.error("Error killing Aria2", error);
+    }
+
+    try {
+      await clearGamesPlaytime();
+    } catch (error) {
+      logger.error("Error clearing games playtime", error);
+    }
+
     canAppBeClosed = true;
     app.quit();
   }
