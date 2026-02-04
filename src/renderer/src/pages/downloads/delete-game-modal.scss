@@ -1,4 +1,4 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .delete-game-modal {
   &__actions {
@@ -6,6 +6,6 @@
     width: 100%;
     justify-content: flex-end;
     align-items: center;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 }

@@ -5,7 +5,7 @@ import type { GameShop, UnlockedAchievement } from "./game.types";
 
 export type FriendRequestAction = "ACCEPTED" | "REFUSED" | "CANCEL";
 
-export type HydraCloudFeature =
+export type KrakenCloudFeature =
   | "achievements"
   | "backup"
   | "achievements-points";

@@ -53,7 +53,7 @@ export default function Home() {
         downloadSourceIds: downloadSources.map((source) => source.id),
       };
 
-      const catalogue = await window.electron.hydraApi.get<ShopAssets[]>(
+      const catalogue = await window.electron.krakenApi.get<ShopAssets[]>(
         `/catalogue/${category}`,
         {
           params,

@@ -1,4 +1,4 @@
-@use "../../../scss/globals.scss";
+@use "../../../scss/g.scss";
 
 .content-sidebar {
   height: 100%;
@@ -6,7 +6,7 @@
   width: 280px;
   display: flex;
   flex-direction: column;
-  gap: calc(globals.$spacing-unit * 1.5);
+  gap: calc(g.$spacing-unit * 1.5);
 
   @media (min-width: 1024px) {
     width: 320px;
@@ -38,7 +38,7 @@
   }
 
   &__button {
-    border: solid 1px globals.$border-color;
+    border: solid 1px g.$border-color;
     border-left: none;
     border-right: none;
     border-radius: 0;
@@ -46,50 +46,50 @@
   }
 
   &__details {
-    padding: calc(globals.$spacing-unit * 2);
+    padding: calc(g.$spacing-unit * 2);
     line-height: 22px;
-    font-size: globals.$body-font-size;
+    font-size: g.$body-font-size;
 
     a {
       display: flex;
-      color: globals.$body-color;
+      color: g.$body-color;
     }
   }
 
   &__details-skeleton {
     display: flex;
     flex-direction: column;
-    gap: globals.$spacing-unit;
-    padding: calc(globals.$spacing-unit * 2);
-    font-size: globals.$body-font-size;
+    gap: g.$spacing-unit;
+    padding: calc(g.$spacing-unit * 2);
+    font-size: g.$body-font-size;
   }
 }
 
 .how-long-to-beat {
   &__categories-list {
     margin: 0;
-    padding: calc(globals.$spacing-unit * 2);
+    padding: calc(g.$spacing-unit * 2);
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
   }
 
   &__category {
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit / 2);
+    gap: calc(g.$spacing-unit / 2);
     background: linear-gradient(
       90deg,
       transparent 20%,
       rgb(255 255 255 / 2%) 100%
     );
     border-radius: 4px;
-    padding: globals.$spacing-unit calc(globals.$spacing-unit * 2);
-    border: solid 1px globals.$border-color;
+    padding: g.$spacing-unit calc(g.$spacing-unit * 2);
+    border: solid 1px g.$border-color;
   }
 
   &__category-label {
-    color: globals.$muted-color;
+    color: g.$muted-color;
   }
 
   &__category-label--bold {
@@ -97,7 +97,7 @@
   }
 
   &__category-skeleton {
-    border: solid 1px globals.$border-color;
+    border: solid 1px g.$border-color;
     border-radius: 4px;
     height: 76px;
   }
@@ -106,8 +106,8 @@
 .stats {
   &__section {
     display: flex;
-    gap: calc(globals.$spacing-unit * 1);
-    padding: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 1);
+    padding: calc(g.$spacing-unit * 2);
     justify-content: space-between;
     transition: max-height ease 0.5s;
     overflow: hidden;
@@ -118,17 +118,17 @@
   }
 
   &__category-title {
-    font-size: globals.$small-font-size;
+    font-size: g.$small-font-size;
     font-weight: bold;
     display: flex;
     align-items: center;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 
   &__category {
     display: flex;
     flex-direction: row;
-    gap: calc(globals.$spacing-unit / 2);
+    gap: calc(g.$spacing-unit / 2);
     justify-content: space-between;
     align-items: center;
   }
@@ -139,19 +139,19 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: calc(globals.$spacing-unit * 2);
-  padding: calc(globals.$spacing-unit * 2);
+  gap: calc(g.$spacing-unit * 2);
+  padding: calc(g.$spacing-unit * 2);
 
   &__item {
     display: flex;
     cursor: pointer;
     transition: all ease 0.1s;
-    color: globals.$muted-color;
+    color: g.$muted-color;
     width: 100%;
     overflow: hidden;
     border-radius: 4px;
-    padding: globals.$spacing-unit;
-    gap: calc(globals.$spacing-unit * 2);
+    padding: g.$spacing-unit;
+    gap: calc(g.$spacing-unit * 2);
     align-items: center;
     text-align: left;
 
@@ -178,8 +178,8 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  gap: calc(globals.$spacing-unit / 2);
-  color: globals.$warning-color;
+  gap: calc(g.$spacing-unit / 2);
+  color: g.$warning-color;
   cursor: pointer;
 
   &:hover {

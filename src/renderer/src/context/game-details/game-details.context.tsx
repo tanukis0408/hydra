@@ -321,7 +321,7 @@ export function GameDetailsContextProvider({
           downloadSourceIds: sources.map((source) => source.id),
         };
 
-        const downloads = await window.electron.hydraApi.get<GameRepack[]>(
+        const downloads = await window.electron.krakenApi.get<GameRepack[]>(
           `/games/${shop}/${objectId}/download-sources`,
           {
             params,

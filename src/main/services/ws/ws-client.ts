@@ -1,5 +1,5 @@
 import { WebSocket } from "ws";
-import { HydraApi } from "../hydra-api";
+import { KrakenApi } from "../hydra-api";
 import { Envelope } from "@main/generated/envelope";
 import { logger } from "../logger";
 import { friendRequestEvent } from "./events/friend-request";
@@ -18,7 +18,7 @@ export class WSClient {
     this.shouldReconnect = true;
 
     try {
-      const { token } = await HydraApi.post<{ token: string }>("/auth/ws");
+      const { token } = await KrakenApi.post<{ token: string }>("/auth/ws");
 
       this.ws = new WebSocket(import.meta.env.MAIN_VITE_WS_URL, {
         headers: {

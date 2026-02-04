@@ -1,9 +1,9 @@
-@use "../../../scss/globals.scss";
+@use "../../../scss/g.scss";
 
 .cloud-sync-files-modal {
   &__mapping-methods {
     display: grid;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -13,13 +13,13 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: globals.$spacing-unit;
-    margin-top: calc(globals.$spacing-unit * 2);
+    gap: g.$spacing-unit;
+    margin-top: calc(g.$spacing-unit * 2);
   }
 
   &__file-item {
     flex: 1;
-    color: globals.$muted-color;
+    color: g.$muted-color;
     text-decoration: underline;
     display: flex;
     cursor: pointer;
@@ -28,14 +28,14 @@
   &__container {
     display: flex;
     flex-direction: column;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 
   &__mapping-label {
-    margin-bottom: globals.$spacing-unit;
+    margin-bottom: g.$spacing-unit;
   }
 
   &__custom-path {
-    margin-top: calc(globals.$spacing-unit * 2);
+    margin-top: calc(g.$spacing-unit * 2);
   }
 }

@@ -1,17 +1,17 @@
-@use "../../../scss/globals.scss";
+@use "../../../scss/g.scss";
 
 .change-game-playtime-modal {
   &__content {
     display: flex;
     flex-direction: column;
-    gap: globals.$spacing-unit * 2;
+    gap: g.$spacing-unit * 2;
   }
 
   &__warning {
     display: flex;
     align-items: center;
-    gap: globals.$spacing-unit;
-    padding: globals.$spacing-unit;
+    gap: g.$spacing-unit;
+    padding: g.$spacing-unit;
     background-color: rgba(255, 193, 7, 0.1);
     border: 1px solid rgba(255, 193, 7, 0.3);
     border-radius: 4px;
@@ -25,7 +25,7 @@
 
   &__inputs {
     display: flex;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     align-items: flex-end;
   }
 
@@ -34,6 +34,6 @@
     width: 100%;
     justify-content: flex-end;
     align-items: center;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 }

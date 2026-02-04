@@ -1,16 +1,16 @@
-@use "../../../scss/globals.scss";
+@use "../../../scss/g.scss";
 
 .all-friends-modal {
   display: flex;
   flex-direction: column;
-  gap: globals.$spacing-unit;
+  gap: g.$spacing-unit;
   max-height: 400px;
-  margin-top: calc(globals.$spacing-unit * -1);
+  margin-top: calc(g.$spacing-unit * -1);
 
   &__title {
     display: flex;
     align-items: center;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 
   &__count {
@@ -27,16 +27,16 @@
   &__list {
     display: flex;
     flex-direction: column;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     overflow-y: auto;
-    padding-right: globals.$spacing-unit;
+    padding-right: g.$spacing-unit;
   }
 
   &__item {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit * 2);
-    padding: calc(globals.$spacing-unit * 1.5);
+    gap: calc(g.$spacing-unit * 2);
+    padding: calc(g.$spacing-unit * 1.5);
     border-radius: 8px;
     cursor: pointer;
     transition: all ease 0.2s;
@@ -49,15 +49,15 @@
   &__info {
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit / 2);
+    gap: calc(g.$spacing-unit / 2);
     flex: 1;
     min-width: 0;
   }
 
   &__name {
     font-weight: 600;
-    color: globals.$muted-color;
-    font-size: globals.$body-font-size;
+    color: g.$muted-color;
+    font-size: g.$body-font-size;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -66,9 +66,9 @@
   &__game {
     display: flex;
     align-items: center;
-    gap: globals.$spacing-unit;
-    font-size: globals.$small-font-size;
-    color: globals.$body-color;
+    gap: g.$spacing-unit;
+    font-size: g.$small-font-size;
+    color: g.$body-color;
 
     img {
       border-radius: 4px;
@@ -83,19 +83,19 @@
 
   &__empty {
     text-align: center;
-    padding: calc(globals.$spacing-unit * 4);
-    color: globals.$body-color;
+    padding: calc(g.$spacing-unit * 4);
+    color: g.$body-color;
   }
 
   &__loading {
     display: flex;
     justify-content: center;
-    padding: calc(globals.$spacing-unit * 2);
+    padding: calc(g.$spacing-unit * 2);
   }
 
   &__load-more {
     display: flex;
     justify-content: center;
-    padding-top: globals.$spacing-unit;
+    padding-top: g.$spacing-unit;
   }
 }

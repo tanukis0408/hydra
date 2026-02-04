@@ -144,7 +144,7 @@
     "download": "Ladda ner",
     "executable_path_in_use": "Körbar fil används redan av \"{{game}}\"",
     "warning": "Varning:",
-    "hydra_needs_to_remain_open": "för denna nedladdning behöver Hydra vara öppen tills den är klar. Om Hydra stängs innan nedladdningen är klar förlorar du dina framsteg.",
+    "kraken_needs_to_remain_open": "för denna nedladdning behöver Hydra vara öppen tills den är klar. Om Hydra stängs innan nedladdningen är klar förlorar du dina framsteg.",
     "achievements": "Prestationer",
     "achievements_count": "Prestationer {{unlockedCount}}/{{achievementsCount}}",
     "cloud_save": "Molnspara",

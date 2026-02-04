@@ -312,7 +312,7 @@ declare global {
       options: Electron.OpenDialogOptions
     ) => Promise<Electron.OpenDialogReturnValue>;
     showItemInFolder: (path: string) => Promise<void>;
-    hydraApi: {
+    krakenApi: {
       get: <T = unknown>(
         url: string,
         options?: {

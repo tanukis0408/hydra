@@ -1,4 +1,4 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 @keyframes spin {
   from {
@@ -13,7 +13,7 @@
   &__list {
     padding: 0;
     margin: 0;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
     display: flex;
     flex-direction: column;
   }
@@ -21,15 +21,15 @@
   &__item {
     display: flex;
     flex-direction: column;
-    background-color: globals.$dark-background-color;
+    background-color: g.$dark-background-color;
     border-radius: 8px;
-    padding: calc(globals.$spacing-unit * 2);
-    gap: globals.$spacing-unit;
-    border: solid 1px globals.$border-color;
+    padding: calc(g.$spacing-unit * 2);
+    gap: g.$spacing-unit;
+    border: solid 1px g.$border-color;
     transition: all ease 0.2s;
 
     &--syncing {
-      opacity: globals.$disabled-opacity;
+      opacity: g.$disabled-opacity;
     }
 
     &--pending {
@@ -39,16 +39,16 @@
 
   &__spinner {
     animation: spin 1s linear infinite;
-    margin-right: calc(globals.$spacing-unit / 2);
+    margin-right: calc(g.$spacing-unit / 2);
     width: 12px;
     height: 12px;
   }
 
   &__item-header {
-    margin-bottom: globals.$spacing-unit;
+    margin-bottom: g.$spacing-unit;
     display: flex;
     flex-direction: column;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 
   &__header {
@@ -60,8 +60,8 @@
   &__navigate-button {
     display: flex;
     align-items: center;
-    gap: globals.$spacing-unit;
-    color: globals.$muted-color;
+    gap: g.$spacing-unit;
+    color: g.$muted-color;
     text-decoration: underline;
     cursor: pointer;
     background: none;
@@ -76,6 +76,6 @@
 
   &__buttons-container {
     display: flex;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 }

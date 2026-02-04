@@ -1,4 +1,4 @@
-@use "../../../scss/globals.scss";
+@use "../../../scss/g.scss" as g;
 
 $margin-horizontal: 40px;
 $margin-top: 52px;
@@ -216,7 +216,7 @@ $margin-bottom: 28px;
     width: calc(360px - $margin-horizontal);
     display: flex;
     padding: 8px 16px 8px 8px;
-    background: globals.$background-color;
+    background: g.$background-color;
   }
 
   &--platinum &__container {
@@ -368,7 +368,7 @@ $margin-bottom: 28px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: globals.$muted-color;
+    color: g.$muted-color;
     animation: title-in 450ms ease-in-out 900ms;
   }
 
@@ -385,7 +385,7 @@ $margin-bottom: 28px;
     line-clamp: 2;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    color: globals.$body-color;
+    color: g.$body-color;
     animation: description-in 450ms ease-in-out 900ms;
   }
 
@@ -402,7 +402,7 @@ $margin-bottom: 28px;
     padding: 0 8px;
     border-radius: 300px;
     align-items: center;
-    background: globals.$muted-color;
+    background: g.$muted-color;
     height: 24px;
     animation:
       chip-stand-by 900ms ease-in-out,
@@ -413,12 +413,12 @@ $margin-bottom: 28px;
       width: 16px;
       height: 16px;
       path {
-        fill: globals.$background-color;
+        fill: g.$background-color;
       }
     }
 
     &__label {
-      color: globals.$background-color;
+      color: g.$background-color;
       font-weight: 700;
     }
   }

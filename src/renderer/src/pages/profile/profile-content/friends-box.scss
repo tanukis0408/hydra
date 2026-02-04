@@ -1,21 +1,21 @@
-@use "../../../scss/globals.scss";
+@use "../../../scss/g.scss";
 
 .friends-box {
   &__box {
-    padding: calc(globals.$spacing-unit * 2);
+    padding: calc(g.$spacing-unit * 2);
     position: relative;
 
     &--empty {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: calc(globals.$spacing-unit * 2);
+      gap: calc(g.$spacing-unit * 2);
     }
   }
 
   &__empty-text {
-    color: globals.$muted-color;
-    font-size: globals.$small-font-size;
+    color: g.$muted-color;
+    font-size: g.$small-font-size;
     margin: 0;
     text-align: center;
   }
@@ -23,24 +23,24 @@
   &__add-friend-button {
     background: none;
     border: none;
-    color: globals.$body-color;
-    font-size: globals.$small-font-size;
+    color: g.$body-color;
+    font-size: g.$small-font-size;
     cursor: pointer;
     text-decoration: underline;
     padding: 0;
     transition: color ease 0.2s;
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit / 2);
+    gap: calc(g.$spacing-unit / 2);
 
     &:hover {
-      color: globals.$muted-color;
+      color: g.$muted-color;
     }
   }
 
   &__view-all-container {
-    padding-top: calc(globals.$spacing-unit * 2);
-    margin-top: calc(globals.$spacing-unit * 2);
+    padding-top: calc(g.$spacing-unit * 2);
+    margin-top: calc(g.$spacing-unit * 2);
     display: flex;
     justify-content: flex-start;
   }
@@ -51,19 +51,19 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
   }
 
   &__list-item {
     display: flex;
     cursor: pointer;
     transition: all ease 0.1s;
-    color: globals.$muted-color;
+    color: g.$muted-color;
     width: 100%;
     overflow: hidden;
     border-radius: 4px;
-    padding: globals.$spacing-unit;
-    gap: calc(globals.$spacing-unit * 2);
+    padding: g.$spacing-unit;
+    gap: calc(g.$spacing-unit * 2);
     align-items: center;
 
     &:hover {
@@ -73,7 +73,7 @@
   }
 
   &__friend-name {
-    color: globals.$muted-color;
+    color: g.$muted-color;
     font-size: 0.8rem;
     font-weight: 600;
   }
@@ -81,14 +81,14 @@
   &__game-info {
     font-size: 0.75rem;
     display: flex;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     align-items: center;
   }
 
   &__friend-details {
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit / 2);
+    gap: calc(g.$spacing-unit / 2);
   }
 
   &__game-image {
@@ -98,15 +98,15 @@
   &__view-all {
     background: none;
     border: none;
-    color: globals.$body-color;
-    font-size: globals.$small-font-size;
+    color: g.$body-color;
+    font-size: g.$small-font-size;
     cursor: pointer;
     text-decoration: underline;
     padding: 0;
     transition: color ease 0.2s;
 
     &:hover {
-      color: globals.$muted-color;
+      color: g.$muted-color;
     }
   }
 }

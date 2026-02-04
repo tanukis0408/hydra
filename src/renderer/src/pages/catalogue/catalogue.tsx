@@ -71,7 +71,7 @@ export default function Catalogue() {
           ),
         };
 
-        const response = await window.electron.hydraApi.post<{
+        const response = await window.electron.krakenApi.post<{
           edges: CatalogueSearchResult[];
           count: number;
         }>("/catalogue/search", {

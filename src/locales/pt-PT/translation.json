@@ -223,7 +223,7 @@
     "download": "Transferir",
     "executable_path_in_use": "Executável em uso por \"{{game}}\"",
     "warning": "Aviso:",
-    "hydra_needs_to_remain_open": "para esta transferência, o Hydra precisa de ficar aberto até a conclusão. Caso o Hydra encerre antes da transferência terminar, vais perder o teu progresso.",
+    "kraken_needs_to_remain_open": "para esta transferência, o Hydra precisa de ficar aberto até a conclusão. Caso o Hydra encerre antes da transferência terminar, vais perder o teu progresso.",
     "achievements": "Conquistas",
     "achievements_count": "Conquistas {{unlockedCount}}/{{achievementsCount}}",
     "show_more": "Mostrar mais",

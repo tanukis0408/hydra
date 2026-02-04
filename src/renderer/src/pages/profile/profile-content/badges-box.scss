@@ -1,28 +1,28 @@
-@use "../../../scss/globals.scss";
+@use "../../../scss/g.scss";
 
 .badges-box {
   &__box {
-    padding: calc(globals.$spacing-unit * 2);
+    padding: calc(g.$spacing-unit * 2);
   }
 
   &__header {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: calc(globals.$spacing-unit * 2);
+    margin-bottom: calc(g.$spacing-unit * 2);
   }
 
   &__list {
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
   }
 
   &__item {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit * 1.5);
+    gap: calc(g.$spacing-unit * 1.5);
     width: 100%;
-    padding: calc(globals.$spacing-unit * 1.5);
+    padding: calc(g.$spacing-unit * 1.5);
     background-color: rgba(255, 255, 255, 0.05);
     border-radius: 8px;
     transition: background-color ease 0.2s;
@@ -41,7 +41,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: globals.$background-color;
+    background-color: g.$background-color;
 
     img {
       width: 28px;
@@ -53,7 +53,7 @@
   &__item-content {
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 0.5);
+    gap: calc(g.$spacing-unit * 0.5);
     flex: 1;
     min-width: 0;
   }
@@ -61,7 +61,7 @@
   &__item-title {
     font-size: 0.8rem;
     font-weight: 600;
-    color: globals.$body-color;
+    color: g.$body-color;
     margin: 0;
   }
 
@@ -72,8 +72,8 @@
   }
 
   &__view-all-container {
-    padding-top: calc(globals.$spacing-unit * 2);
-    margin-top: calc(globals.$spacing-unit * 2);
+    padding-top: calc(g.$spacing-unit * 2);
+    margin-top: calc(g.$spacing-unit * 2);
     display: flex;
     justify-content: flex-start;
   }
@@ -81,15 +81,15 @@
   &__view-all {
     background: none;
     border: none;
-    color: globals.$body-color;
-    font-size: globals.$small-font-size;
+    color: g.$body-color;
+    font-size: g.$small-font-size;
     cursor: pointer;
     text-decoration: underline;
     padding: 0;
     transition: color ease 0.2s;
 
     &:hover {
-      color: globals.$muted-color;
+      color: g.$muted-color;
     }
   }
 }

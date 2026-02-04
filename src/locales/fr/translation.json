@@ -225,7 +225,7 @@
     "download": "Télécharger",
     "executable_path_in_use": "Exécutable déjà utilisé par \"{{game}}\"",
     "warning": "Attention :",
-    "hydra_needs_to_remain_open": "Pour ce téléchargement, Hydra doit rester ouvert jusqu'à la fin. Si Hydra se ferme avant, la progression sera perdue.",
+    "kraken_needs_to_remain_open": "Pour ce téléchargement, Hydra doit rester ouvert jusqu'à la fin. Si Hydra se ferme avant, la progression sera perdue.",
     "achievements": "Succès",
     "achievements_count": "Succès {{unlockedCount}}/{{achievementsCount}}",
     "cloud_save": "Sauvegarde Cloud",

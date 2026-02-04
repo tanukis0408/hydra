@@ -1,13 +1,13 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { HydraCloudFeature } from "@types";
+import type { KrakenCloudFeature } from "@types";
 
 export interface SubscriptionState {
-  isHydraCloudModalVisible: boolean;
-  feature: HydraCloudFeature | "";
+  isKrakenCloudModalVisible: boolean;
+  feature: KrakenCloudFeature | "";
 }
 
 const initialState: SubscriptionState = {
-  isHydraCloudModalVisible: false,
+  isKrakenCloudModalVisible: false,
   feature: "",
 };
 
@@ -15,18 +15,18 @@ export const subscriptionSlice = createSlice({
   name: "subscription",
   initialState,
   reducers: {
-    setHydraCloudModalVisible: (
+    setKrakenCloudModalVisible: (
       state,
-      action: PayloadAction<HydraCloudFeature>
+      action: PayloadAction<KrakenCloudFeature>
     ) => {
-      state.isHydraCloudModalVisible = true;
+      state.isKrakenCloudModalVisible = true;
       state.feature = action.payload;
     },
-    setHydraCloudModalHidden: (state) => {
-      state.isHydraCloudModalVisible = false;
+    setKrakenCloudModalHidden: (state) => {
+      state.isKrakenCloudModalVisible = false;
     },
   },
 });
 
-export const { setHydraCloudModalVisible, setHydraCloudModalHidden } =
+export const { setKrakenCloudModalVisible, setKrakenCloudModalHidden } =
   subscriptionSlice.actions;

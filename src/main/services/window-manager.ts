@@ -14,7 +14,7 @@ import { t } from "i18next";
 import path from "node:path";
 import icon from "@resources/icon.png?asset";
 import trayIcon from "@resources/tray-icon.png?asset";
-import { HydraApi } from "./hydra-api";
+import { KrakenApi } from "./kraken-api";
 import UserAgent from "user-agents";
 import { db, gamesSublevel, levelKeys } from "@main/level";
 import { orderBy, slice } from "lodash-es";
@@ -288,7 +288,7 @@ export class WindowManager {
         if (url.startsWith("hydralauncher://auth")) {
           authWindow.close();
 
-          HydraApi.handleExternalAuth(url);
+          KrakenApi.handleExternalAuth(url);
           return;
         }
 
@@ -685,7 +685,7 @@ export class WindowManager {
       tray.popUpContextMenu(contextMenu);
     };
 
-    tray.setToolTip("Hydra Launcher");
+    tray.setToolTip("Kraken Launcher");
 
     if (process.platform === "win32") {
       await updateSystemTray();

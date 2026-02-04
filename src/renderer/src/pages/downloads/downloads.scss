@@ -1,4 +1,4 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .downloads {
   &__container {
@@ -9,7 +9,7 @@
 
   &__groups {
     display: flex;
-    gap: calc(globals.$spacing-unit * 3);
+    gap: calc(g.$spacing-unit * 3);
     flex-direction: column;
   }
 
@@ -21,7 +21,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: calc(globals.$spacing-unit * 2);
+    margin-bottom: calc(g.$spacing-unit * 2);
   }
 
   &__no-downloads {
@@ -31,6 +31,6 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 }

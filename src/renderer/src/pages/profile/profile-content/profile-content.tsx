@@ -181,7 +181,7 @@ export function ProfileContent() {
 
     setIsLoadingReviews(true);
     try {
-      const response = await window.electron.hydraApi.get<UserReviewsResponse>(
+      const response = await window.electron.krakenApi.get<UserReviewsResponse>(
         `/users/${userProfile.id}/reviews`,
         { needsAuth: true }
       );
@@ -199,7 +199,7 @@ export function ProfileContent() {
       );
       if (!reviewToDeleteObj) return;
 
-      await window.electron.hydraApi.delete(
+      await window.electron.krakenApi.delete(
         `/games/${reviewToDeleteObj.game.shop}/${reviewToDeleteObj.game.objectId}/reviews/${reviewId}`
       );
       // Remove the review from the local state
@@ -297,7 +297,7 @@ export function ProfileContent() {
 
     try {
       const endpoint = isUpvote ? "upvote" : "downvote";
-      await window.electron.hydraApi.put(
+      await window.electron.krakenApi.put(
         `/games/${review.game.shop}/${review.game.objectId}/reviews/${reviewId}/${endpoint}`
       );
     } catch (error) {

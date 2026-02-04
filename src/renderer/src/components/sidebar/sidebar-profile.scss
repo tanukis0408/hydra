@@ -1,21 +1,21 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .sidebar-profile {
   position: relative;
   display: flex;
   align-items: center;
-  gap: globals.$spacing-unit;
-  padding: globals.$spacing-unit calc(globals.$spacing-unit * 2);
+  gap: g.$spacing-unit;
+  padding: g.$spacing-unit calc(g.$spacing-unit * 2);
 
   &__button {
     display: flex;
     cursor: pointer;
     transition: all ease 0.1s;
-    color: globals.$muted-color;
+    color: g.$muted-color;
     width: 100%;
     overflow: hidden;
     border-radius: 4px;
-    padding: globals.$spacing-unit globals.$spacing-unit;
+    padding: g.$spacing-unit g.$spacing-unit;
     &:hover {
       background-color: rgba(255, 255, 255, 0.15);
     }
@@ -24,7 +24,7 @@
   &__button-content {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit + globals.$spacing-unit / 2);
+    gap: calc(g.$spacing-unit + g.$spacing-unit / 2);
     width: 100%;
   }
 
@@ -38,7 +38,7 @@
 
   &__button-title {
     font-weight: bold;
-    font-size: globals.$body-font-size;
+    font-size: g.$body-font-size;
     width: 100%;
     text-align: left;
     overflow: hidden;
@@ -47,14 +47,14 @@
   }
 
   &__notification-button {
-    color: globals.$muted-color;
+    color: g.$muted-color;
     cursor: pointer;
     border-radius: 50%;
     width: 40px;
     min-width: 40px;
     min-height: 40px;
     height: 40px;
-    background-color: globals.$background-color;
+    background-color: g.$background-color;
     position: relative;
     transition: all ease 0.3s;
     &:hover {
@@ -63,7 +63,7 @@
   }
 
   &__notification-button-badge {
-    background-color: globals.$success-color;
+    background-color: g.$success-color;
     display: flex;
     justify-content: center;
     align-items: center;

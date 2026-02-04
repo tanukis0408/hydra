@@ -216,7 +216,7 @@
     "download": "Lejupielādēt",
     "executable_path_in_use": "Izpildāmais fails jau tiek izmantots \"{{game}}\"",
     "warning": "Uzmanību:",
-    "hydra_needs_to_remain_open": "Lai veiktu šo lejupielādi, Hydra jāpaliek atvērtai līdz beigām. Ja Hydra aizvērsies pirms pabeigšanas, jūs zaudēsiet progresu.",
+    "kraken_needs_to_remain_open": "Lai veiktu šo lejupielādi, Hydra jāpaliek atvērtai līdz beigām. Ja Hydra aizvērsies pirms pabeigšanas, jūs zaudēsiet progresu.",
     "achievements": "Sasniegumi",
     "achievements_count": "Sasniegumi {{unlockedCount}}/{{achievementsCount}}",
     "show_more": "Rādīt vairāk",

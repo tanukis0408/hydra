@@ -216,7 +216,7 @@
     "download": "Lataa",
     "executable_path_in_use": "Suoritettavaa tiedostoa käyttää jo \"{{game}}\"",
     "warning": "Varoitus:",
-    "hydra_needs_to_remain_open": "Tämän latauksen aikana Hydran on pysyttävä auki, kunnes se on valmis. Jos Hydra sulkeutuu ennen valmistumista, menetät edistymisen.",
+    "kraken_needs_to_remain_open": "Tämän latauksen aikana Hydran on pysyttävä auki, kunnes se on valmis. Jos Hydra sulkeutuu ennen valmistumista, menetät edistymisen.",
     "achievements": "Saavutukset",
     "achievements_count": "Saavutukset {{unlockedCount}}/{{achievementsCount}}",
     "show_more": "Näytä enemmän",

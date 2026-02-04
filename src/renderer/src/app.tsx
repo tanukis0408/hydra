@@ -63,7 +63,7 @@ export function App() {
     clearUserDetails,
   } = useUserDetails();
 
-  const { hideHydraCloudModal, isHydraCloudModalVisible, hydraCloudFeature } =
+  const { hideKrakenCloudModal, isKrakenCloudModalVisible, krakenCloudFeature } =
     useSubscription();
 
   const dispatch = useAppDispatch();
@@ -247,7 +247,7 @@ export function App() {
 
   useEffect(() => {
     new MutationObserver(() => {
-      const modal = document.body.querySelector("[data-hydra-dialog]");
+      const modal = document.body.querySelector("[data-kraken-dialog]");
 
       dispatch(toggleDraggingDisabled(Boolean(modal)));
     }).observe(document.body, {
@@ -330,9 +330,9 @@ export function App() {
         />
 
         <KrakenCloudModal
-          visible={isHydraCloudModalVisible}
-          onClose={hideHydraCloudModal}
-          feature={hydraCloudFeature}
+          visible={isKrakenCloudModalVisible}
+          onClose={hideKrakenCloudModal}
+          feature={krakenCloudFeature}
         />
 
         <ArchiveDeletionModal

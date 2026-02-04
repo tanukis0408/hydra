@@ -120,7 +120,7 @@ export function GameReviews({
     if (!objectId || !userDetailsId || shop === "custom") return;
 
     try {
-      const response = await window.electron.hydraApi.get<{
+      const response = await window.electron.krakenApi.get<{
         hasReviewed: boolean;
       }>(`/games/${shop}/${objectId}/reviews/check`, {
         needsAuth: true,
@@ -165,7 +165,7 @@ export function GameReviews({
           sortBy: reviewsSortBy,
         });
 
-        const response = await window.electron.hydraApi.get(
+        const response = await window.electron.krakenApi.get(
           `/games/${shop}/${objectId}/reviews?${params.toString()}`,
           { needsAuth: false }
         );
@@ -258,7 +258,7 @@ export function GameReviews({
     setReviews(updatedReviews);
 
     try {
-      await window.electron.hydraApi.put(
+      await window.electron.krakenApi.put(
         `/games/${shop}/${objectId}/reviews/${reviewId}/${voteType}`,
         { data: {} }
       );
@@ -285,7 +285,7 @@ export function GameReviews({
     if (!objectId) return;
 
     try {
-      await window.electron.hydraApi.delete(
+      await window.electron.krakenApi.delete(
         `/games/${shop}/${objectId}/reviews/${reviewId}`
       );
       loadReviews(true);
@@ -320,7 +320,7 @@ export function GameReviews({
     setSubmittingReview(true);
 
     try {
-      await window.electron.hydraApi.post(
+      await window.electron.krakenApi.post(
         `/games/${shop}/${objectId}/reviews`,
         {
           data: {

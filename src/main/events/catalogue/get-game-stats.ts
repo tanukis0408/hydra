@@ -1,6 +1,6 @@
 import type { GameShop, GameStats } from "@types";
 import { registerEvent } from "../register-event";
-import { HydraApi } from "@main/services";
+import { KrakenApi } from "@main/services";
 import { gamesStatsCacheSublevel, levelKeys } from "@main/level";
 
 const LOCAL_CACHE_EXPIRATION = 1000 * 60 * 30; // 30 minutes
@@ -25,7 +25,7 @@ const getGameStats = async (
     return cachedStats;
   }
 
-  return HydraApi.get<GameStats>(`/games/${shop}/${objectId}/stats`, null, {
+  return KrakenApi.get<GameStats>(`/games/${shop}/${objectId}/stats`, null, {
     needsAuth: false,
   }).then(async (data) => {
     await gamesStatsCacheSublevel.put(levelKeys.game(shop, objectId), {

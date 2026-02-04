@@ -1,14 +1,14 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .profile-avatar {
   border-radius: 4px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: globals.$background-color;
-  border: solid 1px globals.$border-color;
+  background-color: g.$background-color;
+  border: solid 1px g.$border-color;
   cursor: pointer;
-  color: globals.$muted-color;
+  color: g.$muted-color;
   position: relative;
   overflow: hidden;
 

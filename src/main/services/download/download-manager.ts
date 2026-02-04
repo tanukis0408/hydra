@@ -24,7 +24,7 @@ import { db, downloadsSublevel, gamesSublevel, levelKeys } from "@main/level";
 import { orderBy } from "lodash-es";
 import { TorBoxClient } from "./torbox";
 import { GameFilesManager } from "../game-files-manager";
-import { HydraDebridClient } from "./hydra-debrid";
+import { KrakenDebridClient } from "./hydra-debrid";
 import { BuzzheavierApi, FuckingFastApi } from "@main/services/hosters";
 import { JsHttpDownloader } from "./js-http-downloader";
 import { getDirectorySize } from "@main/events/helpers/get-directory-size";
@@ -582,8 +582,8 @@ export class DownloadManager {
         return this.getRealDebridDownloadOptions(download, resumingFilename);
       case Downloader.TorBox:
         return this.getTorBoxDownloadOptions(download, resumingFilename);
-      case Downloader.Hydra:
-        return this.getHydraDownloadOptions(download, resumingFilename);
+      case Downloader.Kraken:
+        return this.getKrakenDownloadOptions(download, resumingFilename);
       case Downloader.VikingFile:
         return this.getVikingFileDownloadOptions(download, resumingFilename);
       case Downloader.Rootz:
@@ -737,12 +737,12 @@ export class DownloadManager {
     );
   }
 
-  private static async getHydraDownloadOptions(
+  private static async getKrakenDownloadOptions(
     download: Download,
     resumingFilename?: string
   ) {
-    const downloadUrl = await HydraDebridClient.getDownloadUrl(download.uri);
-    if (!downloadUrl) throw new Error(DownloadError.NotCachedOnHydra);
+    const downloadUrl = await KrakenDebridClient.getDownloadUrl(download.uri);
+    if (!downloadUrl) throw new Error(DownloadError.NotCachedOnKraken);
     const filename = this.resolveFilename(
       resumingFilename,
       download.uri,
@@ -914,11 +914,11 @@ export class DownloadManager {
           allow_multiple_connections: true,
         };
       }
-      case Downloader.Hydra: {
-        const downloadUrl = await HydraDebridClient.getDownloadUrl(
+      case Downloader.Kraken: {
+        const downloadUrl = await KrakenDebridClient.getDownloadUrl(
           download.uri
         );
-        if (!downloadUrl) throw new Error(DownloadError.NotCachedOnHydra);
+        if (!downloadUrl) throw new Error(DownloadError.NotCachedOnKraken);
 
         return {
           action: "start",

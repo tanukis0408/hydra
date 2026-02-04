@@ -1,12 +1,12 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .settings-debrid {
   display: flex;
   flex-direction: column;
-  gap: calc(globals.$spacing-unit * 2);
+  gap: calc(g.$spacing-unit * 2);
 
   &__description {
-    margin: 0 0 calc(globals.$spacing-unit * 2) 0;
+    margin: 0 0 calc(g.$spacing-unit * 2) 0;
     color: var(--text-secondary);
     line-height: 1.6;
   }
@@ -19,8 +19,8 @@
   &__section-header {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit);
-    margin-bottom: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit);
+    margin-bottom: calc(g.$spacing-unit * 2);
   }
 
   &__section-title {

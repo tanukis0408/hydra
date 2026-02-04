@@ -1,4 +1,4 @@
-@use "../../../scss/globals.scss";
+@use "../../../scss/g.scss";
 
 .game-language-section {
   background-color: rgba(255, 255, 255, 0.02);
@@ -7,17 +7,17 @@
   &__header {
     display: flex;
     background-color: rgba(255, 255, 255, 0.05);
-    border-bottom: 1px solid globals.$border-color;
+    border-bottom: 1px solid g.$border-color;
   }
 
   &__header-item {
     display: flex;
     align-items: center;
-    color: globals.$muted-color;
-    font-size: globals.$small-font-size;
+    color: g.$muted-color;
+    font-size: g.$small-font-size;
     font-weight: 600;
     flex: 1;
-    padding: calc(globals.$spacing-unit * 1.5) calc(globals.$spacing-unit * 2.5);
+    padding: calc(g.$spacing-unit * 1.5) calc(g.$spacing-unit * 2.5);
 
     &--center {
       justify-content: flex-start;
@@ -45,9 +45,9 @@
   }
 
   &__cell {
-    padding: calc(globals.$spacing-unit * 1.5) calc(globals.$spacing-unit * 2.5);
-    font-size: globals.$body-font-size;
-    color: globals.$body-color;
+    padding: calc(g.$spacing-unit * 1.5) calc(g.$spacing-unit * 2.5);
+    font-size: g.$body-font-size;
+    color: g.$body-color;
     display: flex;
     align-items: center;
     flex: 1;
@@ -66,20 +66,20 @@
   }
 
   &__check {
-    color: globals.$body-color;
+    color: g.$body-color;
     opacity: 0.8;
   }
 
   &__cross {
-    color: globals.$body-color;
+    color: g.$body-color;
     opacity: 0.8;
   }
 
   @media (max-width: 320px) {
     &__header,
     &__cell {
-      padding: calc(globals.$spacing-unit * 1) calc(globals.$spacing-unit * 0.5);
-      font-size: calc(globals.$small-font-size * 0.9);
+      padding: calc(g.$spacing-unit * 1) calc(g.$spacing-unit * 0.5);
+      font-size: calc(g.$small-font-size * 0.9);
     }
   }
 }

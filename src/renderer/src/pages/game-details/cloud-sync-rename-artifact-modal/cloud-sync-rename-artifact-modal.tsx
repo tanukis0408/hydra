@@ -58,7 +58,7 @@ export function CloudSyncRenameArtifactModal({
       try {
         if (!artifact) return;
 
-        await window.electron.hydraApi.put(
+        await window.electron.krakenApi.put(
           `/profile/games/artifacts/${artifact.id}`,
           {
             data: {

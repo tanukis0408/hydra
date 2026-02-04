@@ -115,7 +115,7 @@ $inverse-primary: $dark-inverse-primary;
 // Muted color alias for legacy usages
 $muted-color: $on-surface-variant;
 
-// Legacy aliases for older SCSS files expecting `globals.$...`
+// Legacy aliases for older SCSS files expecting `g.$...`
 $body-color: $on-surface;
 $border-color: $outline;
 // Container name used for CSS Container Queries (interpolated where needed)

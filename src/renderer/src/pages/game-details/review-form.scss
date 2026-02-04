@@ -1,23 +1,23 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .game-details {
   &__reviews-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: calc(globals.$spacing-unit * 2);
+    margin-bottom: calc(g.$spacing-unit * 2);
 
     @media (max-width: 768px) {
       flex-direction: column;
       align-items: flex-start;
-      gap: calc(globals.$spacing-unit * 1.5);
+      gap: calc(g.$spacing-unit * 1.5);
     }
   }
 
   &__reviews-title {
     font-size: 1.25rem;
     font-weight: 600;
-    color: globals.$muted-color;
+    color: g.$muted-color;
     margin: 0;
   }
 
@@ -137,7 +137,7 @@
     flex-direction: column;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-    background-color: globals.$dark-background-color;
+    background-color: g.$dark-background-color;
     overflow: hidden;
   }
 
@@ -146,7 +146,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 8px 12px;
-    background-color: globals.$background-color;
+    background-color: g.$background-color;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
@@ -171,8 +171,8 @@
     }
 
     &.is-active {
-      background-color: globals.$brand-blue;
-      border-color: globals.$brand-blue;
+      background-color: g.$brand-blue;
+      border-color: g.$brand-blue;
     }
 
     &:disabled {

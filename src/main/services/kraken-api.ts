@@ -13,20 +13,20 @@ import { levelKeys } from "@main/level/sublevels";
 import type { Auth, User } from "@types";
 import { WSClient } from "./ws";
 
-export interface HydraApiOptions {
+export interface KrakenApiOptions {
   needsAuth?: boolean;
   needsSubscription?: boolean;
   ifModifiedSince?: Date;
 }
 
-interface HydraApiUserAuth {
+interface KrakenApiUserAuth {
   authToken: string;
   refreshToken: string;
   expirationTimestamp: number;
   subscription: { expiresAt: Date | string | null } | null;
 }
 
-export class HydraApi {
+export class KrakenApi {
   private static instance: AxiosInstance;
 
   private static readonly EXPIRATION_OFFSET_IN_MS = 1000 * 60 * 5; // 5 minutes
@@ -36,7 +36,7 @@ export class HydraApi {
     return seconds * 1000;
   }
 
-  private static userAuth: HydraApiUserAuth = {
+  private static userAuth: KrakenApiUserAuth = {
     authToken: "",
     refreshToken: "",
     expirationTimestamp: 0,
@@ -134,7 +134,7 @@ export class HydraApi {
   static async setupApi() {
     this.instance = axios.create({
       baseURL: import.meta.env.MAIN_VITE_API_URL,
-      headers: { "User-Agent": `Hydra Launcher v${appVersion}` },
+      headers: { "User-Agent": `Kraken Launcher v${appVersion}` },
     });
 
     if (this.ADD_LOG_INTERCEPTOR) {
@@ -329,7 +329,7 @@ export class HydraApi {
     throw err;
   };
 
-  private static async validateOptions(options?: HydraApiOptions) {
+  private static async validateOptions(options?: KrakenApiOptions) {
     const needsAuth = options?.needsAuth == undefined || options.needsAuth;
     const needsSubscription = options?.needsSubscription === true;
 
@@ -346,13 +346,13 @@ export class HydraApi {
   static async get<T = any>(
     url: string,
     params?: any,
-    options?: HydraApiOptions
+    options?: KrakenApiOptions
   ) {
     await this.validateOptions(options);
 
     const headers = {
       ...this.getAxiosConfig().headers,
-      "Hydra-If-Modified-Since": options?.ifModifiedSince?.toUTCString(),
+      "Kraken-If-Modified-Since": options?.ifModifiedSince?.toUTCString(),
     };
 
     return this.instance
@@ -364,7 +364,7 @@ export class HydraApi {
   static async post<T = any>(
     url: string,
     data?: any,
-    options?: HydraApiOptions
+    options?: KrakenApiOptions
   ) {
     await this.validateOptions(options);
 
@@ -377,7 +377,7 @@ export class HydraApi {
   static async put<T = any>(
     url: string,
     data?: any,
-    options?: HydraApiOptions
+    options?: KrakenApiOptions
   ) {
     await this.validateOptions(options);
 
@@ -390,7 +390,7 @@ export class HydraApi {
   static async patch<T = any>(
     url: string,
     data?: any,
-    options?: HydraApiOptions
+    options?: KrakenApiOptions
   ) {
     await this.validateOptions(options);
 
@@ -400,7 +400,7 @@ export class HydraApi {
       .catch(this.handleUnauthorizedError);
   }
 
-  static async delete<T = any>(url: string, options?: HydraApiOptions) {
+  static async delete<T = any>(url: string, options?: KrakenApiOptions) {
     await this.validateOptions(options);
 
     return this.instance
@@ -414,7 +414,7 @@ export class HydraApi {
     games: Array<{ shop: string; objectId: string }>,
     since: string
   ) {
-    logger.info("HydraApi.checkDownloadSourcesChanges called with:", {
+    logger.info("KrakenApi.checkDownloadSourcesChanges called with:", {
       downloadSourceIds,
       gamesCount: games.length,
       since,
@@ -440,12 +440,12 @@ export class HydraApi {
       );
 
       logger.info(
-        "HydraApi.checkDownloadSourcesChanges completed successfully:",
+        "KrakenApi.checkDownloadSourcesChanges completed successfully:",
         result
       );
       return result;
     } catch (error) {
-      logger.error("HydraApi.checkDownloadSourcesChanges failed:", error);
+      logger.error("KrakenApi.checkDownloadSourcesChanges failed:", error);
       throw error;
     }
   }

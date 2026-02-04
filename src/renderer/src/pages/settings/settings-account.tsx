@@ -92,7 +92,7 @@ export function SettingsAccount() {
     [unblockUser, fetchBlockedUsers, t, showSuccessToast]
   );
 
-  const getHydraCloudSectionContent = () => {
+  const getKrakenCloudSectionContent = () => {
     const hasSubscribedBefore = Boolean(userDetails?.subscription?.expiresAt);
     const isRenewalActive = userDetails?.subscription?.status === "active";
 
@@ -201,9 +201,9 @@ export function SettingsAccount() {
       </section>
 
       <section className="settings-account__section">
-        <h3>{t("hydra_cloud")}</h3>
+        <h3>{t("kraken_cloud")}</h3>
         <div className="settings-account__subscription-info">
-          {getHydraCloudSectionContent().description}
+          {getKrakenCloudSectionContent().description}
         </div>
 
         <Button
@@ -212,7 +212,7 @@ export function SettingsAccount() {
           onClick={() => window.electron.openCheckout()}
         >
           <CloudIcon />
-          {getHydraCloudSectionContent().callToAction}
+          {getKrakenCloudSectionContent().callToAction}
         </Button>
       </section>
 

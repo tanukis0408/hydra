@@ -1,6 +1,6 @@
 import { registerEvent } from "../register-event";
-import { logger, HydraApi } from "@main/services";
-import { HYDRA_DECKY_PLUGIN_LOCATION } from "@main/constants";
+import { logger, KrakenApi } from "@main/services";
+import { KRAKEN_DECKY_PLUGIN_LOCATION } from "@main/constants";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -9,7 +9,7 @@ interface DeckyReleaseInfo {
   downloadUrl: string;
 }
 
-const getHydraDeckyPluginInfo = async (
+const getKrakenDeckyPluginInfo = async (
   _event: Electron.IpcMainInvokeEvent
 ): Promise<{
   installed: boolean;
@@ -22,7 +22,7 @@ const getHydraDeckyPluginInfo = async (
     // Fetch the expected version from API
     let expectedVersion: string | null = null;
     try {
-      const releaseInfo = await HydraApi.get<DeckyReleaseInfo>(
+      const releaseInfo = await KrakenApi.get<DeckyReleaseInfo>(
         "/decky/release",
         {},
         { needsAuth: false }
@@ -33,12 +33,12 @@ const getHydraDeckyPluginInfo = async (
     }
 
     // Check if plugin folder exists
-    if (!fs.existsSync(HYDRA_DECKY_PLUGIN_LOCATION)) {
-      logger.log("Hydra Decky plugin not installed");
+    if (!fs.existsSync(KRAKEN_DECKY_PLUGIN_LOCATION)) {
+      logger.log("Kraken Decky plugin not installed");
       return {
         installed: false,
         version: null,
-        path: HYDRA_DECKY_PLUGIN_LOCATION,
+        path: KRAKEN_DECKY_PLUGIN_LOCATION,
         outdated: true,
         expectedVersion,
       };
@@ -46,16 +46,16 @@ const getHydraDeckyPluginInfo = async (
 
     // Check if package.json exists
     const packageJsonPath = path.join(
-      HYDRA_DECKY_PLUGIN_LOCATION,
+      KRAKEN_DECKY_PLUGIN_LOCATION,
       "package.json"
     );
 
     if (!fs.existsSync(packageJsonPath)) {
-      logger.log("Hydra Decky plugin package.json not found");
+      logger.log("Kraken Decky plugin package.json not found");
       return {
         installed: false,
         version: null,
-        path: HYDRA_DECKY_PLUGIN_LOCATION,
+        path: KRAKEN_DECKY_PLUGIN_LOCATION,
         outdated: true,
         expectedVersion,
       };
@@ -69,13 +69,13 @@ const getHydraDeckyPluginInfo = async (
     const outdated = expectedVersion ? version !== expectedVersion : false;
 
     logger.log(
-      `Hydra Decky plugin installed, version: ${version}, expected: ${expectedVersion}, outdated: ${outdated}`
+      `Kraken Decky plugin installed, version: ${version}, expected: ${expectedVersion}, outdated: ${outdated}`
     );
 
     return {
       installed: true,
       version,
-      path: HYDRA_DECKY_PLUGIN_LOCATION,
+      path: KRAKEN_DECKY_PLUGIN_LOCATION,
       outdated,
       expectedVersion,
     };
@@ -84,11 +84,11 @@ const getHydraDeckyPluginInfo = async (
     return {
       installed: false,
       version: null,
-      path: HYDRA_DECKY_PLUGIN_LOCATION,
+      path: KRAKEN_DECKY_PLUGIN_LOCATION,
       outdated: true,
       expectedVersion: null,
     };
   }
 };
 
-registerEvent("getHydraDeckyPluginInfo", getHydraDeckyPluginInfo);
+registerEvent("getKrakenDeckyPluginInfo", getKrakenDeckyPluginInfo);

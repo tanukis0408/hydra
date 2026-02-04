@@ -20,7 +20,7 @@ export function Hero() {
 
     const language = i18n.language.split("-")[0];
 
-    window.electron.hydraApi
+    window.electron.krakenApi
       .get<TrendingGame[]>("/catalogue/featured", {
         params: { language },
         needsAuth: false,

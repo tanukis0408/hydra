@@ -86,7 +86,7 @@ export function useSearchSuggestions(
       setIsLoading(true);
 
       try {
-        const response = await window.electron.hydraApi.get<
+        const response = await window.electron.krakenApi.get<
           {
             title: string;
             objectId: string;

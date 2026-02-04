@@ -1,5 +1,5 @@
 import { registerEvent } from "../register-event";
-import { HydraApi } from "@main/services";
+import { KrakenApi } from "@main/services";
 import fs from "node:fs";
 import path from "node:path";
 import type { UpdateProfileRequest, UserProfile } from "@types";
@@ -8,7 +8,7 @@ import axios from "axios";
 import { fileTypeFromFile } from "file-type";
 
 export const patchUserProfile = async (updateProfile: UpdateProfileRequest) => {
-  return HydraApi.patch<UserProfile>("/profile", updateProfile);
+  return KrakenApi.patch<UserProfile>("/profile", updateProfile);
 };
 
 const uploadImage = async (
@@ -19,7 +19,7 @@ const uploadImage = async (
   const fileBuffer = fs.readFileSync(imagePath);
   const fileSizeInBytes = stat.size;
 
-  const response = await HydraApi.post<{ presignedUrl: string }>(
+  const response = await KrakenApi.post<{ presignedUrl: string }>(
     `/presigned-urls/${type}`,
     {
       imageExt: path.extname(imagePath).slice(1),

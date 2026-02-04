@@ -1,4 +1,4 @@
-@use "../../../scss/globals.scss";
+@use "../../../scss/g.scss";
 
 .upload-background-image-button {
   &__wrapper {
@@ -7,7 +7,7 @@
     right: 16px;
   }
 
-  border-color: globals.$body-color;
+  border-color: g.$body-color;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.8);
   background-color: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(20px);
@@ -44,7 +44,7 @@
     font-size: 14px;
     background: none;
     border: none;
-    color: globals.$body-color;
+    color: g.$body-color;
     text-align: left;
 
     &:hover:not(:disabled) {

@@ -1,16 +1,16 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: calc(globals.$spacing-unit * 2);
+  gap: calc(g.$spacing-unit * 2);
   -webkit-app-region: drag;
   width: 100%;
-  padding: calc(globals.$spacing-unit * 2) calc(globals.$spacing-unit * 3);
-  color: globals.$muted-color;
-  border-bottom: solid 1px globals.$border-color;
-  background-color: globals.$dark-background-color;
+  padding: calc(g.$spacing-unit * 2) calc(g.$spacing-unit * 3);
+  color: g.$muted-color;
+  border-bottom: solid 1px g.$border-color;
+  background-color: g.$dark-background-color;
 
   &--dragging-disabled {
     -webkit-app-region: no-drag;
@@ -21,13 +21,13 @@
   }
 
   &__search {
-    background-color: globals.$background-color;
+    background-color: g.$background-color;
     display: inline-flex;
     transition: all ease 0.2s;
     width: 200px;
     align-items: center;
     border-radius: 8px;
-    border: solid 1px globals.$border-color;
+    border: solid 1px g.$border-color;
     height: 40px;
     -webkit-app-region: no-drag;
     &:hover {
@@ -60,7 +60,7 @@
     color: inherit;
     cursor: pointer;
     transition: all ease 0.2s;
-    padding: globals.$spacing-unit;
+    padding: g.$spacing-unit;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -86,7 +86,7 @@
   &__section {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
     height: 100%;
     overflow: hidden;
 
@@ -96,7 +96,7 @@
   }
 
   &__back-button {
-    color: globals.$body-color;
+    color: g.$body-color;
     cursor: pointer;
     -webkit-app-region: no-drag;
     position: absolute;

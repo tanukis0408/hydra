@@ -117,7 +117,7 @@ export function SettingsContextProvider({
   }, []);
 
   const fetchBlockedUsers = useCallback(async () => {
-    const blockedUsers = await window.electron.hydraApi
+    const blockedUsers = await window.electron.krakenApi
       .get<UserBlocks>("/profile/blocks", {
         params: { take: 12, skip: 0 },
       })

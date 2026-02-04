@@ -1,6 +1,6 @@
 import { shell } from "electron";
 import { registerEvent } from "../register-event";
-import { HydraApi } from "@main/services";
+import { KrakenApi } from "@main/services";
 import { db, levelKeys } from "@main/level";
 import type { Auth } from "@types";
 
@@ -13,7 +13,7 @@ const openCheckout = async (_event: Electron.IpcMainInvokeEvent) => {
     return;
   }
 
-  const paymentToken = await HydraApi.post("/auth/payment", {
+  const paymentToken = await KrakenApi.post("/auth/payment", {
     refreshToken: auth.refreshToken,
   }).then((response) => response.accessToken);
 

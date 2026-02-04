@@ -145,7 +145,7 @@
     "download": "Download",
     "executable_path_in_use": "Ausführbare Datei wird bereits von \"{{game}}\" verwendet",
     "warning": "Warnung:",
-    "hydra_needs_to_remain_open": "Für diesen Download muss Hydra geöffnet bleiben, bis er abgeschlossen ist. Wenn Hydra vor Abschluss geschlossen wird, verlierst du deinen Fortschritt.",
+    "kraken_needs_to_remain_open": "Für diesen Download muss Hydra geöffnet bleiben, bis er abgeschlossen ist. Wenn Hydra vor Abschluss geschlossen wird, verlierst du deinen Fortschritt.",
     "achievements": "Erfolge",
     "achievements_count": "Erfolge {{unlockedCount}}/{{achievementsCount}}",
     "cloud_save": "Cloud-Speicherstand",

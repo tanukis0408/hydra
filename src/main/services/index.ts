@@ -5,7 +5,7 @@ export * from "./window-manager";
 export * from "./download";
 export * from "./process-watcher";
 export * from "./main-loop";
-export * from "./hydra-api";
+export * from "./kraken-api";
 export * from "./ludusavi";
 export * from "./cloud-sync";
 export * from "./7zip";

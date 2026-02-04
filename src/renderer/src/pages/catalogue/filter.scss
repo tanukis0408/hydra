@@ -1,13 +1,13 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .filter-item {
   display: flex;
   align-items: center;
-  color: globals.$body-color;
-  background-color: globals.$dark-background-color;
+  color: g.$body-color;
+  background-color: g.$dark-background-color;
   padding: 6px 12px;
   border-radius: 4px;
-  border: solid 1px globals.$border-color;
+  border: solid 1px g.$border-color;
   font-size: 12px;
 
   &__orb {
@@ -18,7 +18,7 @@
   }
 
   &__remove-button {
-    color: globals.$body-color;
+    color: g.$body-color;
     margin-left: 4px;
     display: flex;
     align-items: center;
@@ -55,7 +55,7 @@
     font-size: 12px;
     margin-bottom: 12px;
     display: block;
-    color: globals.$body-color;
+    color: g.$body-color;
     cursor: pointer;
     text-decoration: underline;
   }

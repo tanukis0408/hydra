@@ -1,12 +1,12 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .notification-item {
   display: flex;
   align-items: center;
-  gap: calc(globals.$spacing-unit * 2);
-  padding: calc(globals.$spacing-unit * 2);
-  background-color: globals.$dark-background-color;
-  border: 1px solid globals.$border-color;
+  gap: calc(g.$spacing-unit * 2);
+  padding: calc(g.$spacing-unit * 2);
+  background-color: g.$dark-background-color;
+  border: 1px solid g.$border-color;
   border-radius: 8px;
   transition: all ease 0.2s;
   position: relative;
@@ -20,7 +20,7 @@
   }
 
   &--unread {
-    border-left: 3px solid globals.$brand-teal;
+    border-left: 3px solid g.$brand-teal;
     opacity: 1;
 
     &:hover {
@@ -41,7 +41,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: globals.$background-color;
+    background-color: g.$background-color;
     color: #fff;
 
     img {
@@ -57,7 +57,7 @@
 
   &__badge-picture {
     border-radius: 8px;
-    background-color: globals.$background-color;
+    background-color: g.$background-color;
 
     img {
       width: 32px;
@@ -75,18 +75,18 @@
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit / 2);
+    gap: calc(g.$spacing-unit / 2);
   }
 
   &__title {
-    font-size: globals.$body-font-size;
+    font-size: g.$body-font-size;
     font-weight: 600;
-    color: globals.$muted-color;
+    color: g.$muted-color;
   }
 
   &__description {
-    font-size: globals.$small-font-size;
-    color: globals.$body-color;
+    font-size: g.$small-font-size;
+    color: g.$body-color;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -95,26 +95,26 @@
   &__time {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit / 2);
-    font-size: globals.$small-font-size;
+    gap: calc(g.$spacing-unit / 2);
+    font-size: g.$small-font-size;
     color: rgba(255, 255, 255, 0.5);
   }
 
   &__actions {
     display: flex;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     flex-shrink: 0;
   }
 
   &__dismiss {
     position: absolute;
-    top: calc(globals.$spacing-unit / 2);
-    right: calc(globals.$spacing-unit / 2);
+    top: calc(g.$spacing-unit / 2);
+    right: calc(g.$spacing-unit / 2);
     background: transparent;
     border: none;
-    color: globals.$body-color;
+    color: g.$body-color;
     cursor: pointer;
-    padding: calc(globals.$spacing-unit / 2);
+    padding: calc(g.$spacing-unit / 2);
     border-radius: 50%;
     transition: all ease 0.2s;
     opacity: 0.5;

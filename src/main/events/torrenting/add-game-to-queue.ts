@@ -1,6 +1,6 @@
 import { registerEvent } from "../register-event";
 import type { Download, StartGameDownloadPayload } from "@types";
-import { DownloadManager, HydraApi, logger } from "@main/services";
+import { DownloadManager, KrakenApi, logger } from "@main/services";
 import { createGame } from "@main/services/library-sync";
 import { downloadsSublevel, gamesSublevel, levelKeys } from "@main/level";
 import { parseBytes } from "@shared";
@@ -58,7 +58,7 @@ const addGameToQueue = async (
 
     await Promise.all([
       createGame(updatedGame!).catch(() => {}),
-      HydraApi.post(`/games/${shop}/${objectId}/download`, null, {
+      KrakenApi.post(`/games/${shop}/${objectId}/download`, null, {
         needsAuth: false,
       }).catch(() => {}),
     ]);

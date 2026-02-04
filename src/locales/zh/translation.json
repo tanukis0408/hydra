@@ -203,7 +203,7 @@
     "download": "下载",
     "executable_path_in_use": "可执行文件已经被以下游戏 \"{{game}}\" 使用",
     "warning": "警告:",
-    "hydra_needs_to_remain_open": "对于此次下载,Hydra必须保持开启直至其完成。若海德拉在完成前关闭,您的进度将丢失。",
+    "kraken_needs_to_remain_open": "对于此次下载,Hydra必须保持开启直至其完成。若海德拉在完成前关闭,您的进度将丢失。",
     "achievements": "成就",
     "achievements_count": "成就 {{unlockedCount}}/{{achievementsCount}}",
     "cloud_save": "云存档",

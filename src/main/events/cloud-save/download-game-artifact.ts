@@ -1,4 +1,4 @@
-import { CloudSync, HydraApi, logger, WindowManager } from "@main/services";
+import { CloudSync, KrakenApi, logger, WindowManager } from "@main/services";
 import fs from "node:fs";
 import * as tar from "tar";
 import { registerEvent } from "../register-event";
@@ -104,7 +104,7 @@ const downloadGameArtifact = async (
       objectKey,
       homeDir,
       winePrefixPath: artifactWinePrefixPath,
-    } = await HydraApi.post<{
+    } = await KrakenApi.post<{
       downloadUrl: string;
       objectKey: string;
       homeDir: string;

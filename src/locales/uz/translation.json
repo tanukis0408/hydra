@@ -113,7 +113,7 @@
     "stats": "Statistika",
     "player_count": "Faol o'yinchilar",
     "warning": "Ogohlantirish:",
-    "hydra_needs_to_remain_open": "Bu yuklab olish uchun Hydra tugaguncha ochiq qolishi kerak. Agar Hydra tugashidan oldin yopilsa, jarayonni yo'qotasiz.",
+    "kraken_needs_to_remain_open": "Bu yuklab olish uchun Hydra tugaguncha ochiq qolishi kerak. Agar Hydra tugashidan oldin yopilsa, jarayonni yo'qotasiz.",
     "achievements": "Yutuqlar",
     "achievements_count": "Yutuqlar {{unlockedCount}}/{{achievementsCount}}",
     "cloud_save": "Bulutli saqlash",

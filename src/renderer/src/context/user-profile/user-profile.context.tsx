@@ -94,7 +94,7 @@ export function UserProfileContextProvider({
   const navigate = useNavigate();
 
   const getUserStats = useCallback(async () => {
-    window.electron.hydraApi
+    window.electron.krakenApi
       .get<UserStats>(`/users/${userId}/stats`)
       .then((stats) => {
         setUserStats(stats);
@@ -122,7 +122,7 @@ export function UserProfileContextProvider({
           ? `/users/${userId}/library?${queryString}`
           : `/users/${userId}/library`;
 
-        const response = await window.electron.hydraApi.get<{
+        const response = await window.electron.krakenApi.get<{
           library: UserGame[];
           pinnedGames: UserGame[];
         }>(url);
@@ -168,7 +168,7 @@ export function UserProfileContextProvider({
           ? `/users/${userId}/library?${queryString}`
           : `/users/${userId}/library`;
 
-        const response = await window.electron.hydraApi.get<{
+        const response = await window.electron.krakenApi.get<{
           library: UserGame[];
           pinnedGames: UserGame[];
         }>(url);
@@ -202,7 +202,7 @@ export function UserProfileContextProvider({
     getUserStats();
     getUserLibraryGames();
 
-    return window.electron.hydraApi
+    return window.electron.krakenApi
       .get<UserProfile>(`/users/${userId}`)
       .then((userProfile) => {
         setUserProfile(userProfile);
@@ -223,7 +223,7 @@ export function UserProfileContextProvider({
     const language = i18n.language.split("-")[0];
     const params = new URLSearchParams({ locale: language });
 
-    const badges = await window.electron.hydraApi.get<Badge[]>(
+    const badges = await window.electron.krakenApi.get<Badge[]>(
       `/badges?${params.toString()}`,
       { needsAuth: false }
     );

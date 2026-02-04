@@ -227,7 +227,7 @@
     "download": "Descargar",
     "executable_path_in_use": "El ejecutable ya se está usando por \"{{game}}\"",
     "warning": "Advertencia:",
-    "hydra_needs_to_remain_open": "para esta descarga, Hydra necesita estar abierta hasta que termine. Si se cierra antes de completar, perderás todo el progreso.",
+    "kraken_needs_to_remain_open": "para esta descarga, Hydra necesita estar abierta hasta que termine. Si se cierra antes de completar, perderás todo el progreso.",
     "achievements": "Logros",
     "achievements_count": "Logros {{unlockedCount}}/{{achievementsCount}}",
     "cloud_save": "Guardado en la nube",

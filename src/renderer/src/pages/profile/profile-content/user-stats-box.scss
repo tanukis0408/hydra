@@ -1,8 +1,8 @@
-@use "../../../scss/globals.scss";
+@use "../../../scss/g.scss";
 
 .user-stats {
   &__box {
-    padding: calc(globals.$spacing-unit * 2);
+    padding: calc(g.$spacing-unit * 2);
   }
 
   &__list {
@@ -11,19 +11,19 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
   }
 
   &__list-item {
     display: flex;
     flex-direction: column;
     transition: all ease 0.1s;
-    color: globals.$muted-color;
+    color: g.$muted-color;
     width: 100%;
     overflow: hidden;
     border-radius: 4px;
-    padding: globals.$spacing-unit;
-    gap: globals.$spacing-unit;
+    padding: g.$spacing-unit;
+    gap: g.$spacing-unit;
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.15);
@@ -49,7 +49,7 @@
     font-size: 0.75rem;
     display: flex;
     align-items: center;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 
   &__stats-row {
@@ -59,10 +59,10 @@
 
   &__link {
     text-align: start;
-    color: globals.$body-color;
+    color: g.$body-color;
 
     &--warning {
-      color: globals.$warning-color;
+      color: g.$warning-color;
     }
 
     &:hover {
@@ -72,7 +72,7 @@
   }
 
   &__karma-info-text {
-    color: globals.$muted-color;
+    color: g.$muted-color;
     font-size: 0.75rem;
     line-height: 1.4;
   }
@@ -82,7 +82,7 @@
     border: none;
     padding: 0;
     text-align: start;
-    color: globals.$body-color;
+    color: g.$body-color;
     font-size: 0.875rem;
     cursor: pointer;
     text-decoration: underline;

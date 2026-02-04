@@ -1,22 +1,22 @@
-@use "../../../scss/globals.scss";
+@use "../../../scss/g.scss";
 
 .game-options-modal {
   &__container {
     display: flex;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
     flex-direction: column;
   }
 
   &__section {
     display: flex;
     flex-direction: column;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 
   &__header {
     display: flex;
     flex-direction: column;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
 
     &-description {
       font-weight: 400;
@@ -25,27 +25,27 @@
 
   &__cloud-sync-label {
     display: flex;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     align-items: center;
   }
 
-  &__cloud-sync-hydra-cloud {
+  &__cloud-sync-kraken-cloud {
     background: linear-gradient(270deg, #16b195 50%, #3e62c0 100%);
     color: #fff;
-    padding: 0 globals.$spacing-unit;
+    padding: 0 g.$spacing-unit;
     border-radius: 4px;
-    font-size: globals.$small-font-size;
+    font-size: g.$small-font-size;
   }
 
   &__row {
     display: flex;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 
   &__executable-field {
     display: flex;
     flex-direction: column;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
 
     &-input {
       width: 100%;
@@ -53,7 +53,7 @@
 
     &-buttons {
       display: flex;
-      gap: globals.$spacing-unit;
+      gap: g.$spacing-unit;
       flex-wrap: wrap;
     }
   }
@@ -61,7 +61,7 @@
   &__wine-prefix {
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
 
     &-input {
       width: 100%;
@@ -71,7 +71,7 @@
   &__launch-options {
     display: flex;
     flex-direction: column;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
 
     &-input {
       width: 100%;
@@ -81,13 +81,13 @@
   &__downloads {
     display: flex;
     flex-direction: column;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 
   &__danger-zone {
     display: flex;
     flex-direction: column;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
 
     &-description {
       font-weight: 400;
@@ -95,7 +95,7 @@
 
     &-buttons {
       display: flex;
-      gap: globals.$spacing-unit;
+      gap: g.$spacing-unit;
     }
   }
 }

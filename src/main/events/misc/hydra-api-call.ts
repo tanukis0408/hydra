@@ -1,7 +1,7 @@
 import { registerEvent } from "../register-event";
-import { HydraApi } from "@main/services";
+import { KrakenApi } from "@main/services";
 
-interface HydraApiCallPayload {
+interface KrakenApiCallPayload {
   method: "get" | "post" | "put" | "patch" | "delete";
   url: string;
   data?: unknown;
@@ -15,21 +15,21 @@ interface HydraApiCallPayload {
 
 const hydraApiCall = async (
   _event: Electron.IpcMainInvokeEvent,
-  payload: HydraApiCallPayload
+  payload: KrakenApiCallPayload
 ) => {
   const { method, url, data, params, options } = payload;
 
   switch (method) {
     case "get":
-      return HydraApi.get(url, params, options);
+      return KrakenApi.get(url, params, options);
     case "post":
-      return HydraApi.post(url, data, options);
+      return KrakenApi.post(url, data, options);
     case "put":
-      return HydraApi.put(url, data, options);
+      return KrakenApi.put(url, data, options);
     case "patch":
-      return HydraApi.patch(url, data, options);
+      return KrakenApi.patch(url, data, options);
     case "delete":
-      return HydraApi.delete(url, options);
+      return KrakenApi.delete(url, options);
     default:
       throw new Error(`Unsupported HTTP method: ${method}`);
   }

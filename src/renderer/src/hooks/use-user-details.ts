@@ -73,7 +73,7 @@ export function useUserDetails() {
   );
 
   const fetchFriendRequests = useCallback(async () => {
-    return window.electron.hydraApi
+    return window.electron.krakenApi
       .get<FriendRequest[]>("/profile/friend-requests")
       .then((friendRequests) => {
         dispatch(setFriendRequests(friendRequests));
@@ -83,7 +83,7 @@ export function useUserDetails() {
 
   const sendFriendRequest = useCallback(
     async (userId: string) => {
-      return window.electron.hydraApi
+      return window.electron.krakenApi
         .post("/profile/friend-requests", {
           data: { friendCode: userId },
         })
@@ -95,12 +95,12 @@ export function useUserDetails() {
   const updateFriendRequestState = useCallback(
     async (userId: string, action: FriendRequestAction) => {
       if (action === "CANCEL") {
-        return window.electron.hydraApi
+        return window.electron.krakenApi
           .delete(`/profile/friend-requests/${userId}`)
           .then(() => fetchFriendRequests());
       }
 
-      return window.electron.hydraApi
+      return window.electron.krakenApi
         .patch(`/profile/friend-requests/${userId}`, {
           data: {
             requestState: action,
@@ -112,13 +112,13 @@ export function useUserDetails() {
   );
 
   const undoFriendship = (userId: string) =>
-    window.electron.hydraApi.delete(`/profile/friend-requests/${userId}`);
+    window.electron.krakenApi.delete(`/profile/friend-requests/${userId}`);
 
   const blockUser = (userId: string) =>
-    window.electron.hydraApi.post(`/users/${userId}/block`);
+    window.electron.krakenApi.post(`/users/${userId}/block`);
 
   const unblockUser = (userId: string) =>
-    window.electron.hydraApi.post(`/users/${userId}/unblock`);
+    window.electron.krakenApi.post(`/users/${userId}/unblock`);
 
   const hasActiveSubscription = useMemo(() => {
     const expiresAt = new Date(userDetails?.subscription?.expiresAt ?? 0);

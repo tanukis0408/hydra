@@ -1,4 +1,4 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 @use "sass:math";
 
 $hero-height: 150px;
@@ -23,7 +23,7 @@ $logo-max-width: 200px;
     transition: all ease 0.2s;
 
     &-content {
-      padding: globals.$spacing-unit * 2;
+      padding: g.$spacing-unit * 2;
       width: 100%;
       display: flex;
       justify-content: space-between;
@@ -66,9 +66,9 @@ $logo-max-width: 200px;
 
   &__table-header {
     width: 100%;
-    background-color: globals.$dark-background-color;
+    background-color: g.$dark-background-color;
     transition: all ease 0.2s;
-    border-bottom: solid 1px globals.$border-color;
+    border-bottom: solid 1px g.$border-color;
     position: sticky;
     top: 0;
     z-index: 1;
@@ -83,26 +83,26 @@ $logo-max-width: 200px;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: globals.$spacing-unit * 2;
-    padding: globals.$spacing-unit * 2;
+    gap: g.$spacing-unit * 2;
+    padding: g.$spacing-unit * 2;
     width: 100%;
-    background-color: globals.$background-color;
+    background-color: g.$background-color;
   }
 
   &__item {
     display: flex;
     transition: all ease 0.1s;
-    color: globals.$muted-color;
+    color: g.$muted-color;
     width: 100%;
     overflow: hidden;
     border-radius: 4px;
-    padding: globals.$spacing-unit globals.$spacing-unit;
-    gap: globals.$spacing-unit * 2;
+    padding: g.$spacing-unit g.$spacing-unit;
+    gap: g.$spacing-unit * 2;
     align-items: center;
     text-align: left;
 
     &:hover {
-      background-color: globals.$border-color;
+      background-color: g.$border-color;
       text-decoration: none;
     }
 
@@ -129,7 +129,7 @@ $logo-max-width: 200px;
 
     &-hidden-icon {
       display: flex;
-      color: globals.$warning-color;
+      color: g.$warning-color;
       opacity: 0.8;
 
       &:hover {
@@ -145,7 +145,7 @@ $logo-max-width: 200px;
     &-eye-closed {
       width: 12px;
       height: 12px;
-      color: globals.$warning-color;
+      color: g.$warning-color;
       scale: 4;
     }
 
@@ -164,7 +164,7 @@ $logo-max-width: 200px;
 
       &--locked {
         cursor: pointer;
-        color: globals.$warning-color;
+        color: g.$warning-color;
       }
 
       &-icon {
@@ -196,18 +196,18 @@ $logo-max-width: 200px;
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: globals.$spacing-unit;
+      gap: g.$spacing-unit;
     }
 
     &-status {
       display: flex;
-      padding: globals.$spacing-unit;
+      padding: g.$spacing-unit;
       justify-content: center;
 
       &--unlocked {
         white-space: nowrap;
         flex-direction: row;
-        gap: globals.$spacing-unit;
+        gap: g.$spacing-unit;
         padding: 0;
       }
     }
@@ -219,12 +219,12 @@ $logo-max-width: 200px;
     transition: all ease 0.2s;
 
     &::-webkit-progress-bar {
-      background-color: globals.$border-color;
+      background-color: g.$border-color;
       border-radius: 4px;
     }
 
     &::-webkit-progress-value {
-      background-color: globals.$muted-color;
+      background-color: g.$muted-color;
       border-radius: 4px;
     }
   }
@@ -236,7 +236,7 @@ $logo-max-width: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: globals.$background-color;
+    background-color: g.$background-color;
     position: relative;
     object-fit: cover;
 
@@ -251,8 +251,8 @@ $logo-max-width: 200px;
     display: flex;
     justify-content: center;
     width: 100%;
-    gap: math.div(globals.$spacing-unit, 2);
-    color: globals.$muted-color;
+    gap: math.div(g.$spacing-unit, 2);
+    color: g.$muted-color;
     cursor: pointer;
 
     &:hover {

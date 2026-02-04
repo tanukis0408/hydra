@@ -1,10 +1,10 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .notifications {
   display: flex;
   flex-direction: column;
-  gap: calc(globals.$spacing-unit * 2);
-  padding: calc(globals.$spacing-unit * 3);
+  gap: calc(g.$spacing-unit * 2);
+  padding: calc(g.$spacing-unit * 3);
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
@@ -14,12 +14,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
   }
 
   &__filter-tabs {
     display: flex;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     position: relative;
     flex: 1;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -33,14 +33,14 @@
     background: none;
     border: none;
     color: rgba(255, 255, 255, 0.6);
-    padding: calc(globals.$spacing-unit) calc(globals.$spacing-unit * 2);
+    padding: calc(g.$spacing-unit) calc(g.$spacing-unit * 2);
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
     transition: color ease 0.2s;
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit * 0.5);
+    gap: calc(g.$spacing-unit * 0.5);
 
     &:hover {
       color: rgba(255, 255, 255, 0.8);
@@ -77,7 +77,7 @@
 
   &__actions {
     display: flex;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     justify-content: flex-end;
   }
 
@@ -90,8 +90,8 @@
   &__list {
     display: flex;
     flex-direction: column;
-    gap: globals.$spacing-unit;
-    padding-bottom: calc(globals.$spacing-unit * 3);
+    gap: g.$spacing-unit;
+    padding-bottom: calc(g.$spacing-unit * 3);
   }
 
   &__empty {
@@ -101,15 +101,15 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 
   &__empty-filter {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: calc(globals.$spacing-unit * 6);
-    color: globals.$body-color;
+    padding: calc(g.$spacing-unit * 6);
+    color: g.$body-color;
   }
 
   &__icon-container {
@@ -120,7 +120,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: calc(globals.$spacing-unit * 2);
+    margin-bottom: calc(g.$spacing-unit * 2);
   }
 
   &__loading {
@@ -134,7 +134,7 @@
   &__load-more {
     display: flex;
     justify-content: center;
-    padding: calc(globals.$spacing-unit * 2);
-    padding-bottom: calc(globals.$spacing-unit * 3);
+    padding: calc(g.$spacing-unit * 2);
+    padding-bottom: calc(g.$spacing-unit * 3);
   }
 }

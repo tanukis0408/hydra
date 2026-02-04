@@ -1,32 +1,32 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 @use "../../scss/mixins.scss" as mixins;
 
 .sidebar {
-  background-color: globals.$surface;
-  color: globals.$on-surface;
+  background-color: g.$surface;
+  color: g.$on-surface;
   flex-direction: column;
   display: flex;
   transition: opacity ease 0.2s;
-  border-right: solid 1px globals.$outline-variant;
+  border-right: solid 1px g.$outline-variant;
   position: relative;
   overflow: hidden;
-  padding-top: globals.$spacing-unit;
+  padding-top: g.$spacing-unit;
 
   &--resizing {
-    opacity: globals.$active-opacity;
+    opacity: g.$active-opacity;
     pointer-events: none;
   }
 
   &--darwin {
-    padding-top: calc(globals.$spacing-unit * 6);
+    padding-top: calc(g.$spacing-unit * 6);
   }
 
   &__content {
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: calc(globals.$spacing-unit * 2);
-    gap: calc(globals.$spacing-unit * 2);
+    padding: calc(g.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
     width: 100%;
     overflow: auto;
   }
@@ -43,7 +43,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    gap: calc(globals.$spacing-unit / 2);
+    gap: calc(g.$spacing-unit / 2);
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -54,18 +54,18 @@
     cursor: pointer;
     text-wrap: nowrap;
     display: flex;
-    border-radius: globals.$border-radius-full;
+    border-radius: g.$border-radius-full;
 
     // Material You list item behavior
     @include mixins.list-item;
 
     &--active {
-      background-color: rgba(globals.$primary, 0.12);
-      color: globals.$primary;
+      background-color: rgba(g.$primary, 0.12);
+      color: g.$primary;
     }
 
     &--muted {
-      opacity: globals.$disabled-opacity;
+      opacity: g.$disabled-opacity;
 
       &:hover {
         opacity: 1;
@@ -78,7 +78,7 @@
         rgba(22, 177, 149, 0.2) 0%,
         rgba(62, 98, 192, 0.1) 100%
       );
-      color: globals.$on-surface;
+      color: g.$on-surface;
 
       &:hover {
         background: linear-gradient(
@@ -94,12 +94,12 @@
     color: inherit;
     display: flex;
     align-items: center;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     cursor: pointer;
     overflow: hidden;
     width: 100%;
-    padding: 9px globals.$spacing-unit;
-    font-size: globals.$body-font-size;
+    padding: 9px g.$spacing-unit;
+    font-size: g.$body-font-size;
   }
 
   &__menu-item-button-label {
@@ -150,8 +150,8 @@
   &__section {
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 2);
-    padding-bottom: globals.$spacing-unit;
+    gap: calc(g.$spacing-unit * 2);
+    padding-bottom: g.$spacing-unit;
   }
 
   &__bottom-buttons {
@@ -160,48 +160,48 @@
   }
 
   &__help-button {
-    color: globals.$on-surface;
-    padding: globals.$spacing-unit calc(globals.$spacing-unit * 2);
+    color: g.$on-surface;
+    padding: g.$spacing-unit calc(g.$spacing-unit * 2);
     gap: 9px;
     display: flex;
     align-items: center;
     cursor: pointer;
-    border-top: solid 1px globals.$outline-variant;
+    border-top: solid 1px g.$outline-variant;
     transition: background-color ease 0.1s;
 
     &:hover {
-      background-color: rgba(globals.$primary, 0.08);
+      background-color: rgba(g.$primary, 0.08);
     }
   }
 
   &__help-button-icon {
     background: linear-gradient(
       0deg,
-      globals.$primary 50%,
-      globals.$tertiary 100%
+      g.$primary 50%,
+      g.$tertiary 100%
     );
     width: 24px;
     height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: globals.$on-primary;
-    border-radius: globals.$border-radius-full;
+    color: g.$on-primary;
+    border-radius: g.$border-radius-full;
   }
 
   &__play-button {
     background: none;
     border: none;
-    color: globals.$on-surface-variant;
+    color: g.$on-surface-variant;
     cursor: pointer;
     padding: 0;
 
     &:active {
-      opacity: globals.$active-opacity;
+      opacity: g.$active-opacity;
     }
 
     &--active {
-      color: globals.$primary;
+      color: g.$primary;
     }
 
     svg {
@@ -212,16 +212,16 @@
   &__add-button {
     background: none;
     border: none;
-    color: globals.$on-surface-variant;
+    color: g.$on-surface-variant;
     cursor: pointer;
     padding: 0;
 
     &:hover {
-      color: globals.$on-surface;
+      color: g.$on-surface;
     }
 
     &:active {
-      opacity: globals.$active-opacity;
+      opacity: g.$active-opacity;
     }
 
     svg {

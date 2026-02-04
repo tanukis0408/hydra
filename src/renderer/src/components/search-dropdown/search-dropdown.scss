@@ -1,9 +1,9 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .search-dropdown {
   position: fixed;
-  background-color: globals.$dark-background-color;
-  border: 1px solid globals.$border-color;
+  background-color: g.$dark-background-color;
+  border: 1px solid g.$border-color;
   border-radius: 8px;
   max-height: 350px;
   overflow-y: auto;
@@ -16,7 +16,7 @@
     padding: 4px 0;
 
     &:not(:last-child) {
-      border-bottom: 1px solid globals.$border-color;
+      border-bottom: 1px solid g.$border-color;
     }
   }
 
@@ -29,7 +29,7 @@
   }
 
   &__section-title {
-    color: globals.$muted-color;
+    color: g.$muted-color;
     font-size: 12px;
     font-weight: 500;
     text-transform: uppercase;
@@ -37,7 +37,7 @@
   }
 
   &__clear-text-button {
-    color: globals.$muted-color;
+    color: g.$muted-color;
     cursor: pointer;
     padding: 0;
     font-size: 11px;
@@ -73,7 +73,7 @@
     right: 8px;
     top: 50%;
     transform: translateY(-50%);
-    color: globals.$muted-color;
+    color: g.$muted-color;
     padding: 4px;
     opacity: 0;
     transition: opacity ease 0.15s;
@@ -103,7 +103,7 @@
 
     &:hover,
     &--active {
-      background-color: globals.$background-color;
+      background-color: g.$background-color;
     }
 
     &:focus {
@@ -115,7 +115,7 @@
     flex-shrink: 0;
     width: 16px;
     height: 16px;
-    color: globals.$muted-color;
+    color: g.$muted-color;
 
     &--image {
       border-radius: 2px;
@@ -135,7 +135,7 @@
   &__empty {
     padding: 16px 12px;
     text-align: center;
-    color: globals.$muted-color;
+    color: g.$muted-color;
     font-size: 14px;
   }
 

@@ -12,7 +12,7 @@ import "./user-stats-box.scss";
 
 export function UserStatsBox() {
   const [showWrappedModal, setShowWrappedModal] = useState(false);
-  const { showHydraCloudModal } = useSubscription();
+  const { showKrakenCloudModal } = useSubscription();
   const { userStats, isMe, userProfile } = useContext(userProfileContext);
   const { userDetails } = useUserDetails();
   const { t } = useTranslation("user_profile");
@@ -70,7 +70,7 @@ export function UserStatsBox() {
             ) : (
               <button
                 type="button"
-                onClick={() => showHydraCloudModal("achievements")}
+                onClick={() => showKrakenCloudModal("achievements")}
                 className="user-stats__link"
               >
                 <small style={{ color: "var(--color-warning)" }}>
@@ -102,7 +102,7 @@ export function UserStatsBox() {
             ) : (
               <button
                 type="button"
-                onClick={() => showHydraCloudModal("achievements-points")}
+                onClick={() => showKrakenCloudModal("achievements-points")}
                 className="user-stats__link"
               >
                 <small className="user-stats__link--warning">

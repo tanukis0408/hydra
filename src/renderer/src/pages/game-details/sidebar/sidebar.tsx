@@ -70,7 +70,7 @@ export function Sidebar() {
   const { gameTitle, shopDetails, objectId, shop, stats, achievements } =
     useContext(gameDetailsContext);
 
-  const { showHydraCloudModal } = useSubscription();
+  const { showKrakenCloudModal } = useSubscription();
   const { t } = useTranslation("game_details");
   const { formatDateTime } = useDate();
   const { numberFormatter } = useFormat();
@@ -80,7 +80,7 @@ export function Sidebar() {
       setHowLongToBeat({ isLoading: true, data: null });
 
       // Directly fetch from API without checking cache
-      window.electron.hydraApi
+      window.electron.krakenApi
         .get<HowLongToBeatCategory[] | null>(
           `/games/${shop}/${objectId}/how-long-to-beat`,
           {
@@ -140,7 +140,7 @@ export function Sidebar() {
             {!hasActiveSubscription && (
               <button
                 className="subscription-required-button"
-                onClick={() => showHydraCloudModal("achievements")}
+                onClick={() => showKrakenCloudModal("achievements")}
               >
                 <CloudOfflineIcon size={16} />
                 <span>{t("achievements_not_sync")}</span>

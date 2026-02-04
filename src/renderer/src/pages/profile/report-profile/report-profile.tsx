@@ -54,7 +54,7 @@ export function ReportProfile() {
 
   const onSubmit = useCallback(
     async (values: FormValues) => {
-      return window.electron.hydraApi
+      return window.electron.krakenApi
         .post(`/users/${userProfile!.id}/report`, {
           data: {
             reason: values.reason,

@@ -1,4 +1,4 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .game-details {
   &__review-item {
@@ -9,8 +9,8 @@
   &__review-header {
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 1);
-    margin-bottom: calc(globals.$spacing-unit * 1.5);
+    gap: calc(g.$spacing-unit * 1);
+    margin-bottom: calc(g.$spacing-unit * 1.5);
   }
 
   &__review-header-top {
@@ -28,24 +28,24 @@
   &__review-user {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit * 1);
+    gap: calc(g.$spacing-unit * 1);
   }
 
   &__review-user-info {
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 0.45);
+    gap: calc(g.$spacing-unit * 0.45);
   }
 
   &__review-meta-row {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit * 0.75);
+    gap: calc(g.$spacing-unit * 0.75);
   }
 
   &__review-display-name {
     color: rgba(255, 255, 255, 0.9);
-    font-size: globals.$small-font-size;
+    font-size: g.$small-font-size;
     font-weight: 600;
     display: inline-flex;
 
@@ -136,17 +136,17 @@
 
   &__blocked-review-simple {
     color: rgba(255, 255, 255, 0.6);
-    font-size: globals.$small-font-size;
+    font-size: g.$small-font-size;
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit * 0.5);
+    gap: calc(g.$spacing-unit * 0.5);
   }
 
   &__blocked-review-show-link {
     background: none;
     border: none;
     color: #ffc107;
-    font-size: globals.$small-font-size;
+    font-size: g.$small-font-size;
     cursor: pointer;
     text-decoration: underline;
     padding: 0;
@@ -161,7 +161,7 @@
     background: none;
     border: none;
     color: rgba(255, 255, 255, 0.5);
-    font-size: globals.$small-font-size;
+    font-size: g.$small-font-size;
     cursor: pointer;
     text-decoration: underline;
     padding: 0;
@@ -213,7 +213,7 @@
     align-items: center;
     gap: 4px;
     color: rgba(255, 255, 255, 0.6);
-    font-size: globals.$small-font-size;
+    font-size: g.$small-font-size;
   }
 
   &__review-playtime {
@@ -235,7 +235,7 @@
   }
 
   &__review-content {
-    color: globals.$body-color;
+    color: g.$body-color;
     line-height: 1.5;
     word-wrap: break-word;
     word-break: break-word;
@@ -247,8 +247,8 @@
   &__review-translation-toggle {
     display: inline-flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit * 1);
-    margin-top: calc(globals.$spacing-unit * 1.5);
+    gap: calc(g.$spacing-unit * 1);
+    margin-top: calc(g.$spacing-unit * 1.5);
     padding: 0;
     background: none;
     border: none;

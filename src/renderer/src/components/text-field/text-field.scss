@@ -1,9 +1,9 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 @use "../../scss/mixins.scss" as mixins;
 
 .text-field-container {
   flex: 1;
-  gap: globals.$spacing-unit;
+  gap: g.$spacing-unit;
   display: flex;
   flex-direction: column;
 
@@ -24,16 +24,16 @@
     }
 
     &--dark {
-      background-color: globals.$background-color;
+      background-color: g.$background-color;
     }
 
     &--has-error {
-      border-color: globals.$danger-color;
+      border-color: g.$danger-color;
     }
 
     &--focused {
-      border-color: globals.$primary;
-      box-shadow: inset 0 0 0 1px rgba(globals.$primary, 0.3);
+      border-color: g.$primary;
+      box-shadow: inset 0 0 0 1px rgba(g.$primary, 0.3);
     }
   }
 
@@ -43,7 +43,7 @@
     width: 100%;
     height: 100%;
     outline: none;
-    color: globals.$on-surface;
+    color: g.$on-surface;
     cursor: default;
     font-family: inherit;
     text-overflow: ellipsis;
@@ -60,18 +60,18 @@
 
   &__toggle-password-button {
     cursor: pointer;
-    color: globals.$on-surface-variant;
-    padding: globals.$spacing-unit;
+    color: g.$on-surface-variant;
+    padding: g.$spacing-unit;
   }
 
   &__text-field-wrapper {
     display: flex;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     width: 100%;
     align-items: center;
   }
 
   &__error-label {
-    color: globals.$error-color;
+    color: g.$error-color;
   }
 }

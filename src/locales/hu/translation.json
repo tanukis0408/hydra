@@ -237,7 +237,7 @@
     "download": "Letöltés",
     "executable_path_in_use": "Ez a futtatható fájl már használatban van a(z) \"{{game}}\" által",
     "warning": "Figyelmeztetés:",
-    "hydra_needs_to_remain_open": "ehhez a letöltéshez, a Hydrának muszáj nyitva maradnia hogy letöltődjön. Ha a Hydra bezáródik letöltés előtt, a letöltés elveszik.",
+    "kraken_needs_to_remain_open": "ehhez a letöltéshez, a Hydrának muszáj nyitva maradnia hogy letöltődjön. Ha a Hydra bezáródik letöltés előtt, a letöltés elveszik.",
     "achievements": "Achievementek",
     "achievements_count": "Achievementek {{unlockedCount}}/{{achievementsCount}}",
     "show_more": "Mutass többet",

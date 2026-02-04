@@ -1,9 +1,9 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .game-details {
   &__reviews-section {
-    margin-top: calc(globals.$spacing-unit * 3);
-    padding-top: calc(globals.$spacing-unit * 3);
+    margin-top: calc(g.$spacing-unit * 3);
+    padding-top: calc(g.$spacing-unit * 3);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     width: 100%;
     margin-left: auto;
@@ -21,14 +21,14 @@
   &__reviews-title {
     font-size: 1.25rem;
     font-weight: 600;
-    color: globals.$muted-color;
+    color: g.$muted-color;
     margin: 0;
   }
 
   &__reviews-title-group {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit);
+    gap: calc(g.$spacing-unit);
     flex: 1;
   }
 
@@ -47,13 +47,13 @@
   &__reviews-container {
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 4);
+    gap: calc(g.$spacing-unit * 4);
   }
 
   &__reviews-separator {
     height: 1px;
     background: rgba(255, 255, 255, 0.1);
-    margin: calc(globals.$spacing-unit * 3) 0;
+    margin: calc(g.$spacing-unit * 3) 0;
     width: 100%;
   }
 
@@ -61,30 +61,30 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: calc(globals.$spacing-unit * 1);
+    padding-bottom: calc(g.$spacing-unit * 1);
   }
 
   &__reviews-empty {
     text-align: center;
-    padding: calc(globals.$spacing-unit * 4) calc(globals.$spacing-unit * 2);
-    margin-bottom: calc(globals.$spacing-unit * 2);
+    padding: calc(g.$spacing-unit * 4) calc(g.$spacing-unit * 2);
+    margin-bottom: calc(g.$spacing-unit * 2);
   }
 
   &__reviews-empty-icon {
     font-size: 48px;
-    margin-bottom: calc(globals.$spacing-unit * 2);
+    margin-bottom: calc(g.$spacing-unit * 2);
     color: rgba(255, 255, 255, 0.6);
   }
 
   &__reviews-empty-title {
     color: rgba(255, 255, 255, 0.9);
     font-weight: 600;
-    margin: 0 0 calc(globals.$spacing-unit * 1) 0;
+    margin: 0 0 calc(g.$spacing-unit * 1) 0;
   }
 
   &__reviews-empty-message {
     color: rgba(255, 255, 255, 0.6);
-    font-size: globals.$small-font-size;
+    font-size: g.$small-font-size;
     margin: 0;
     line-height: 1.4;
   }
@@ -92,25 +92,25 @@
   &__reviews-loading {
     text-align: center;
     color: rgba(255, 255, 255, 0.6);
-    padding: calc(globals.$spacing-unit * 2);
+    padding: calc(g.$spacing-unit * 2);
   }
 
   &__load-more-reviews {
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid globals.$border-color;
-    color: globals.$body-color;
-    padding: calc(globals.$spacing-unit * 1) calc(globals.$spacing-unit * 2);
+    border: 1px solid g.$border-color;
+    color: g.$body-color;
+    padding: calc(g.$spacing-unit * 1) calc(g.$spacing-unit * 2);
     border-radius: 4px;
     cursor: pointer;
-    font-size: globals.$body-font-size;
+    font-size: g.$body-font-size;
     font-family: inherit;
     transition: all 0.2s ease;
     width: 100%;
-    margin-top: calc(globals.$spacing-unit * 2);
+    margin-top: calc(g.$spacing-unit * 2);
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.1);
-      border-color: globals.$brand-teal;
+      border-color: g.$brand-teal;
     }
   }
 }

@@ -1,4 +1,4 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 @use "../../scss/mixins.scss" as mixins;
 
 .game-card {
@@ -17,7 +17,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background-color: globals.$on-surface;
+    background-color: g.$on-surface;
     opacity: 0;
     transition: opacity 0.15s ease;
     pointer-events: none;
@@ -32,7 +32,7 @@
   }
 
   &:active {
-    opacity: globals.$active-opacity;
+    opacity: g.$active-opacity;
   }
 
   &__backdrop {
@@ -56,11 +56,11 @@
   }
 
   &__content {
-    color: globals.$on-surface;
-    padding: globals.$spacing-unit calc(globals.$spacing-unit * 2);
+    color: g.$on-surface;
+    padding: g.$spacing-unit calc(g.$spacing-unit * 2);
     display: flex;
     align-items: flex-start;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     flex-direction: column;
     transition: all ease 0.2s;
     transform: translateY(24px);
@@ -70,28 +70,28 @@
     font-size: 16px;
     font-weight: bold;
     text-align: left;
-    color: globals.$on-surface;
+    color: g.$on-surface;
   }
 
   &__download-options {
     display: flex;
     margin: 0;
     padding: 0;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     flex-wrap: wrap;
     list-style: none;
   }
 
   &__specifics {
     display: flex;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
     justify-content: center;
   }
 
   &__specifics-item {
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     display: flex;
-    color: globals.$on-surface-variant;
+    color: g.$on-surface-variant;
     font-size: 12px;
     align-items: center;
 
@@ -103,8 +103,8 @@
   &__title-container {
     display: flex;
     align-items: center;
-    gap: globals.$spacing-unit;
-    color: globals.$on-surface-variant;
+    gap: g.$spacing-unit;
+    color: g.$on-surface-variant;
   }
 
   &__shop-icon {
@@ -114,7 +114,7 @@
   }
 
   &__no-download-label {
-    color: globals.$on-surface-variant;
+    color: g.$on-surface-variant;
     font-weight: bold;
   }
 

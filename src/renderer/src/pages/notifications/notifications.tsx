@@ -61,7 +61,7 @@ export default function Notifications() {
     try {
       const language = i18n.language.split("-")[0];
       const params = new URLSearchParams({ locale: language });
-      const badgesResponse = await window.electron.hydraApi.get<Badge[]>(
+      const badgesResponse = await window.electron.krakenApi.get<Badge[]>(
         `/badges?${params.toString()}`,
         { needsAuth: false }
       );
@@ -82,7 +82,7 @@ export default function Notifications() {
       try {
         setIsLoading(true);
         const response =
-          await window.electron.hydraApi.get<NotificationsResponse>(
+          await window.electron.krakenApi.get<NotificationsResponse>(
             "/profile/notifications",
             {
               params: { filter: filterParam, take: 20, skip },
@@ -193,7 +193,7 @@ export default function Notifications() {
     async (id: string, source: "api" | "local") => {
       try {
         if (source === "api") {
-          await window.electron.hydraApi.patch(
+          await window.electron.krakenApi.patch(
             `/profile/notifications/${id}/read`,
             {
               data: { id },
@@ -221,7 +221,7 @@ export default function Notifications() {
     try {
       // Mark all API notifications as read
       if (userDetails && apiNotifications.some((n) => !n.isRead)) {
-        await window.electron.hydraApi.patch(
+        await window.electron.krakenApi.patch(
           `/profile/notifications/all/read`,
           { needsAuth: true }
         );
@@ -255,7 +255,7 @@ export default function Notifications() {
     async (id: string, source: "api" | "local") => {
       try {
         if (source === "api") {
-          await window.electron.hydraApi.delete(
+          await window.electron.krakenApi.delete(
             `/profile/notifications/${id}`,
             { needsAuth: true }
           );
@@ -335,7 +335,7 @@ export default function Notifications() {
 
       // Perform actual backend deletions (state is already cleared by staggered removal)
       if (userDetails) {
-        await window.electron.hydraApi.delete(`/profile/notifications/all`, {
+        await window.electron.krakenApi.delete(`/profile/notifications/all`, {
           needsAuth: true,
         });
       }

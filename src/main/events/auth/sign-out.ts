@@ -1,7 +1,7 @@
 import { registerEvent } from "../register-event";
 import {
   DownloadManager,
-  HydraApi,
+  KrakenApi,
   WSClient,
   gamesPlaytime,
 } from "@main/services";
@@ -29,11 +29,11 @@ const signOut = async (_event: Electron.IpcMainInvokeEvent) => {
   /* Cancels any ongoing downloads */
   DownloadManager.cancelDownload();
 
-  HydraApi.handleSignOut();
+  KrakenApi.handleSignOut();
 
   await Promise.all([
     databaseOperations,
-    HydraApi.post("/auth/logout").catch(() => {}),
+    KrakenApi.post("/auth/logout").catch(() => {}),
   ]);
 
   WSClient.close();

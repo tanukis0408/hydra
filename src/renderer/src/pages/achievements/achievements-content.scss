@@ -1,4 +1,4 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 $hero-height: 150px;
 $logo-height: 100px;
@@ -7,10 +7,10 @@ $logo-max-width: 200px;
 .achievements-content {
   &__comparison {
     display: flex;
-    gap: globals.$spacing-unit * 2;
+    gap: g.$spacing-unit * 2;
     align-items: center;
     position: relative;
-    padding: globals.$spacing-unit;
+    padding: g.$spacing-unit;
 
     &__container {
       position: absolute;
@@ -22,7 +22,7 @@ $logo-max-width: 200px;
       display: flex;
       align-items: center;
       flex-direction: row;
-      gap: globals.$spacing-unit;
+      gap: g.$spacing-unit;
       border-radius: 4px;
       justify-content: center;
 
@@ -31,8 +31,8 @@ $logo-max-width: 200px;
         display: flex;
         justify-content: center;
         width: 100%;
-        gap: calc(globals.$spacing-unit / 2);
-        color: globals.$body-color;
+        gap: calc(g.$spacing-unit / 2);
+        color: g.$body-color;
         cursor: pointer;
 
         &:hover {
@@ -43,7 +43,7 @@ $logo-max-width: 200px;
 
     &__blured-avatar {
       display: flex;
-      gap: globals.$spacing-unit * 2;
+      gap: g.$spacing-unit * 2;
       align-items: center;
       height: 62px;
       position: relative;
@@ -72,7 +72,7 @@ $logo-max-width: 200px;
     justify-content: center;
     width: 100%;
     gap: 8px;
-    color: globals.$body-color;
+    color: g.$body-color;
     cursor: pointer;
 
     &:hover {
@@ -82,9 +82,9 @@ $logo-max-width: 200px;
 
   &__user-summary {
     display: flex;
-    gap: globals.$spacing-unit * 2;
+    gap: g.$spacing-unit * 2;
     align-items: center;
-    padding: globals.$spacing-unit globals.$spacing-unit * 2;
+    padding: g.$spacing-unit g.$spacing-unit * 2;
 
     &__container {
       display: flex;
@@ -99,7 +99,7 @@ $logo-max-width: 200px;
         display: flex;
         justify-content: space-between;
         margin-bottom: 8px;
-        color: globals.$muted-color;
+        color: g.$muted-color;
 
         &__trophy-count {
           display: flex;
@@ -118,7 +118,7 @@ $logo-max-width: 200px;
           }
 
           &::-webkit-progress-value {
-            background-color: globals.$muted-color;
+            background-color: g.$muted-color;
             border-radius: 4px;
           }
         }
@@ -151,8 +151,8 @@ $logo-max-width: 200px;
         flex-direction: column;
         background: linear-gradient(
           0deg,
-          globals.$background-color 0%,
-          globals.$background-color 100%
+          g.$background-color 0%,
+          g.$background-color 100%
         );
 
         &__hero {
@@ -165,7 +165,7 @@ $logo-max-width: 200px;
           transition: all ease 0.2s;
 
           &__content {
-            padding: globals.$spacing-unit * 2;
+            padding: g.$spacing-unit * 2;
             width: 100%;
             display: flex;
             justify-content: space-between;
@@ -188,16 +188,16 @@ $logo-max-width: 200px;
           display: flex;
           flex-direction: column;
           width: 100%;
-          gap: globals.$spacing-unit;
-          padding: globals.$spacing-unit;
+          gap: g.$spacing-unit;
+          padding: g.$spacing-unit;
         }
       }
 
       &__table-header {
         width: 100%;
-        background-color: globals.$background-color;
+        background-color: g.$background-color;
         transition: all ease 0.2s;
-        border-bottom: 1px solid globals.$border-color;
+        border-bottom: 1px solid g.$border-color;
         position: sticky;
         top: 0;
         z-index: 1;
@@ -208,8 +208,8 @@ $logo-max-width: 200px;
 
         &__container {
           display: grid;
-          gap: globals.$spacing-unit * 2;
-          padding: globals.$spacing-unit * 3;
+          gap: g.$spacing-unit * 2;
+          padding: g.$spacing-unit * 3;
 
           &--has-no-active-subscription {
             grid-template-columns: 3fr 2fr;
@@ -241,7 +241,7 @@ $logo-max-width: 200px;
 
     justify-content: center;
     align-items: center;
-    background-color: globals.$background-color;
+    background-color: g.$background-color;
     position: relative;
     object-fit: cover;
   }

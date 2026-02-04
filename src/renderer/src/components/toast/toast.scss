@@ -1,20 +1,20 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .toast {
   animation-duration: 0.2s;
   animation-timing-function: ease-in-out;
   position: absolute;
-  background-color: globals.$dark-background-color;
+  background-color: g.$dark-background-color;
   border-radius: 4px;
-  border: solid 1px globals.$border-color;
-  right: calc(globals.$spacing-unit * 2);
+  border: solid 1px g.$border-color;
+  right: calc(g.$spacing-unit * 2);
   // 28px is the height of the bottom panel
-  bottom: calc(28px + globals.$spacing-unit * 2);
+  bottom: calc(28px + g.$spacing-unit * 2);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  z-index: globals.$toast-z-index;
+  z-index: g.$toast-z-index;
   max-width: 420px;
   animation-name: enter;
   transform: translateY(0);
@@ -26,15 +26,15 @@
 
   &__content {
     display: flex;
-    gap: calc(globals.$spacing-unit * 2);
-    padding: calc(globals.$spacing-unit * 2) calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
+    padding: calc(g.$spacing-unit * 2) calc(g.$spacing-unit * 2);
     justify-content: center;
     align-items: center;
   }
 
   &__message-container {
     display: flex;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     flex-direction: column;
   }
 
@@ -47,37 +47,37 @@
     height: 5px;
 
     &::-webkit-progress-bar {
-      background-color: globals.$dark-background-color;
+      background-color: g.$dark-background-color;
     }
 
     &::-webkit-progress-value {
-      background-color: globals.$muted-color;
+      background-color: g.$muted-color;
     }
   }
 
   &__close-button {
-    color: globals.$body-color;
+    color: g.$body-color;
     cursor: pointer;
     padding: 0;
     margin: 0;
     transition: color 0.2s ease-in-out;
 
     &:hover {
-      color: globals.$muted-color;
+      color: g.$muted-color;
     }
   }
 
   &__icon {
     &--success {
-      color: globals.$success-color;
+      color: g.$success-color;
     }
 
     &--error {
-      color: globals.$danger-color;
+      color: g.$danger-color;
     }
 
     &--warning {
-      color: globals.$warning-color;
+      color: g.$warning-color;
     }
   }
 }

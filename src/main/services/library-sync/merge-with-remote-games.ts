@@ -1,5 +1,5 @@
 import { ShopAssets } from "@types";
-import { HydraApi } from "../hydra-api";
+import { KrakenApi } from "../hydra-api";
 import { gamesShopAssetsSublevel, gamesSublevel, levelKeys } from "@main/level";
 
 type ProfileGame = {
@@ -14,7 +14,7 @@ type ProfileGame = {
 } & ShopAssets;
 
 export const mergeWithRemoteGames = async () => {
-  return HydraApi.get<ProfileGame[]>("/profile/games")
+  return KrakenApi.get<ProfileGame[]>("/profile/games")
     .then(async (response) => {
       for (const game of response) {
         const gameKey = levelKeys.game(game.shop, game.objectId);

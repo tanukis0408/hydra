@@ -1,4 +1,4 @@
-@use "../../../scss/globals.scss";
+@use "../../../scss/g.scss";
 
 @keyframes rotate {
   0% {
@@ -28,14 +28,14 @@
     margin-bottom: 16px;
     display: flex;
     align-items: center;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 
   &__artifact-label {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: globals.$body-color;
+    color: g.$body-color;
     font-size: 16px;
     font-weight: 600;
     text-align: left;
@@ -47,7 +47,7 @@
 
   &__artifacts {
     display: flex;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     flex-direction: column;
     list-style: none;
     margin: 0;
@@ -59,11 +59,11 @@
     text-align: left;
     flex-direction: row;
     align-items: center;
-    gap: globals.$spacing-unit;
-    color: globals.$body-color;
-    padding: calc(globals.$spacing-unit * 2);
-    background-color: globals.$dark-background-color;
-    border: 1px solid globals.$border-color;
+    gap: g.$spacing-unit;
+    color: g.$body-color;
+    padding: calc(g.$spacing-unit * 2);
+    background-color: g.$dark-background-color;
+    border: 1px solid g.$border-color;
     border-radius: 4px;
     justify-content: space-between;
 
@@ -102,11 +102,11 @@
     height: 5px;
 
     &::-webkit-progress-bar {
-      background-color: globals.$dark-background-color;
+      background-color: g.$dark-background-color;
     }
 
     &::-webkit-progress-value {
-      background-color: globals.$muted-color;
+      background-color: g.$muted-color;
     }
   }
 
@@ -117,11 +117,11 @@
     font-size: 14px;
     cursor: pointer;
     text-decoration: underline;
-    color: globals.$body-color;
+    color: g.$body-color;
 
     &:disabled {
       cursor: not-allowed;
-      opacity: globals.$disabled-opacity;
+      opacity: g.$disabled-opacity;
     }
   }
 

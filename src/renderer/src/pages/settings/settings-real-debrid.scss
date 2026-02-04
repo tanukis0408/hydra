@@ -1,10 +1,10 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .settings-real-debrid {
   &__form {
     display: flex;
     flex-direction: column;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 
   &__submit-button {
@@ -15,14 +15,14 @@
   &__description-container {
     display: flex;
     flex-direction: column;
-    gap: globals.$spacing-unit;
-    margin-bottom: calc(globals.$spacing-unit * 2);
+    gap: g.$spacing-unit;
+    margin-bottom: calc(g.$spacing-unit * 2);
     align-items: flex-start;
   }
 
   &__create-account {
     display: flex;
     align-items: center;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 }

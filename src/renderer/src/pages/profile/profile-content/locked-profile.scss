@@ -1,4 +1,4 @@
-@use "../../../scss/globals.scss";
+@use "../../../scss/g.scss";
 
 .locked-profile {
   &__container {
@@ -8,7 +8,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 
   &__lock-icon {
@@ -19,6 +19,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: calc(globals.$spacing-unit * 2);
+    margin-bottom: calc(g.$spacing-unit * 2);
   }
 }

@@ -5,13 +5,13 @@ import axios from "axios";
 import sudo from "sudo-prompt";
 import { app } from "electron";
 import {
-  HYDRA_DECKY_PLUGIN_LOCATION,
+  KRAKEN_DECKY_PLUGIN_LOCATION,
   DECKY_PLUGINS_LOCATION,
 } from "@main/constants";
 import { logger } from "./logger";
 import { SevenZip } from "./7zip";
 import { SystemPath } from "./system-path";
-import { HydraApi } from "./hydra-api";
+import { KrakenApi } from "./kraken-api";
 
 interface DeckyReleaseInfo {
   version: string;
@@ -27,7 +27,7 @@ export class DeckyPlugin {
     }
 
     try {
-      const response = await HydraApi.get<DeckyReleaseInfo>(
+      const response = await KrakenApi.get<DeckyReleaseInfo>(
         "/decky/release",
         {},
         { needsAuth: false }
@@ -42,15 +42,15 @@ export class DeckyPlugin {
   }
 
   private static getPackageJsonPath(): string {
-    return path.join(HYDRA_DECKY_PLUGIN_LOCATION, "package.json");
+    return path.join(KRAKEN_DECKY_PLUGIN_LOCATION, "package.json");
   }
 
   private static async downloadPlugin(): Promise<string> {
-    logger.log("Downloading Hydra Decky plugin...");
+    logger.log("Downloading Kraken Decky plugin...");
 
     const releaseInfo = await this.getDeckyReleaseInfo();
     const tempDir = SystemPath.getPath("temp");
-    const zipPath = path.join(tempDir, "Hydra.zip");
+    const zipPath = path.join(tempDir, "Kraken.zip");
 
     const response = await axios.get(releaseInfo.downloadUrl, {
       responseType: "arraybuffer",
@@ -63,10 +63,10 @@ export class DeckyPlugin {
   }
 
   private static async extractPlugin(zipPath: string): Promise<string> {
-    logger.log("Extracting Hydra Decky plugin...");
+    logger.log("Extracting Kraken Decky plugin...");
 
     const tempDir = SystemPath.getPath("temp");
-    const extractPath = path.join(tempDir, "hydra-decky-plugin");
+    const extractPath = path.join(tempDir, "kraken-decky-plugin");
 
     if (fs.existsSync(extractPath)) {
       await fs.promises.rm(extractPath, { recursive: true, force: true });
@@ -119,10 +119,10 @@ export class DeckyPlugin {
     logger.log("Installing plugin with sudo...");
 
     const username = os.userInfo().username;
-    const sourcePath = path.join(extractPath, "Hydra");
+    const sourcePath = path.join(extractPath, "Kraken");
 
     return new Promise((resolve, reject) => {
-      const command = `mkdir -p "${DECKY_PLUGINS_LOCATION}" && rm -rf "${HYDRA_DECKY_PLUGIN_LOCATION}" && cp -r "${sourcePath}" "${HYDRA_DECKY_PLUGIN_LOCATION}" && chown -R ${username}: "${DECKY_PLUGINS_LOCATION}"`;
+      const command = `mkdir -p "${DECKY_PLUGINS_LOCATION}" && rm -rf "${KRAKEN_DECKY_PLUGIN_LOCATION}" && cp -r "${sourcePath}" "${KRAKEN_DECKY_PLUGIN_LOCATION}" && chown -R ${username}: "${DECKY_PLUGINS_LOCATION}"`;
 
       sudo.exec(
         command,
@@ -148,20 +148,20 @@ export class DeckyPlugin {
   ): Promise<void> {
     logger.log("Installing plugin without sudo...");
 
-    const sourcePath = path.join(extractPath, "Hydra");
+    const sourcePath = path.join(extractPath, "Kraken");
 
     if (!fs.existsSync(DECKY_PLUGINS_LOCATION)) {
       await fs.promises.mkdir(DECKY_PLUGINS_LOCATION, { recursive: true });
     }
 
-    if (fs.existsSync(HYDRA_DECKY_PLUGIN_LOCATION)) {
-      await fs.promises.rm(HYDRA_DECKY_PLUGIN_LOCATION, {
+    if (fs.existsSync(KRAKEN_DECKY_PLUGIN_LOCATION)) {
+      await fs.promises.rm(KRAKEN_DECKY_PLUGIN_LOCATION, {
         recursive: true,
         force: true,
       });
     }
 
-    await fs.promises.cp(sourcePath, HYDRA_DECKY_PLUGIN_LOCATION, {
+    await fs.promises.cp(sourcePath, KRAKEN_DECKY_PLUGIN_LOCATION, {
       recursive: true,
     });
 
@@ -214,8 +214,8 @@ export class DeckyPlugin {
   }
 
   public static async checkAndUpdateIfOutdated(): Promise<void> {
-    if (!fs.existsSync(HYDRA_DECKY_PLUGIN_LOCATION)) {
-      logger.log("Hydra Decky plugin not installed, skipping update check");
+    if (!fs.existsSync(KRAKEN_DECKY_PLUGIN_LOCATION)) {
+      logger.log("Kraken Decky plugin not installed, skipping update check");
       return;
     }
 
@@ -224,7 +224,7 @@ export class DeckyPlugin {
     try {
       if (!fs.existsSync(packageJsonPath)) {
         logger.log(
-          "Hydra Decky plugin package.json not found, skipping update"
+          "Kraken Decky plugin package.json not found, skipping update"
         );
         return;
       }
@@ -237,16 +237,16 @@ export class DeckyPlugin {
 
       if (isOutdated) {
         logger.log(
-          `Hydra Decky plugin is outdated. Current: ${currentVersion}, Expected: ${releaseInfo.version}. Updating...`
+          `Kraken Decky plugin is outdated. Current: ${currentVersion}, Expected: ${releaseInfo.version}. Updating...`
         );
 
         await this.updatePlugin();
-        logger.log("Hydra Decky plugin updated successfully");
+        logger.log("Kraken Decky plugin updated successfully");
       } else {
-        logger.log(`Hydra Decky plugin is up to date (${currentVersion})`);
+        logger.log(`Kraken Decky plugin is up to date (${currentVersion})`);
       }
     } catch (error) {
-      logger.error(`Error checking/updating Hydra Decky plugin: ${error}`);
+      logger.error(`Error checking/updating Kraken Decky plugin: ${error}`);
     }
   }
 
@@ -259,8 +259,8 @@ export class DeckyPlugin {
     try {
       const releaseInfo = await this.getDeckyReleaseInfo();
 
-      if (!fs.existsSync(HYDRA_DECKY_PLUGIN_LOCATION)) {
-        logger.log("Hydra Decky plugin folder not found, installing...");
+      if (!fs.existsSync(KRAKEN_DECKY_PLUGIN_LOCATION)) {
+        logger.log("Kraken Decky plugin folder not found, installing...");
 
         try {
           await this.updatePlugin();
@@ -303,7 +303,7 @@ export class DeckyPlugin {
       try {
         if (!fs.existsSync(packageJsonPath)) {
           logger.log(
-            "Hydra Decky plugin package.json not found, installing..."
+            "Kraken Decky plugin package.json not found, installing..."
           );
 
           await this.updatePlugin();
@@ -338,7 +338,7 @@ export class DeckyPlugin {
 
         if (isOutdated) {
           logger.log(
-            `Hydra Decky plugin is outdated. Current: ${currentVersion}, Expected: ${releaseInfo.version}`
+            `Kraken Decky plugin is outdated. Current: ${currentVersion}, Expected: ${releaseInfo.version}`
           );
 
           await this.updatePlugin();
@@ -364,7 +364,7 @@ export class DeckyPlugin {
             expectedVersion: releaseInfo.version,
           };
         } else {
-          logger.log(`Hydra Decky plugin is up to date (${currentVersion})`);
+          logger.log(`Kraken Decky plugin is up to date (${currentVersion})`);
         }
 
         return {
@@ -374,7 +374,7 @@ export class DeckyPlugin {
           expectedVersion: releaseInfo.version,
         };
       } catch (error) {
-        logger.error(`Error checking Hydra Decky plugin version: ${error}`);
+        logger.error(`Error checking Kraken Decky plugin version: ${error}`);
         return {
           exists: false,
           outdated: true,

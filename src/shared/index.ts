@@ -158,7 +158,7 @@ export const getDownloadersForUri = (uri: string) => {
   if (uri.startsWith("magnet:")) {
     return [
       Downloader.Torrent,
-      Downloader.Hydra,
+      Downloader.Kraken,
       Downloader.TorBox,
       Downloader.RealDebrid,
     ];

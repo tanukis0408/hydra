@@ -1,28 +1,28 @@
-@use "../../../scss/globals.scss";
+@use "../../../scss/g.scss";
 
 .download-settings-modal {
   &__container {
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 3);
+    gap: calc(g.$spacing-unit * 3);
     width: 100%;
   }
 
   &__downloads-path-field {
     display: flex;
     flex-direction: column;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 
   &__hint-text {
     font-size: 12px;
-    color: globals.$body-color;
+    color: g.$body-color;
   }
 
   &__downloaders-list-wrapper {
-    border: 1px solid globals.$border-color;
+    border: 1px solid g.$border-color;
     overflow: hidden;
-    background-color: globals.$dark-background-color;
+    background-color: g.$dark-background-color;
   }
 
   &__downloaders-list {
@@ -56,16 +56,16 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: calc(globals.$spacing-unit * 1.5) calc(globals.$spacing-unit * 2);
+    padding: calc(g.$spacing-unit * 1.5) calc(g.$spacing-unit * 2);
     border: 1px solid transparent;
-    border-bottom: 1px solid globals.$border-color;
+    border-bottom: 1px solid g.$border-color;
     border-radius: 0;
     background-color: transparent;
     cursor: pointer;
     transition:
       background-color 0.15s ease,
       border-color 0.15s ease;
-    color: globals.$body-color;
+    color: g.$body-color;
     font-size: 14px;
     text-align: left;
     height: 48px;

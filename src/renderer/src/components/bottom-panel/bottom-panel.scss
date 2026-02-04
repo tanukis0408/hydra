@@ -1,33 +1,33 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .bottom-panel {
   width: 100%;
-  border-top: solid 1px globals.$border-color;
-  background-color: globals.$background-color;
-  padding: calc(globals.$spacing-unit / 2) calc(globals.$spacing-unit * 2);
+  border-top: solid 1px g.$border-color;
+  background-color: g.$background-color;
+  padding: calc(g.$spacing-unit / 2) calc(g.$spacing-unit * 2);
   display: flex;
   align-items: center;
   transition: all ease 0.2s;
   justify-content: space-between;
   position: relative;
-  z-index: globals.$bottom-panel-z-index;
+  z-index: g.$bottom-panel-z-index;
 
   &__downloads-button {
-    color: globals.$body-color;
+    color: g.$body-color;
     border-bottom: solid 1px transparent;
 
     &:hover {
-      border-bottom: solid 1px globals.$body-color;
+      border-bottom: solid 1px g.$body-color;
       cursor: pointer;
     }
   }
 
   &__version-button {
-    color: globals.$body-color;
+    color: g.$body-color;
     border-bottom: solid 1px transparent;
 
     &:hover {
-      border-bottom: solid 1px globals.$body-color;
+      border-bottom: solid 1px g.$body-color;
       cursor: pointer;
     }
   }

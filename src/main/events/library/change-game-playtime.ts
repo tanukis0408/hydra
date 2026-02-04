@@ -1,4 +1,4 @@
-import { HydraApi } from "@main/services";
+import { KrakenApi } from "@main/services";
 import { registerEvent } from "../register-event";
 import { GameShop } from "@types";
 import { gamesSublevel, levelKeys } from "@main/level";
@@ -15,7 +15,7 @@ const changeGamePlaytime = async (
     if (!game) return;
 
     if (game.remoteId) {
-      await HydraApi.put(`/profile/games/${shop}/${objectId}/playtime`, {
+      await KrakenApi.put(`/profile/games/${shop}/${objectId}/playtime`, {
         playTimeInSeconds,
       });
     }

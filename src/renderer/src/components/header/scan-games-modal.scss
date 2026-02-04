@@ -1,13 +1,13 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .scan-games-modal {
   display: flex;
   flex-direction: column;
-  gap: calc(globals.$spacing-unit * 3);
+  gap: calc(g.$spacing-unit * 3);
   min-width: 400px;
 
   &__description {
-    color: globals.$muted-color;
+    color: g.$muted-color;
     font-size: 14px;
     line-height: 1.5;
     margin: 0;
@@ -16,38 +16,38 @@
   &__results {
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
   }
 
   &__result {
-    color: globals.$body-color;
+    color: g.$body-color;
     font-size: 14px;
     margin: 0;
   }
 
   &__no-results {
-    color: globals.$muted-color;
+    color: g.$muted-color;
     font-size: 14px;
     margin: 0;
     text-align: center;
-    padding: calc(globals.$spacing-unit * 2) 0;
+    padding: calc(g.$spacing-unit * 2) 0;
   }
 
   &__scanning {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: calc(globals.$spacing-unit * 2);
-    padding: calc(globals.$spacing-unit * 3) 0;
+    gap: calc(g.$spacing-unit * 2);
+    padding: calc(g.$spacing-unit * 3) 0;
   }
 
   &__spinner {
-    color: globals.$muted-color;
+    color: g.$muted-color;
     animation: spin 2s linear infinite;
   }
 
   &__scanning-text {
-    color: globals.$muted-color;
+    color: g.$muted-color;
     font-size: 14px;
     margin: 0;
   }
@@ -68,18 +68,18 @@
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: globals.$spacing-unit;
-    background-color: globals.$dark-background-color;
+    gap: g.$spacing-unit;
+    background-color: g.$dark-background-color;
     border-radius: 4px;
-    padding: calc(globals.$spacing-unit * 2);
+    padding: calc(g.$spacing-unit * 2);
   }
 
   &__game-item {
     display: flex;
     flex-direction: column;
     gap: 4px;
-    padding-bottom: globals.$spacing-unit;
-    border-bottom: 1px solid globals.$border-color;
+    padding-bottom: g.$spacing-unit;
+    border-bottom: 1px solid g.$border-color;
 
     &:last-child {
       border-bottom: none;
@@ -88,13 +88,13 @@
   }
 
   &__game-title {
-    color: globals.$body-color;
+    color: g.$body-color;
     font-size: 14px;
     font-weight: 500;
   }
 
   &__game-path {
-    color: globals.$muted-color;
+    color: g.$muted-color;
     font-size: 12px;
     word-break: break-all;
   }
@@ -102,6 +102,6 @@
   &__actions {
     display: flex;
     justify-content: flex-end;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
   }
 }

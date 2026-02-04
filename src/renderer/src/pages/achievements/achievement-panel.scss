@@ -1,36 +1,36 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .achievement-panel {
   width: 100%;
-  padding: globals.$spacing-unit * 2 globals.$spacing-unit * 3;
-  background-color: globals.$background-color;
+  padding: g.$spacing-unit * 2 g.$spacing-unit * 3;
+  background-color: g.$background-color;
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: space-between;
-  border-bottom: solid 1px globals.$border-color;
+  border-bottom: solid 1px g.$border-color;
 
   &__content {
     display: flex;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     justify-content: center;
     align-items: center;
   }
 
   &__actions {
     display: flex;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 
   &__download-details-row {
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     display: flex;
-    color: globals.$body-color;
+    color: g.$body-color;
     align-items: center;
   }
 
   &__downloads-link {
-    color: globals.$body-color;
+    color: g.$body-color;
     text-decoration: underline;
   }
 
@@ -47,17 +47,17 @@
     }
 
     &::-webkit-progress-value {
-      background-color: globals.$muted-color;
+      background-color: g.$muted-color;
     }
 
     &--disabled {
-      opacity: globals.$disabled-opacity;
+      opacity: g.$disabled-opacity;
     }
   }
 
   &__link {
     text-align: start;
-    color: globals.$body-color;
+    color: g.$body-color;
     background: none;
     border: none;
     padding: 0;
@@ -68,13 +68,13 @@
     }
 
     &--warning {
-      color: globals.$warning-color;
+      color: g.$warning-color;
     }
   }
 
   &__grid {
     display: grid;
-    gap: globals.$spacing-unit * 2;
+    gap: g.$spacing-unit * 2;
   }
 
   &__grid--with-subscription {
@@ -87,7 +87,7 @@
 
   &__points-container {
     display: flex;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 
   &__content-icon {

@@ -35,7 +35,7 @@ export function SidebarProfile() {
   const fetchApiNotificationCount = useCallback(async () => {
     try {
       const response =
-        await window.electron.hydraApi.get<NotificationCountResponse>(
+        await window.electron.krakenApi.get<NotificationCountResponse>(
           "/profile/notifications/count",
           { needsAuth: true }
         );

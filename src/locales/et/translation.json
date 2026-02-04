@@ -127,7 +127,7 @@
     "download": "Laadi alla",
     "executable_path_in_use": "Käivitusfail on juba kasutusel mängus \"{{game}}\"",
     "warning": "Hoiatus:",
-    "hydra_needs_to_remain_open": "selle allalaadimise jaoks peab Hydra jääma avatuks kuni lõpuni. Kui Hydra sulgub enne lõppu, kaotad oma progressi.",
+    "kraken_needs_to_remain_open": "selle allalaadimise jaoks peab Hydra jääma avatuks kuni lõpuni. Kui Hydra sulgub enne lõppu, kaotad oma progressi.",
     "achievements": "Saavutused",
     "achievements_count": "Saavutused {{unlockedCount}}/{{achievementsCount}}",
     "cloud_save": "Pilvesalvestus",

@@ -1,4 +1,4 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .star-rating {
   display: flex;
@@ -6,7 +6,7 @@
   gap: 2px;
 
   &__star {
-    color: globals.$muted-color;
+    color: g.$muted-color;
     transition: color ease 0.2s;
 
     &--filled {
@@ -14,7 +14,7 @@
     }
 
     &--empty {
-      color: globals.$muted-color;
+      color: g.$muted-color;
     }
 
     &--half {
@@ -34,7 +34,7 @@
   &__value {
     margin-left: 4px;
     font-size: 12px;
-    color: globals.$muted-color;
+    color: g.$muted-color;
     font-weight: 500;
   }
 
@@ -42,13 +42,13 @@
   &__no-rating-text {
     margin-left: 4px;
     font-size: 12px;
-    color: globals.$muted-color;
+    color: g.$muted-color;
   }
 
   &--calculating,
   &--no-rating {
     .star-rating__star {
-      color: globals.$muted-color;
+      color: g.$muted-color;
     }
   }
 }

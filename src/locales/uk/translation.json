@@ -207,7 +207,7 @@
     "screenshot": "Скріншот",
     "select_executable": "Обрати",
     "warning": "Попередження:",
-    "hydra_needs_to_remain_open": "Hydra повинна залишатись відкритою до завершення завантаження. Якщо Hydra закриється до завершення, ви втратите прогрес.",
+    "kraken_needs_to_remain_open": "Hydra повинна залишатись відкритою до завершення завантаження. Якщо Hydra закриється до завершення, ви втратите прогрес.",
     "achievements": "Досягнення",
     "achievements_count": "Досягнень {{unlockedCount}}/{{achievementsCount}}",
     "cloud_save": "Хмарне Збереження",

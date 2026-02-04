@@ -1,10 +1,10 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 $hero-height: 350px;
 
 @keyframes slide-in {
   0% {
-    transform: translateY(calc(40px + globals.$spacing-unit * 2));
+    transform: translateY(calc(40px + g.$spacing-unit * 2));
     opacity: 0;
   }
 
@@ -16,7 +16,7 @@ $hero-height: 350px;
 
 .game-details {
   &__hero-panel {
-    padding: globals.$spacing-unit;
+    padding: g.$spacing-unit;
   }
 
   &__hero {
@@ -35,7 +35,7 @@ $hero-height: 350px;
   }
 
   &__hero-content {
-    padding: calc(globals.$spacing-unit * 1.5);
+    padding: calc(g.$spacing-unit * 1.5);
     height: 100%;
     width: 100%;
     display: flex;
@@ -43,13 +43,13 @@ $hero-height: 350px;
     align-items: flex-end;
 
     @media (min-width: 768px) {
-      padding: calc(globals.$spacing-unit * 2);
+      padding: calc(g.$spacing-unit * 2);
     }
   }
 
   &__hero-buttons {
     display: flex;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     align-items: center;
 
     &--right {
@@ -58,7 +58,7 @@ $hero-height: 350px;
   }
 
   &__edit-custom-game-button {
-    padding: calc(globals.$spacing-unit * 1.5);
+    padding: calc(g.$spacing-unit * 1.5);
     background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(20px);
     border-radius: 8px;
@@ -69,8 +69,8 @@ $hero-height: 350px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: globals.$muted-color;
-    border: solid 1px globals.$border-color;
+    color: g.$muted-color;
+    border: solid 1px g.$border-color;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.8);
     animation: slide-in 0.3s cubic-bezier(0.33, 1, 0.68, 1);
 
@@ -80,7 +80,7 @@ $hero-height: 350px;
 
     &:hover {
       background-color: rgba(0, 0, 0, 0.5);
-      color: globals.$body-color;
+      color: g.$body-color;
     }
   }
 
@@ -184,7 +184,7 @@ $hero-height: 350px;
   }
 
   &__cloud-sync-button {
-    padding: calc(globals.$spacing-unit * 1.5) calc(globals.$spacing-unit * 2);
+    padding: calc(g.$spacing-unit * 1.5) calc(g.$spacing-unit * 2);
     background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(20px);
     border-radius: 8px;
@@ -194,10 +194,10 @@ $hero-height: 350px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: globals.$spacing-unit;
-    color: globals.$muted-color;
-    font-size: globals.$small-font-size;
-    border: solid 1px globals.$border-color;
+    gap: g.$spacing-unit;
+    color: g.$muted-color;
+    font-size: g.$small-font-size;
+    border: solid 1px g.$border-color;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.8);
     animation: slide-in 0.3s cubic-bezier(0.33, 1, 0.68, 1);
 
@@ -206,7 +206,7 @@ $hero-height: 350px;
     }
 
     &:disabled {
-      opacity: globals.$disabled-opacity;
+      opacity: g.$disabled-opacity;
       cursor: not-allowed;
     }
 
@@ -232,10 +232,10 @@ $hero-height: 350px;
 
   &__randomizer-button {
     position: fixed;
-    bottom: calc(globals.$spacing-unit * 5);
-    right: calc(globals.$spacing-unit * 2);
+    bottom: calc(g.$spacing-unit * 5);
+    right: calc(g.$spacing-unit * 2);
     z-index: 100;
-    padding: calc(globals.$spacing-unit * 1.5) calc(globals.$spacing-unit * 2);
+    padding: calc(g.$spacing-unit * 1.5) calc(g.$spacing-unit * 2);
     background-color: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(20px);
     border-radius: 8px;
@@ -245,9 +245,9 @@ $hero-height: 350px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: globals.$spacing-unit;
-    color: globals.$muted-color;
-    border: solid 1px globals.$border-color;
+    gap: g.$spacing-unit;
+    color: g.$muted-color;
+    border: solid 1px g.$border-color;
     box-shadow:
       0px 0px 10px 0px rgba(0, 0, 0, 0.8),
       0px 2px 8px 0px rgba(255, 255, 255, 0.1);
@@ -255,13 +255,13 @@ $hero-height: 350px;
     overflow: visible;
 
     &:disabled {
-      opacity: globals.$disabled-opacity;
+      opacity: g.$disabled-opacity;
       cursor: not-allowed;
     }
 
     &:hover {
       background-color: rgba(255, 255, 255, 0.12);
-      color: globals.$body-color;
+      color: g.$body-color;
     }
   }
 

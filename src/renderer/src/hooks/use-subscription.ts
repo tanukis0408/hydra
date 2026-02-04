@@ -1,33 +1,33 @@
 import { useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "./redux";
 import {
-  setHydraCloudModalVisible,
-  setHydraCloudModalHidden,
+  setKrakenCloudModalVisible,
+  setKrakenCloudModalHidden,
 } from "@renderer/features";
-import { HydraCloudFeature } from "@types";
+import { KrakenCloudFeature } from "@types";
 
 export function useSubscription() {
   const dispatch = useAppDispatch();
 
-  const { isHydraCloudModalVisible, feature } = useAppSelector(
+  const { isKrakenCloudModalVisible, feature } = useAppSelector(
     (state) => state.subscription
   );
 
-  const showHydraCloudModal = useCallback(
-    (feature: HydraCloudFeature) => {
-      dispatch(setHydraCloudModalVisible(feature));
+  const showKrakenCloudModal = useCallback(
+    (feature: KrakenCloudFeature) => {
+      dispatch(setKrakenCloudModalVisible(feature));
     },
     [dispatch]
   );
 
-  const hideHydraCloudModal = useCallback(() => {
-    dispatch(setHydraCloudModalHidden());
+  const hideKrakenCloudModal = useCallback(() => {
+    dispatch(setKrakenCloudModalHidden());
   }, [dispatch]);
 
   return {
-    isHydraCloudModalVisible,
-    hydraCloudFeature: feature,
-    showHydraCloudModal,
-    hideHydraCloudModal,
+    isKrakenCloudModalVisible,
+    krakenCloudFeature: feature,
+    showKrakenCloudModal,
+    hideKrakenCloudModal,
   };
 }

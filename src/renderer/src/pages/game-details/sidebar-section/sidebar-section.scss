@@ -1,23 +1,23 @@
-@use "../../../scss/globals.scss";
+@use "../../../scss/g.scss";
 
 .sidebar-section {
-  background-color: globals.$background-color;
+  background-color: g.$background-color;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.05);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 
   &__button {
-    padding: calc(globals.$spacing-unit * 2.5) calc(globals.$spacing-unit * 2);
+    padding: calc(g.$spacing-unit * 2.5) calc(g.$spacing-unit * 2);
     display: flex;
     align-items: center;
-    background-color: globals.$background-color;
-    color: globals.$muted-color;
+    background-color: g.$background-color;
+    color: g.$muted-color;
     width: 100%;
     cursor: pointer;
     transition: all ease 0.2s;
-    gap: globals.$spacing-unit;
-    font-size: globals.$body-font-size;
+    gap: g.$spacing-unit;
+    font-size: g.$body-font-size;
     font-weight: bold;
 
     &:hover {
@@ -25,7 +25,7 @@
     }
 
     &:active {
-      opacity: globals.$active-opacity;
+      opacity: g.$active-opacity;
     }
   }
 
@@ -40,7 +40,7 @@
   &__content {
     overflow: hidden;
     transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
-    background-color: globals.$dark-background-color;
+    background-color: g.$dark-background-color;
     position: relative;
   }
 }

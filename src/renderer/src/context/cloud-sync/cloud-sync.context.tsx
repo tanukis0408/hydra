@@ -108,7 +108,7 @@ export function CloudSyncContextProvider({
       shop,
     });
 
-    const results = await window.electron.hydraApi
+    const results = await window.electron.krakenApi
       .get<GameArtifact[]>(`/profile/games/artifacts?${params.toString()}`, {
         needsSubscription: true,
       })
@@ -154,7 +154,7 @@ export function CloudSyncContextProvider({
       setFreezingArtifact(true);
       try {
         const endpoint = freeze ? "freeze" : "unfreeze";
-        await window.electron.hydraApi.put(
+        await window.electron.krakenApi.put(
           `/profile/games/artifacts/${gameArtifactId}/${endpoint}`
         );
         getGameArtifacts();
@@ -204,7 +204,7 @@ export function CloudSyncContextProvider({
 
   const deleteGameArtifact = useCallback(
     async (gameArtifactId: string) => {
-      return window.electron.hydraApi
+      return window.electron.krakenApi
         .delete<{ ok: boolean }>(`/profile/games/artifacts/${gameArtifactId}`)
         .then(() => {
           getGameBackupPreview();

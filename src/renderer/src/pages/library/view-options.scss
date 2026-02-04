@@ -1,10 +1,10 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .library-view-options {
   &__container {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit);
+    gap: calc(g.$spacing-unit);
   }
 
   &__label {
@@ -17,7 +17,7 @@
   &__options {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit);
+    gap: calc(g.$spacing-unit);
     flex-wrap: wrap;
     white-space: nowrap;
   }
@@ -25,7 +25,7 @@
   &__option {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit);
+    gap: calc(g.$spacing-unit);
     padding: 10px;
     border-radius: 6px;
     background: rgba(255, 255, 255, 0.04);

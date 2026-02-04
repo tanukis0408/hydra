@@ -125,7 +125,7 @@ export class PythonRPC {
       if (!fs.existsSync(binaryPath)) {
         dialog.showErrorBox(
           "Fatal",
-          "Hydra Python Instance binary not found. Please check if it has been removed by Windows Defender."
+          "Kraken Python Instance binary not found. Please check if it has been removed by Windows Defender."
         );
 
         app.quit();
@@ -165,7 +165,7 @@ export class PythonRPC {
       pythonRpcLogger.log(`Failed to start Python RPC: ${err}`);
       dialog.showErrorBox(
         "RPC Error",
-        `Failed to start download service.\n\nThe service did not respond in time. Please try restarting Hydra.`
+        `Failed to start download service.\n\nThe service did not respond in time. Please try restarting Kraken.`
       );
       this.kill();
       throw err;

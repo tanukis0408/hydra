@@ -209,7 +209,7 @@
     "download": "İndir",
     "executable_path_in_use": "Çalıştırılabilir dosya zaten \"{{game}}\" tarafından kullanılıyor",
     "warning": "Uyarı:",
-    "hydra_needs_to_remain_open": "Bu indirme için, Hydra programının tamamlanana kadar açık kalması gerekir. Hydra kapanırsa, ilerlemeniz kaybolacaktır.",
+    "kraken_needs_to_remain_open": "Bu indirme için, Hydra programının tamamlanana kadar açık kalması gerekir. Hydra kapanırsa, ilerlemeniz kaybolacaktır.",
     "achievements": "Başarımlar",
     "achievements_count": "Başarımlar {{unlockedCount}}/{{achievementsCount}}",
     "cloud_save": "Bulut Kaydı",

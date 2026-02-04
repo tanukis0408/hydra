@@ -1,14 +1,14 @@
-import { HydraApi, logger } from "../";
+import { KrakenApi, logger } from "../";
 import { downloadSourcesSublevel } from "@main/level";
 import type { DownloadSource } from "@types";
 
 export const syncDownloadSourcesFromApi = async () => {
-  if (!HydraApi.isLoggedIn() || !HydraApi.hasActiveSubscription()) {
+  if (!KrakenApi.isLoggedIn() || !KrakenApi.hasActiveSubscription()) {
     return;
   }
 
   try {
-    const profileSources = await HydraApi.get<DownloadSource[]>(
+    const profileSources = await KrakenApi.get<DownloadSource[]>(
       "/profile/download-sources"
     );
 

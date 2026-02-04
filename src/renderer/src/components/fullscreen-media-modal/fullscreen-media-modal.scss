@@ -1,4 +1,4 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .fullscreen-media-modal__overlay {
   position: fixed;
@@ -8,7 +8,7 @@
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(2px);
-  z-index: globals.$backdrop-z-index;
+  z-index: g.$backdrop-z-index;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,14 +32,14 @@
 
   &__close-button {
     position: absolute;
-    top: calc(globals.$spacing-unit * 5);
-    right: calc(globals.$spacing-unit * 4);
+    top: calc(g.$spacing-unit * 5);
+    right: calc(g.$spacing-unit * 4);
     cursor: pointer;
-    color: globals.$body-color;
+    color: g.$body-color;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 50%;
-    border: 1px solid globals.$border-color;
-    padding: globals.$spacing-unit;
+    border: 1px solid g.$border-color;
+    padding: g.$spacing-unit;
     display: flex;
     align-items: center;
     justify-content: center;

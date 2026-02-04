@@ -1,29 +1,29 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .download-group {
   display: flex;
   flex-direction: column;
-  gap: calc(globals.$spacing-unit * 2);
-  margin-inline: calc(globals.$spacing-unit * 3);
-  padding-block: calc(globals.$spacing-unit * 3);
+  gap: calc(g.$spacing-unit * 2);
+  margin-inline: calc(g.$spacing-unit * 3);
+  padding-block: calc(g.$spacing-unit * 3);
 
   &--queued {
     padding-bottom: 0;
   }
 
   &--completed {
-    padding-top: calc(globals.$spacing-unit * 3);
+    padding-top: calc(g.$spacing-unit * 3);
   }
 
   &__header {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit);
+    gap: calc(g.$spacing-unit);
 
     &-title-group {
       display: flex;
       align-items: center;
-      gap: calc(globals.$spacing-unit);
+      gap: calc(g.$spacing-unit);
       flex: 1;
 
       h2 {
@@ -52,7 +52,7 @@
     overflow: hidden;
     margin: 0;
     padding: 0;
-    padding-bottom: globals.$spacing-unit;
+    padding-bottom: g.$spacing-unit;
   }
 
   &__hero-background {
@@ -88,11 +88,11 @@
   &__hero-content {
     position: relative;
     z-index: 1;
-    padding: calc(globals.$spacing-unit * 4);
+    padding: calc(g.$spacing-unit * 4);
     padding-bottom: 0;
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
   }
 
   &__hero-logo {
@@ -133,22 +133,22 @@
         border-radius: 4px;
       }
 
-      @container #{globals.$app-container} (min-width: 700px) {
+      @container #{g.$app-container} (min-width: 700px) {
         max-width: 220px;
         max-height: 75px;
       }
 
-      @container #{globals.$app-container} (min-width: 900px) {
+      @container #{g.$app-container} (min-width: 900px) {
         max-width: 280px;
         max-height: 95px;
       }
 
-      @container #{globals.$app-container} (min-width: 1200px) {
+      @container #{g.$app-container} (min-width: 1200px) {
         max-width: 340px;
         max-height: 115px;
       }
 
-      @container #{globals.$app-container} (min-width: 1500px) {
+      @container #{g.$app-container} (min-width: 1500px) {
         max-width: 400px;
         max-height: 130px;
       }
@@ -173,19 +173,19 @@
         border-radius: 4px;
       }
 
-      @container #{globals.$app-container} (min-width: 700px) {
+      @container #{g.$app-container} (min-width: 700px) {
         font-size: 26px;
       }
 
-      @container #{globals.$app-container} (min-width: 900px) {
+      @container #{g.$app-container} (min-width: 900px) {
         font-size: 32px;
       }
 
-      @container #{globals.$app-container} (min-width: 1200px) {
+      @container #{g.$app-container} (min-width: 1200px) {
         font-size: 38px;
       }
 
-      @container #{globals.$app-container} (min-width: 1500px) {
+      @container #{g.$app-container} (min-width: 1500px) {
         font-size: 44px;
       }
     }
@@ -195,14 +195,14 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: calc(globals.$spacing-unit * 3);
-    margin-top: calc(globals.$spacing-unit * 4);
-    margin-bottom: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 3);
+    margin-top: calc(g.$spacing-unit * 4);
+    margin-bottom: calc(g.$spacing-unit * 2);
   }
 
   &__hero-buttons {
     display: flex;
-    gap: calc(globals.$spacing-unit);
+    gap: calc(g.$spacing-unit);
     align-items: center;
     flex-shrink: 0;
   }
@@ -245,10 +245,10 @@
   &__progress-row {
     display: flex;
     align-items: flex-end;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
 
     &--bar {
-      margin-top: calc(globals.$spacing-unit);
+      margin-top: calc(g.$spacing-unit);
     }
   }
 
@@ -277,7 +277,7 @@
   &__progress-size {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit);
+    gap: calc(g.$spacing-unit);
     font-size: 13px;
     font-weight: 600;
     color: rgba(255, 255, 255, 0.9);
@@ -292,28 +292,28 @@
   &__progress-time {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit);
+    gap: calc(g.$spacing-unit);
     font-size: 13px;
-    color: globals.$muted-color;
+    color: g.$muted-color;
   }
 
   &__hero-stats {
     display: flex;
-    gap: calc(globals.$spacing-unit * 4);
-    padding: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 4);
+    padding: calc(g.$spacing-unit * 2);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(26, 26, 26, 0.1);
     backdrop-filter: blur(8px);
-    margin-top: calc(globals.$spacing-unit * 2);
+    margin-top: calc(g.$spacing-unit * 2);
   }
 
   &__stats-column {
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
     min-width: 200px;
-    padding-right: calc(globals.$spacing-unit * 2);
+    padding-right: calc(g.$spacing-unit * 2);
     border-right: 1px solid rgba(255, 255, 255, 0.1);
     align-self: flex-start;
   }
@@ -335,7 +335,7 @@
   &__stat-item {
     display: flex;
     align-items: flex-end;
-    gap: calc(globals.$spacing-unit);
+    gap: calc(g.$spacing-unit);
 
     svg {
       opacity: 0.8;
@@ -346,7 +346,7 @@
   &__stat-content {
     display: flex;
     justify-content: space-between;
-    gap: calc(globals.$spacing-unit / 2);
+    gap: calc(g.$spacing-unit / 2);
     width: 100%;
   }
 
@@ -369,7 +369,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
     margin: 0;
     padding: 0;
     list-style: none;
@@ -378,7 +378,7 @@
   &__simple-card {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
     border-radius: 8px;
   }
 
@@ -389,7 +389,7 @@
     overflow: hidden;
     flex-shrink: 0;
     background-color: rgba(0, 0, 0, 0.3);
-    border: 1px solid globals.$border-color;
+    border: 1px solid g.$border-color;
     padding: 0;
     cursor: pointer;
     transition:
@@ -418,7 +418,7 @@
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit / 1);
+    gap: calc(g.$spacing-unit / 1);
   }
 
   &__simple-title-button {
@@ -449,30 +449,30 @@
   &__simple-meta {
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 1.5);
+    gap: calc(g.$spacing-unit * 1.5);
   }
 
   &__simple-meta-row {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
     font-size: 13px;
-    color: globals.$muted-color;
+    color: g.$muted-color;
   }
 
   &__simple-size {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit / 2);
+    gap: calc(g.$spacing-unit / 2);
     font-weight: 500;
   }
 
   &__simple-extracting {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit / 2);
+    gap: calc(g.$spacing-unit / 2);
     font-weight: 500;
-    color: globals.$muted-color;
+    color: g.$muted-color;
   }
 
   &__simple-seeding {
@@ -486,7 +486,7 @@
   &__simple-progress {
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit / 2);
+    gap: calc(g.$spacing-unit / 2);
     width: 200px;
     flex-shrink: 0;
   }
@@ -503,19 +503,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: calc(globals.$spacing-unit);
+    gap: calc(g.$spacing-unit);
   }
 
   &__simple-menu-btn {
-    padding: calc(globals.$spacing-unit);
+    padding: calc(g.$spacing-unit);
     min-height: unset;
     border-radius: 8px;
   }
 
   &__simple-action-btn {
-    padding: calc(globals.$spacing-unit);
+    padding: calc(g.$spacing-unit);
     min-height: unset;
-    gap: calc(globals.$spacing-unit);
+    gap: calc(g.$spacing-unit);
     min-width: 120px;
     border-radius: 8px;
   }
@@ -524,7 +524,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit / 2);
+    gap: calc(g.$spacing-unit / 2);
   }
 
   &__progress-bar {
@@ -533,7 +533,7 @@
     background-color: rgba(255, 255, 255, 0.08);
     border-radius: 4px;
     overflow: hidden;
-    margin-top: calc(globals.$spacing-unit / 2);
+    margin-top: calc(g.$spacing-unit / 2);
 
     &--small {
       height: 6px;

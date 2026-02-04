@@ -1,4 +1,4 @@
-@use "../../../scss/globals.scss";
+@use "../../../scss/g.scss";
 
 .user-library-game {
   &__wrapper {
@@ -156,7 +156,7 @@
     }
   }
   &__manual-playtime {
-    color: globals.$warning-color;
+    color: g.$warning-color;
   }
   &__stats {
     width: 100%;
@@ -168,7 +168,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 8px;
-    color: globals.$muted-color;
+    color: g.$muted-color;
     overflow: hidden;
     height: 18px;
   }
@@ -229,7 +229,7 @@
     }
 
     &::-webkit-progress-value {
-      background-color: globals.$muted-color;
+      background-color: g.$muted-color;
       border-radius: 4px;
     }
   }

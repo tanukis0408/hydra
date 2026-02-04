@@ -139,7 +139,7 @@
     "download": "تنزيل",
     "executable_path_in_use": "مسار التشغيل مستخدم بالفعل بواسطة \"{{game}}\"",
     "warning": "تحذير:",
-    "hydra_needs_to_remain_open": "لهذا التنزيل، يجب أن يظل Hydra مفتوحًا حتى اكتماله. إذا تم إغلاق Hydra قبل الاكتمال، ستفقد تقدمك.",
+    "kraken_needs_to_remain_open": "لهذا التنزيل، يجب أن يظل Hydra مفتوحًا حتى اكتماله. إذا تم إغلاق Hydra قبل الاكتمال، ستفقد تقدمك.",
     "achievements": "الإنجازات",
     "achievements_count": "الإنجازات {{unlockedCount}}/{{achievementsCount}}",
     "cloud_save": "حفظ سحابي",

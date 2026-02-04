@@ -1,14 +1,14 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .library {
   &__content {
-    padding: calc(globals.$spacing-unit * 2);
+    padding: calc(g.$spacing-unit * 2);
     height: 100%;
     width: 100%;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 3);
+    gap: calc(g.$spacing-unit * 3);
     align-items: flex-start;
   }
 
@@ -22,7 +22,7 @@
   &__page-header {
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 1.5);
+    gap: calc(g.$spacing-unit * 1.5);
     width: 100%;
   }
 
@@ -44,28 +44,28 @@
   &__controls-left {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit);
+    gap: calc(g.$spacing-unit);
     flex: 1;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
-    margin-right: calc(globals.$spacing-unit * 2);
+    margin-right: calc(g.$spacing-unit * 2);
   }
 
   &__controls-right {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit);
+    gap: calc(g.$spacing-unit);
   }
 
   &__header-controls {
     display: flex;
     flex-direction: column;
     align-items: end;
-    gap: calc(globals.$spacing-unit * 1);
+    gap: calc(g.$spacing-unit * 1);
     &__left {
       display: flex;
       flex-direction: column;
-      gap: calc(globals.$spacing-unit * 1);
+      gap: calc(g.$spacing-unit * 1);
     }
   }
   &__header-title {
@@ -90,7 +90,7 @@
   &__count {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit);
+    gap: calc(g.$spacing-unit);
     background: rgba(255, 255, 255, 0.05);
     border-radius: 8px;
     padding: 8px 16px;
@@ -115,8 +115,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: globals.$spacing-unit;
-    padding: calc(globals.$spacing-unit * 4);
+    gap: g.$spacing-unit;
+    padding: calc(g.$spacing-unit * 4);
   }
 
   &__telescope-icon {
@@ -127,7 +127,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: calc(globals.$spacing-unit * 2);
+    margin-bottom: calc(g.$spacing-unit * 2);
   }
 
   &__games-grid {
@@ -135,30 +135,30 @@
     margin: 0;
     padding: 0;
     display: grid;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
     width: 100%;
 
     // Grid view - larger cards
     &--grid {
       grid-template-columns: repeat(2, 1fr);
 
-      @container #{globals.$app-container} (min-width: 900px) {
+      @container #{g.$app-container} (min-width: 900px) {
         grid-template-columns: repeat(4, 1fr);
       }
 
-      @container #{globals.$app-container} (min-width: 1300px) {
+      @container #{g.$app-container} (min-width: 1300px) {
         grid-template-columns: repeat(5, 1fr);
       }
 
-      @container #{globals.$app-container} (min-width: 2000px) {
+      @container #{g.$app-container} (min-width: 2000px) {
         grid-template-columns: repeat(6, 1fr);
       }
 
-      @container #{globals.$app-container} (min-width: 2600px) {
+      @container #{g.$app-container} (min-width: 2600px) {
         grid-template-columns: repeat(8, 1fr);
       }
 
-      @container #{globals.$app-container} (min-width: 3000px) {
+      @container #{g.$app-container} (min-width: 3000px) {
         grid-template-columns: repeat(12, 1fr);
       }
     }
@@ -167,23 +167,23 @@
     &--compact {
       grid-template-columns: repeat(3, 1fr);
 
-      @container #{globals.$app-container} (min-width: 900px) {
+      @container #{g.$app-container} (min-width: 900px) {
         grid-template-columns: repeat(5, 1fr);
       }
 
-      @container #{globals.$app-container} (min-width: 1300px) {
+      @container #{g.$app-container} (min-width: 1300px) {
         grid-template-columns: repeat(7, 1fr);
       }
 
-      @container #{globals.$app-container} (min-width: 2000px) {
+      @container #{g.$app-container} (min-width: 2000px) {
         grid-template-columns: repeat(9, 1fr);
       }
 
-      @container #{globals.$app-container} (min-width: 2600px) {
+      @container #{g.$app-container} (min-width: 2600px) {
         grid-template-columns: repeat(12, 1fr);
       }
 
-      @container #{globals.$app-container} (min-width: 3000px) {
+      @container #{g.$app-container} (min-width: 3000px) {
         grid-template-columns: repeat(14, 1fr);
       }
     }
@@ -192,7 +192,7 @@
   &__games-list {
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
     width: 100%;
 
     // Large view - 2 columns grid
@@ -200,7 +200,7 @@
       display: grid;
       grid-template-columns: repeat(1, 1fr);
 
-      @container #{globals.$app-container} (min-width: 900px) {
+      @container #{g.$app-container} (min-width: 900px) {
         grid-template-columns: repeat(2, 1fr);
       }
     }

@@ -1,28 +1,28 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .settings-account {
   &__form {
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
   }
 
   &__section {
     display: flex;
     flex-direction: column;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 
   &__actions {
     display: flex;
-    gap: globals.$spacing-unit;
-    margin-top: globals.$spacing-unit;
+    gap: g.$spacing-unit;
+    margin-top: g.$spacing-unit;
   }
 
   &__subscription-info {
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
   }
 
   &__subscription-button {
@@ -35,19 +35,19 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 
   &__blocked-user {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 
   &__user-info {
     display: flex;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     align-items: center;
   }
 
@@ -56,7 +56,7 @@
   }
 
   &__unblock-button {
-    color: globals.$danger-color;
+    color: g.$danger-color;
     cursor: pointer;
     background: none;
     border: none;

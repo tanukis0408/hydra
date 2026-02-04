@@ -6,7 +6,7 @@ export enum Downloader {
   Datanodes,
   Mediafire,
   TorBox,
-  Hydra,
+  Kraken,
   Buzzheavier,
   FuckingFast,
   VikingFile,
@@ -63,7 +63,7 @@ export enum DownloadError {
   NotCachedOnTorBox = "download_error_not_cached_on_torbox",
   GofileQuotaExceeded = "download_error_gofile_quota_exceeded",
   RealDebridAccountNotAuthorized = "download_error_real_debrid_account_not_authorized",
-  NotCachedOnHydra = "download_error_not_cached_on_hydra",
+  NotCachedOnKraken = "download_error_not_cached_on_hydra",
 }
 
 export const FILE_EXTENSIONS_TO_EXTRACT = [".rar", ".zip", ".7z"];

@@ -11,7 +11,7 @@ export function useFeature() {
   const [features, setFeatures] = useState<string[] | null>(null);
 
   useEffect(() => {
-    window.electron.hydraApi
+    window.electron.krakenApi
       .get<string[]>("/features", { needsAuth: false })
       .then((features) => {
         localStorage.setItem("features", JSON.stringify(features || []));

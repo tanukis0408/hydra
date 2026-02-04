@@ -1,8 +1,8 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .settings-behavior {
   &__checkbox-container {
-    opacity: globals.$disabled-opacity;
+    opacity: g.$disabled-opacity;
     cursor: not-allowed;
 
     &--enabled {

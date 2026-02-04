@@ -1,4 +1,4 @@
-@use "../../../scss/globals.scss";
+@use "../../../scss/g.scss";
 
 .profile-hero {
   &__content-box {
@@ -33,10 +33,10 @@
     justify-content: flex-end;
     background: none;
     border: none;
-    color: globals.$body-color;
+    color: g.$body-color;
     background-color: rgba(0, 0, 0, 0.3);
     cursor: pointer;
-    padding: calc(globals.$spacing-unit / 1.5);
+    padding: calc(g.$spacing-unit / 1.5);
     border-radius: 6px;
     transition: background-color ease 0.2s;
     overflow: hidden;
@@ -58,9 +58,9 @@
 
   &__user-information {
     display: flex;
-    padding: calc(globals.$spacing-unit * 7) calc(globals.$spacing-unit * 3);
+    padding: calc(g.$spacing-unit * 7) calc(g.$spacing-unit * 3);
     align-items: center;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
   }
 
   &__avatar-button {
@@ -71,12 +71,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: globals.$background-color;
-    border: solid 1px globals.$border-color;
+    background-color: g.$background-color;
+    border: solid 1px g.$border-color;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.7);
     cursor: pointer;
     transition: all ease 0.3s;
-    color: globals.$muted-color;
+    color: g.$muted-color;
     position: relative;
 
     &:hover {
@@ -87,16 +87,16 @@
   &__information {
     display: flex;
     flex-direction: column;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     align-items: flex-start;
-    color: globals.$muted-color;
+    color: g.$muted-color;
     z-index: 1;
     overflow: hidden;
   }
 
   &__display-name-container {
     display: flex;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     align-items: center;
   }
 
@@ -115,13 +115,13 @@
     &-wrapper {
       display: flex;
       flex-direction: column;
-      gap: calc(globals.$spacing-unit / 2);
+      gap: calc(g.$spacing-unit / 2);
     }
 
     &-details {
       display: flex;
       flex-direction: row;
-      gap: globals.$spacing-unit;
+      gap: g.$spacing-unit;
       align-items: center;
     }
   }
@@ -130,9 +130,9 @@
     width: 100%;
     height: 72px;
     min-height: 72px;
-    padding: calc(globals.$spacing-unit * 2) calc(globals.$spacing-unit * 3);
+    padding: calc(g.$spacing-unit * 2) calc(g.$spacing-unit * 3);
     display: flex;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     justify-content: space-between;
     backdrop-filter: blur(15px);
     border-top: solid 1px rgba(255, 255, 255, 0.1);
@@ -146,14 +146,14 @@
 
   &__actions {
     display: flex;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     justify-content: flex-end;
     flex: 1;
   }
 
   &__button {
     &--outline {
-      border-color: globals.$body-color;
+      border-color: g.$body-color;
     }
   }
 }

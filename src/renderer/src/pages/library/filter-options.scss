@@ -1,9 +1,9 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .library-filter-options {
   &__tabs {
     display: flex;
-    gap: calc(globals.$spacing-unit);
+    gap: calc(g.$spacing-unit);
     position: relative;
   }
 
@@ -15,14 +15,14 @@
     background: none;
     border: none;
     color: rgba(255, 255, 255, 0.6);
-    padding: calc(globals.$spacing-unit) calc(globals.$spacing-unit * 2);
+    padding: calc(g.$spacing-unit) calc(g.$spacing-unit * 2);
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
     transition: color ease 0.2s;
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit * 0.5);
+    gap: calc(g.$spacing-unit * 0.5);
 
     &--active {
       color: white;

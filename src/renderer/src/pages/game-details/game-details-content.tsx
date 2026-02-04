@@ -68,7 +68,7 @@ export function GameDetailsContent() {
     shop,
   } = useContext(gameDetailsContext);
 
-  const { showHydraCloudModal } = useSubscription();
+  const { showKrakenCloudModal } = useSubscription();
 
   const { userDetails, hasActiveSubscription } = useUserDetails();
   const { updateLibrary, library } = useLibrary();
@@ -120,7 +120,7 @@ export function GameDetailsContent() {
     }
 
     if (!hasActiveSubscription) {
-      showHydraCloudModal("backup");
+      showKrakenCloudModal("backup");
       return;
     }
 

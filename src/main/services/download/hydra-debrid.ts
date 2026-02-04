@@ -1,10 +1,10 @@
-import { HydraApi } from "../hydra-api";
+import { KrakenApi } from "../hydra-api";
 
-export class HydraDebridClient {
+export class KrakenDebridClient {
   public static getAvailableMagnets(
     magnets: string[]
   ): Promise<Record<string, boolean>> {
-    return HydraApi.put(
+    return KrakenApi.put(
       "/debrid/check-availability",
       {
         magnets,
@@ -15,7 +15,7 @@ export class HydraDebridClient {
 
   public static async getDownloadUrl(magnet: string) {
     try {
-      const response = await HydraApi.post("/debrid/request-file", {
+      const response = await KrakenApi.post("/debrid/request-file", {
         magnet,
       });
 

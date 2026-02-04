@@ -1,15 +1,15 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .checkbox-field {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: globals.$spacing-unit;
+  gap: g.$spacing-unit;
   cursor: pointer;
 
   &:has(input:disabled) {
     cursor: not-allowed;
-    opacity: globals.$disabled-opacity;
+    opacity: g.$disabled-opacity;
   }
 
   &__checkbox {
@@ -18,13 +18,13 @@
     min-width: 20px;
     min-height: 20px;
     border-radius: 4px;
-    background-color: globals.$dark-background-color;
+    background-color: g.$dark-background-color;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
     transition: all ease 0.2s;
-    border: solid 1px globals.$border-color;
+    border: solid 1px g.$border-color;
 
     &:hover:not(:has(input:disabled)) {
       border-color: rgba(255, 255, 255, 0.5);

@@ -10,7 +10,7 @@ import {
   RealDebridClient,
   Aria2,
   DownloadManager,
-  HydraApi,
+  KrakenApi,
   uploadGamesBatch,
   startMainLoop,
   Ludusavi,
@@ -51,7 +51,7 @@ export const loadState = async () => {
     DeckyPlugin.checkAndUpdateIfOutdated();
   }
 
-  await HydraApi.setupApi().then(async () => {
+  await KrakenApi.setupApi().then(async () => {
     uploadGamesBatch();
     void migrateDownloadSources();
 

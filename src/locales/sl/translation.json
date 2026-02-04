@@ -237,7 +237,7 @@
     "download": "Prenesi",
     "executable_path_in_use": "Izvršljiva datoteka že uporablja \"{{game}}\"",
     "warning": "Opozorilo:",
-    "hydra_needs_to_remain_open": "Za ta prenos mora Hydra ostati odprta, dokler ni končana. Če se Hydra zapre pred končanim prenosom, boste izgubili napredek.",
+    "kraken_needs_to_remain_open": "Za ta prenos mora Hydra ostati odprta, dokler ni končana. Če se Hydra zapre pred končanim prenosom, boste izgubili napredek.",
     "achievements": "Dosežki",
     "achievements_count": "Dosežki {{unlockedCount}}/{{achievementsCount}}",
     "show_more": "Pokaži več",

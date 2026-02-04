@@ -39,7 +39,7 @@ export function AllFriendsModal({
       setIsLoading(true);
       try {
         const url = isMe ? "/profile/friends" : `/users/${userId}/friends`;
-        const response = await window.electron.hydraApi.get<{
+        const response = await window.electron.krakenApi.get<{
           totalFriends: number;
           friends: UserFriend[];
         }>(url, {

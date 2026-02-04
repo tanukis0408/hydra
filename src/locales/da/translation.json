@@ -126,7 +126,7 @@
     "download": "Download",
     "executable_path_in_use": "Eksekverbar allerede i brug af \"{{game}}\"",
     "warning": "Advarsel:",
-    "hydra_needs_to_remain_open": "Hydra skal forblive åbent for at denne download kan gennemføres. I tilfælde af at Hydra lukker før downloaden er færdig, mister du dit fremskridt."
+    "kraken_needs_to_remain_open": "Hydra skal forblive åbent for at denne download kan gennemføres. I tilfælde af at Hydra lukker før downloaden er færdig, mister du dit fremskridt."
   },
   "activation": {
     "title": "Aktivér Hydra",

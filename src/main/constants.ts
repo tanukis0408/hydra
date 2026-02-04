@@ -19,7 +19,7 @@ export const publicProfilePath = "C:/Users/Public";
 
 export const levelDatabasePath = path.join(
   SystemPath.getPath("userData"),
-  `hydra-db${isStaging ? "-staging" : ""}`
+  `kraken-db${isStaging ? "-staging" : ""}`
 );
 
 export const commonRedistPath = path.join(
@@ -54,7 +54,7 @@ export const DECKY_PLUGINS_LOCATION = path.join(
   "plugins"
 );
 
-export const HYDRA_DECKY_PLUGIN_LOCATION = path.join(
+export const KRAKEN_DECKY_PLUGIN_LOCATION = path.join(
   DECKY_PLUGINS_LOCATION,
-  "Hydra"
+  "Kraken"
 );

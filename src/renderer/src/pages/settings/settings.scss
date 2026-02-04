@@ -1,4 +1,4 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .settings {
   &__container {
@@ -8,20 +8,20 @@
   }
 
   &__content {
-    background-color: globals.$background-color;
+    background-color: g.$background-color;
     width: 100%;
     height: 100%;
-    padding: calc(globals.$spacing-unit * 3);
-    border: solid 1px globals.$border-color;
+    padding: calc(g.$spacing-unit * 3);
+    border: solid 1px g.$border-color;
     box-shadow: 0px 0px 15px 0px #000000;
     border-radius: 8px;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
     display: flex;
     flex-direction: column;
   }
 
   &__categories {
     display: flex;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 }

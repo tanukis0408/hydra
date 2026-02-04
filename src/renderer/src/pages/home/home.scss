@@ -1,4 +1,4 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .home {
   &__content {
@@ -6,7 +6,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
     padding: 0;
     flex: 1;
     overflow-y: auto;
@@ -14,10 +14,10 @@
 
   &__header {
     display: flex;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
     justify-content: space-between;
     align-items: center;
-    padding: calc(globals.$spacing-unit * 3);
+    padding: calc(g.$spacing-unit * 3);
   }
 
   &__buttons-list {
@@ -25,7 +25,7 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    gap: globals.$spacing-unit;
+    gap: g.$spacing-unit;
   }
 
   &__card-skeleton {
@@ -38,7 +38,7 @@
     z-index: 1;
 
     &:active {
-      opacity: globals.$active-opacity;
+      opacity: g.$active-opacity;
     }
   }
 
@@ -89,16 +89,16 @@
 
   &__title {
     display: flex;
-    gap: globals.$spacing-unit;
-    padding: 0 calc(globals.$spacing-unit * 3);
+    gap: g.$spacing-unit;
+    padding: 0 calc(g.$spacing-unit * 3);
   }
 
   &__cards {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
     transition: all ease 0.2s;
-    padding: 0 calc(globals.$spacing-unit * 3) calc(globals.$spacing-unit * 3);
+    padding: 0 calc(g.$spacing-unit * 3) calc(g.$spacing-unit * 3);
 
     @media (min-width: 768px) {
       grid-template-columns: repeat(2, 1fr);

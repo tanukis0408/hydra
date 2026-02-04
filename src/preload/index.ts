@@ -394,7 +394,7 @@ contextBridge.exposeInMainWorld("electron", {
     ipcRenderer.invoke("showOpenDialog", options),
   showItemInFolder: (path: string) =>
     ipcRenderer.invoke("showItemInFolder", path),
-  hydraApi: {
+  krakenApi: {
     get: (
       url: string,
       options?: {
@@ -404,7 +404,7 @@ contextBridge.exposeInMainWorld("electron", {
         ifModifiedSince?: Date;
       }
     ) =>
-      ipcRenderer.invoke("hydraApiCall", {
+      ipcRenderer.invoke("krakenApiCall", {
         method: "get",
         url,
         params: options?.params,
@@ -422,7 +422,7 @@ contextBridge.exposeInMainWorld("electron", {
         needsSubscription?: boolean;
       }
     ) =>
-      ipcRenderer.invoke("hydraApiCall", {
+      ipcRenderer.invoke("krakenApiCall", {
         method: "post",
         url,
         data: options?.data,
@@ -439,7 +439,7 @@ contextBridge.exposeInMainWorld("electron", {
         needsSubscription?: boolean;
       }
     ) =>
-      ipcRenderer.invoke("hydraApiCall", {
+      ipcRenderer.invoke("krakenApiCall", {
         method: "put",
         url,
         data: options?.data,
@@ -456,7 +456,7 @@ contextBridge.exposeInMainWorld("electron", {
         needsSubscription?: boolean;
       }
     ) =>
-      ipcRenderer.invoke("hydraApiCall", {
+      ipcRenderer.invoke("krakenApiCall", {
         method: "patch",
         url,
         data: options?.data,
@@ -472,7 +472,7 @@ contextBridge.exposeInMainWorld("electron", {
         needsSubscription?: boolean;
       }
     ) =>
-      ipcRenderer.invoke("hydraApiCall", {
+      ipcRenderer.invoke("krakenApiCall", {
         method: "delete",
         url,
         options: {

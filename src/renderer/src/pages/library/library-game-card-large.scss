@@ -1,4 +1,4 @@
-@use "../../scss/globals.scss";
+@use "../../scss/g.scss" as g;
 
 .library-game-card-large {
   width: 100%;
@@ -74,14 +74,14 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: calc(globals.$spacing-unit * 1.5);
+    padding: calc(g.$spacing-unit * 1.5);
   }
 
   &__top-section {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: calc(globals.$spacing-unit);
+    gap: calc(g.$spacing-unit);
   }
 
   &__size-badges {
@@ -156,7 +156,7 @@
   &__info-bar {
     display: flex;
     align-items: center;
-    gap: calc(globals.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 2);
     justify-content: flex-end;
   }
 
@@ -180,7 +180,7 @@
   }
 
   &__manual-playtime {
-    color: globals.$warning-color;
+    color: g.$warning-color;
   }
 
   &__achievements {
@@ -221,14 +221,14 @@
     }
 
     &::-webkit-progress-value {
-      background-color: globals.$muted-color;
+      background-color: g.$muted-color;
       border-radius: 4px;
     }
   }
 
   &__achievement-bar {
     height: 100%;
-    background-color: globals.$muted-color;
+    background-color: g.$muted-color;
     border-radius: 4px;
     transition: width 0.3s ease;
   }

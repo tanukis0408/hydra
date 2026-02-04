@@ -23,7 +23,7 @@ const { autoUpdater } = updater;
 autoUpdater.setFeedURL({
   provider: "github",
   owner: "tanukis0408",
-  repo: "hydra",
+  repo: "kraken",
 });
 
 autoUpdater.logger = logger;
@@ -47,7 +47,7 @@ i18n.init({
   },
 });
 
-const PROTOCOL = "hydralauncher";
+const PROTOCOL = "krakenlauncher";
 
 if (process.defaultApp) {
   if (process.argv.length >= 2) {
@@ -64,7 +64,7 @@ if (process.defaultApp) {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(async () => {
   try {
-    electronApp.setAppUserModelId("gg.hydralauncher.hydra");
+    electronApp.setAppUserModelId("gg.krakenlauncher.kraken");
 
     protocol.handle("local", (request) => {
       const filePath = request?.url?.slice("local:".length) || "";
@@ -149,9 +149,9 @@ app.whenReady().then(async () => {
 
     // Check if starting from a "run" deep link - don't show main window in that case
     const deepLinkArg = process.argv?.find((arg) =>
-      arg?.startsWith("hydralauncher://")
+      arg?.startsWith("krakenlauncher://")
     );
-    const isRunDeepLink = deepLinkArg?.startsWith("hydralauncher://run");
+    const isRunDeepLink = deepLinkArg?.startsWith("krakenlauncher://run");
 
     if (!process.argv?.includes("--hidden") && !isRunDeepLink) {
       WindowManager.createMainWindow();
@@ -261,11 +261,11 @@ const handleDeepLinkPath = (uri?: string) => {
 
 app.on("second-instance", (_event, commandLine) => {
   const deepLink = commandLine?.find((arg) =>
-    arg?.startsWith("hydralauncher://")
+    arg?.startsWith("krakenlauncher://")
   );
 
   // Check if this is a "run" deep link - don't show main window in that case
-  const isRunDeepLink = deepLink?.startsWith("hydralauncher://run");
+  const isRunDeepLink = deepLink?.startsWith("krakenlauncher://run");
 
   if (!isRunDeepLink) {
     if (WindowManager.mainWindow) {

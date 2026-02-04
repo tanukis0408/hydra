@@ -14,7 +14,7 @@ export function AchievementList({
   achievements,
 }: Readonly<AchievementListProps>) {
   const { t } = useTranslation("achievement");
-  const { showHydraCloudModal } = useSubscription();
+  const { showKrakenCloudModal } = useSubscription();
   const { formatDateTime } = useDate();
 
   return (
@@ -58,7 +58,7 @@ export function AchievementList({
               </div>
             ) : (
               <button
-                onClick={() => showHydraCloudModal("achievements")}
+                onClick={() => showKrakenCloudModal("achievements")}
                 className="achievements__item-points achievements__item-points--locked"
                 title={t("achievement_earn_points", { points: "???" })}
               >

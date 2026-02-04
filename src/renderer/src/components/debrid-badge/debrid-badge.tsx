@@ -7,7 +7,7 @@ export interface DebridBadgeProps {
 }
 
 export function DebridBadge({ collapsed }: Readonly<DebridBadgeProps>) {
-  const { t } = useTranslation("hydra_cloud");
+  const { t } = useTranslation("kraken_cloud");
 
   return (
     <div className="debrid-badge">
