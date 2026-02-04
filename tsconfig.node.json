@@ -9,13 +9,13 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "paths": {
+  "paths": {
       "@main/*": ["src/main/*"],
+      "@shared/*": ["src/shared/*"],
       "@renderer/*": ["src/renderer/*"],
       "@types": ["src/types/index.ts"],
       "@locales": ["src/locales/index.ts"],
-      "@resources": ["src/resources/index.ts"],
-      "@shared": ["src/shared/index.ts"]
+      "@resources": ["src/resources/index.ts"]
     }
   }
 }

@@ -4,7 +4,7 @@ import "./close-game-launcher-window";
 import "./delete-temp-file";
 import "./show-game-launcher-window";
 import "./get-kraken-decky-plugin-info";
-import "./hydra-api-call";
+import "./kraken-api-call";
 import "./install-common-redist";
 import "./install-kraken-decky-plugin";
 import "./is-main-window-open";
