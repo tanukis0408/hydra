@@ -1,17 +1,18 @@
 @use "../../scss/globals.scss";
+@use "../../scss/mixins.scss" as mixins;
 
 .badge {
-  color: globals.$muted-color;
-  font-size: 10px;
-  padding: calc(globals.$spacing-unit / 2) globals.$spacing-unit;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 6px;
-  display: flex;
+  @include mixins.chip;
+
+  // Compact chip sizing for dense UI (e.g. download sources)
+  font-size: globals.$label-small;
+  padding: calc(globals.$spacing-unit * 0.5) globals.$spacing-unit;
   gap: 4px;
-  align-items: center;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: all ease 0.2s;
+  box-shadow: none;
+
+  // Improve contrast on image backdrops
+  background-color: rgba(globals.$secondary-container, 0.9);
+  border: 1px solid rgba(globals.$outline-variant, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
