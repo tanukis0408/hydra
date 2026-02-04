@@ -59,7 +59,6 @@ export function Button({
   tooltip,
   tooltipPlace = "top",
   disabled,
-  loading,
   loading = false,
   ...props
 }: Readonly<ButtonProps>) {
