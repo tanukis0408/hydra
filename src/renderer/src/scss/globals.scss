@@ -3,6 +3,8 @@
 // ===========================================
 // Based on Material Design 3 / Material You specifications
 
+@use "./material-tokens.scss" as m;
+
 // Primary Colors
 $primary: #6750a4;
 $on-primary: #ffffff;
@@ -151,7 +153,7 @@ $disabled-opacity: 0.5;
 $active-opacity: 0.7;
 
 // Spacing
-$spacing-unit: 8px;
+$spacing-unit: m.$gap-medium;
 
 // Z-index layers
 $toast-z-index: 150;
@@ -169,11 +171,11 @@ $shadow-4: 0px 8px 12px rgba(0, 0, 0, 0.3), 0px 5px 6px rgba(0, 0, 0, 0.15);
 $shadow-5: 0px 12px 16px rgba(0, 0, 0, 0.3), 0px 5px 6px rgba(0, 0, 0, 0.15);
 
 // Border radius (Material You)
-$border-radius-none: 0;
-$border-radius-xs: 4px;
-$border-radius-sm: 8px;
-$border-radius-md: 12px;
-$border-radius-lg: 16px;
-$border-radius-xl: 20px;
-$border-radius-full: 28px;
+$border-radius-none: m.$shape-corner-none;
+$border-radius-xs: m.$shape-corner-extra-small;
+$border-radius-sm: m.$shape-corner-small;
+$border-radius-md: m.$shape-corner-medium;
+$border-radius-lg: m.$shape-corner-large;
+$border-radius-xl: m.$shape-corner-extra-large;
+$border-radius-full: m.$shape-corner-full;
 
