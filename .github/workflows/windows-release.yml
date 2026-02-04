@@ -1,0 +1,40 @@
+name: Build Windows Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-windows:
+    name: Build Windows (on tag)
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build Windows
+        env:
+          # Prevent code signing attempts in CI; set your CERT variables when signing is desired
+          CSC_LINK: ''
+          CSC_KEY_PASSWORD: ''
+        run: yarn build:win
+
+      - name: Upload Windows artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-artifacts
+          path: |
+            dist/*.exe
+            dist/*.msi
+            dist/*.zip
+            dist/*.nsis
+            dist/win-unpacked/**
