@@ -1,10 +1,10 @@
-appId: gg.hydralauncher.hydra
-productName: Hydra
+appId: gg.krakenlauncher.kraken
+productName: Kraken
 directories:
   buildResources: build
-extraResources:
-  - ludusavi
-  - hydra-python-rpc
+  extraResources:
+    - ludusavi
+    - hydra-python-rpc
   - seeds
   - from: node_modules/create-desktop-shortcuts/src/windows.vbs
   - from: resources/achievement.wav
@@ -66,7 +66,7 @@ appImage:
 npmRebuild: false
 publish:
   provider: github
-  owner: hydralauncher
+  owner: tanukis0408
   repo: hydra
 electronDownload:
   mirror: https://npmmirror.com/mirrors/electron/

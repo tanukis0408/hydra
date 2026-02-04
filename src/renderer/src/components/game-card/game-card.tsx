@@ -29,11 +29,23 @@ export function GameCard({ game, ...props }: GameCardProps) {
   const [stats, setStats] = useState<GameStats | null>(null);
 
   const handleHover = useCallback(() => {
-    if (!stats) {
-      window.electron.getGameStats(game.objectId, game.shop).then((stats) => {
-        setStats(stats);
-      });
+    if (stats) return;
+
+    const api = window.electron;
+
+    // Prevent UI breakage if preload API is not available or changed
+    if (!api || typeof api.getGameStats !== "function") {
+      return;
     }
+
+    api
+      .getGameStats(game.objectId, game.shop)
+      .then((nextStats) => {
+        setStats(nextStats);
+      })
+      .catch(() => {
+        // Ignore errors (network/IPC/etc). Stats are non-critical.
+      });
   }, [game, stats]);
 
   const { numberFormatter } = useFormat();

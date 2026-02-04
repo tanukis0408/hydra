@@ -24,7 +24,9 @@ import {
 } from "@renderer/features";
 import { useTranslation } from "react-i18next";
 import { useSubscription } from "./hooks/use-subscription";
-import { HydraCloudModal } from "./pages/shared-modals/hydra-cloud/hydra-cloud-modal";
+import KrakenCloudModal from "./pages/shared-modals/kraken-cloud/kraken-cloud-modal";
+import { ThemeProvider } from "./contexts/theme.context";
+import { ThemeToggle } from "./components/theme-toggle/theme-toggle";
 import { ArchiveDeletionModal } from "./pages/downloads/archive-deletion-error-modal";
 
 import {
@@ -302,15 +304,19 @@ export function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <ThemeProvider>
+      <>
       {window.electron.platform === "win32" && (
         <div className="title-bar">
           <h4>
-            Hydra
+            Kraken
             {hasActiveSubscription && (
               <span className="title-bar__cloud-text"> Cloud</span>
             )}
           </h4>
+          <div style={{ marginLeft: "auto" }}>
+            <ThemeToggle />
+          </div>
         </div>
       )}
 
@@ -323,7 +329,7 @@ export function App() {
         duration={toast.duration}
       />
 
-      <HydraCloudModal
+      <KrakenCloudModal
         visible={isHydraCloudModalVisible}
         onClose={hideHydraCloudModal}
         feature={hydraCloudFeature}
@@ -352,6 +358,7 @@ export function App() {
       </main>
 
       <BottomPanel />
-    </>
+      </>
+    </ThemeProvider>
   );
 }

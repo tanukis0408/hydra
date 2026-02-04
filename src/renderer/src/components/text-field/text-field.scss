@@ -1,4 +1,5 @@
 @use "../../scss/globals.scss";
+@use "../../scss/mixins.scss" as mixins;
 
 .text-field-container {
   flex: 1;
@@ -8,22 +9,18 @@
 
   &__text-field {
     display: inline-flex;
-    transition: all ease 0.2s;
     width: 100%;
     align-items: center;
-    border-radius: 8px;
-    border: solid 1px globals.$border-color;
-    height: 40px;
     min-height: 40px;
     flex: 1;
     min-width: 0;
+    transition: all 0.2s ease;
 
-    &:hover {
-      border-color: rgba(255, 255, 255, 0.5);
-    }
+    // Default to outlined Material You input style
+    @include mixins.input-outlined;
 
     &--primary {
-      background-color: globals.$dark-background-color;
+      // outlined is default, keep background transparent to blend with surface
     }
 
     &--dark {
@@ -35,7 +32,8 @@
     }
 
     &--focused {
-      border-color: #dadbe1;
+      border-color: globals.$primary;
+      box-shadow: inset 0 0 0 1px rgba(globals.$primary, 0.3);
     }
   }
 
@@ -45,11 +43,11 @@
     width: 100%;
     height: 100%;
     outline: none;
-    color: #dadbe1;
+    color: globals.$on-surface;
     cursor: default;
     font-family: inherit;
     text-overflow: ellipsis;
-    padding: globals.$spacing-unit;
+    padding: 0;
 
     &:focus {
       cursor: text;
@@ -62,7 +60,7 @@
 
   &__toggle-password-button {
     cursor: pointer;
-    color: globals.$muted-color;
+    color: globals.$on-surface-variant;
     padding: globals.$spacing-unit;
   }
 

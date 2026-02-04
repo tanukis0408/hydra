@@ -1,7 +1,7 @@
 {
-  "name": "hydralauncher",
-  "version": "3.8.1",
-  "description": "Hydra",
+  "name": "krakenlauncher",
+  "version": "1.0.0",
+  "description": "Kraken Launcher — Aqua",
   "main": "./out/main/index.js",
   "author": "Los Broxas",
   "repository": {
@@ -26,6 +26,7 @@
     "postinstall": "electron-builder install-app-deps && node ./scripts/postinstall.cjs",
     "build:unpack": "npm run build && electron-builder --dir",
     "build:win": "electron-vite build && electron-builder --win",
+    "release:prepare": "node ./scripts/prepare-release.cjs",
     "build:mac": "electron-vite build && electron-builder --mac",
     "build:linux": "electron-vite build && electron-builder --linux",
     "prepare": "husky",

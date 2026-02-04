@@ -47,8 +47,44 @@ Sentry.init({
   tracesSampleRate: 0.5,
   replaysSessionSampleRate: 0,
   replaysOnErrorSampleRate: 0,
-  release: "hydra-launcher@" + (await window.electron.getVersion()),
+  release: "kraken-launcher@" + (await window.electron.getVersion()),
 });
+
+// Dev helper: grant a local developer subscription (safe for development only)
+// Usage: open DevTools console and run `window.__grantDevSubscription()`
+;(window as any).__grantDevSubscription = async function () {
+  try {
+    const now = Date.now();
+    const future = new Date(now + 1000 * 60 * 60 * 24 * 365).toISOString();
+    const raw = localStorage.getItem("userDetails");
+    const user = raw ? JSON.parse(raw) : {};
+    const patched = {
+      id: user.id || "dev-user",
+      username: user.username || "dev",
+      email: user.email || null,
+      displayName: user.displayName || "Dev User",
+      profileImageUrl: user.profileImageUrl || null,
+      backgroundImageUrl: user.backgroundImageUrl || null,
+      profileVisibility: user.profileVisibility || "PUBLIC",
+      bio: user.bio || "",
+      featurebaseJwt: user.featurebaseJwt || "",
+      workwondersJwt: user.workwondersJwt || "",
+      subscription: {
+        id: "dev-subscription",
+        status: "active",
+        plan: { id: "dev", name: "Developer" },
+        expiresAt: future,
+        paymentMethod: "paypal",
+      },
+      karma: user.karma || 0,
+    };
+    localStorage.setItem("userDetails", JSON.stringify(patched));
+    // reload to pick up new state
+    location.reload();
+  } catch (e) {
+    // ignore
+  }
+};
 
 const isStaging = await window.electron.isStaging();
 addCookieInterceptor(isStaging);
