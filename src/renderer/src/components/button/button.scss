@@ -1,42 +1,231 @@
-@use "../../scss/globals.scss";
-@use "../../scss/mixins.scss" as mixins;
+@use "../../scss/globals.scss" as g;
+@use "../../scss/material-tokens.scss" as m;
 
 .button {
   // Base button layout
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: globals.$spacing-unit;
-  min-height: 40px;
+  gap: m.$gap-medium;
+  font-family: g.$font-family;
+  font-weight: 500;
   border: none;
+  border-radius: m.$shape-corner-button;
   cursor: pointer;
   text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: all m.$motion-duration-short-2 m.$motion-easing-standard;
 
-  // Default to a filled Material You button style
-  @include mixins.button-filled;
-  @include mixins.text-label-medium;
+  // Size variants
+  &--small {
+    padding: calc(m.$gap-small) calc(m.$gap-large);
+    font-size: g.$label-medium;
+    min-height: 32px;
+  }
 
+  &--medium {
+    padding: calc(m.$gap-medium) calc(m.$gap-xlarge);
+    font-size: g.$label-large;
+    min-height: 40px;
+  }
+
+  &--large {
+    padding: calc(m.$gap-large) calc(m.$gap-xxlarge);
+    font-size: g.$label-large;
+    min-height: 48px;
+  }
+
+  // Full width variant
+  &--full-width {
+    width: 100%;
+  }
+
+  // ===========================================
+  // Filled Button (Primary)
+  // ===========================================
   &--primary {
-    // uses default filled style
-  }
+    background-color: g.$primary;
+    color: g.$on-primary;
+    box-shadow: m.$shadow-1;
 
-  &--outline {
-    @include mixins.button-outlined;
-  }
-
-  &--dark {
-    @include mixins.button-filled;
-    background-color: globals.$dark-background-color;
-    color: globals.$on-surface;
-  }
-
-  &--danger {
-    @include mixins.button-filled;
-    background-color: globals.$danger-color;
-    color: globals.$on-primary;
-
-    &:hover {
-      background-color: darken(globals.$danger-color, 5%);
+    &:hover:not(:disabled) {
+      box-shadow: m.$shadow-2;
+      background-color: lighten(g.$primary, 3%);
     }
+
+    &:active:not(:disabled) {
+      box-shadow: m.$shadow-1;
+      background-color: darken(g.$primary, 5%);
+    }
+
+    &:focus-visible {
+      outline: 2px solid g.$primary;
+      outline-offset: 2px;
+    }
+  }
+
+  // ===========================================
+  // Tonal Button (New in Material Expressive 3)
+  // ===========================================
+  &--tonal {
+    background-color: g.$secondary-container;
+    color: g.$on-secondary-container;
+    box-shadow: m.$shadow-1;
+
+    &:hover:not(:disabled) {
+      box-shadow: g.$shadow-2;
+      background-color: rgba(g.$on-secondary-container, 0.08);
+    }
+
+    &:active:not(:disabled) {
+      box-shadow: g.$shadow-1;
+      background-color: rgba(g.$on-secondary-container, 0.12);
+    }
+
+    &:focus-visible {
+      outline: 2px solid g.$secondary-container;
+      outline-offset: 2px;
+    }
+  }
+
+  // ===========================================
+  // Outlined Button
+  // ===========================================
+  &--outline {
+    background-color: transparent;
+    color: g.$primary;
+    border: 1px solid g.$outline;
+
+    &:hover:not(:disabled) {
+      background-color: rgba(g.$primary, 0.08);
+    }
+
+    &:active:not(:disabled) {
+      background-color: rgba(g.$primary, 0.12);
+    }
+
+    &:focus-visible {
+      outline: 2px solid g.$primary;
+      outline-offset: 2px;
+    }
+  }
+
+  // ===========================================
+  // Text Button
+  // ===========================================
+  &--text {
+    background-color: transparent;
+    color: g.$primary;
+    box-shadow: none;
+
+    &:hover:not(:disabled) {
+      background-color: rgba(g.$primary, 0.08);
+    }
+
+    &:active:not(:disabled) {
+      background-color: rgba(g.$primary, 0.12);
+    }
+
+    &:focus-visible {
+      outline: 2px solid g.$primary;
+      outline-offset: 2px;
+    }
+  }
+
+  // ===========================================
+  // Dark Button
+  // ===========================================
+  &--dark {
+    background-color: g.$surface;
+    color: g.$on-surface;
+    box-shadow: m.$shadow-1;
+    border: 1px solid rgba(g.$outline, 0.12);
+
+    &:hover:not(:disabled) {
+      background-color: g.$surface-container-high;
+      box-shadow: m.$shadow-2;
+    }
+
+    &:active:not(:disabled) {
+      box-shadow: g.$shadow-1;
+    }
+
+    &:focus-visible {
+      outline: 2px solid g.$outline;
+      outline-offset: 2px;
+    }
+  }
+
+  // ===========================================
+  // Danger Button
+  // ===========================================
+  &--danger {
+    background-color: g.$error;
+    color: g.$on-error;
+    box-shadow: g.$shadow-1;
+
+    &:hover:not(:disabled) {
+      box-shadow: g.$shadow-2;
+      background-color: lighten(g.$error, 3%);
+    }
+
+    &:active:not(:disabled) {
+      box-shadow: g.$shadow-1;
+    }
+
+    &:focus-visible {
+      outline: 2px solid g.$error;
+      outline-offset: 2px;
+    }
+  }
+
+  // ===========================================
+  // Disabled State
+  // ===========================================
+  &--disabled {
+    opacity: g.$disabled-opacity;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  // ===========================================
+  // Icon styles
+  // ===========================================
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  // ===========================================
+  // Spinner
+  // ===========================================
+  &__spinner {
+    width: 16px;
+    height: 16px;
+    animation: spin 1s linear infinite;
+
+    &-path {
+      stroke: currentColor;
+      stroke-linecap: round;
+      stroke-dasharray: 80;
+      stroke-dashoffset: 60;
+    }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
