@@ -1,22 +1,47 @@
 @use "../../scss/globals.scss";
+@use "../../scss/mixins.scss" as mixins;
 
 .game-card {
   width: 100%;
   height: 180px;
-  box-shadow: 0px 0px 15px 0px #000000;
   overflow: hidden;
-  border-radius: 4px;
-  transition: all ease 0.2s;
-  border: solid 1px globals.$border-color;
   cursor: pointer;
   z-index: 1;
+  position: relative;
+  display: block;
+
+  // Apply Material You elevated card style
+  @include mixins.card-elevated;
+A
+  // State layer (Material You)
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: globals.$on-surface;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    pointer-events: none;
+  }
+
+  &:hover::after {
+    opacity: 0.06;
+  }
+
+  &:active::after {
+    opacity: 0.1;
+  }
 
   &:active {
     opacity: globals.$active-opacity;
   }
 
   &__backdrop {
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.7) 50%,
+      transparent 100%
+    );
     width: 100%;
     height: 100%;
     display: flex;
@@ -36,7 +61,7 @@
   }
 
   &__content {
-    color: #dadbe1;
+    color: globals.$on-surface;
     padding: globals.$spacing-unit calc(globals.$spacing-unit * 2);
     display: flex;
     align-items: flex-start;
@@ -50,6 +75,7 @@
     font-size: 16px;
     font-weight: bold;
     text-align: left;
+    color: globals.$on-surface;
   }
 
   &__download-options {
@@ -70,7 +96,7 @@
   &__specifics-item {
     gap: globals.$spacing-unit;
     display: flex;
-    color: globals.$muted-color;
+    color: globals.$on-surface-variant;
     font-size: 12px;
     align-items: center;
 
@@ -83,7 +109,7 @@
     display: flex;
     align-items: center;
     gap: globals.$spacing-unit;
-    color: globals.$muted-color;
+    color: globals.$on-surface-variant;
   }
 
   &__shop-icon {
@@ -93,7 +119,7 @@
   }
 
   &__no-download-label {
-    color: globals.$body-color;
+    color: globals.$on-surface-variant;
     font-weight: bold;
   }
 
