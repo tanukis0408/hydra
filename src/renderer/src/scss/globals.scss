@@ -5,50 +5,96 @@
 
 @use "./material-tokens.scss" as m;
 
-// Primary Colors
-$primary: #6750a4;
-$on-primary: #ffffff;
-$primary-container: #eaddff;
-$on-primary-container: #21005e;
-$primary-fixed: #d0bcff;
-$on-primary-fixed: #381e72;
-$primary-fixed-dim: #d0bcff;
-$on-primary-fixed-variant: #4f378b;
+// Light Theme Colors
+$light-primary: #6750a4;
+$light-on-primary: #ffffff;
+$light-primary-container: #eaddff;
+$light-on-primary-container: #21005e;
 
-// Secondary Colors
-$secondary: #625b71;
-$on-secondary: #ffffff;
-$secondary-container: #e8def8;
-$on-secondary-container: #1e192b;
-$secondary-fixed: #ccc2dc;
-$on-secondary-fixed: #332d41;
-$secondary-fixed-dim: #ccc2dc;
-$on-secondary-fixed-variant: #4a4458;
+$light-secondary: #625b71;
+$light-on-secondary: #ffffff;
+$light-secondary-container: #e8def8;
+$light-on-secondary-container: #1e192b;
 
-// Tertiary Colors
-$tertiary: #7d5260;
-$on-tertiary: #ffffff;
-$tertiary-container: #ffd8e4;
-$on-tertiary-container: #31111d;
-$tertiary-fixed: #efb8c8;
-$on-tertiary-fixed: #492532;
-$tertiary-fixed-dim: #efb8c8;
-$on-tertiary-fixed-variant: #633b48;
+$light-tertiary: #7d5260;
+$light-on-tertiary: #ffffff;
+$light-tertiary-container: #ffd8e4;
+$light-on-tertiary-container: #31111d;
 
-// Error Colors
-$error: #f2b8b5;
-$on-error: #601410;
-$error-container: #8c1d18;
-$on-error-container: #f9dedc;
-$error-fixed: #f2b8b5;
-$on-error-fixed: #601410;
-$error-fixed-dim: #f2b8b5;
-$on-error-fixed-variant: #8c1d18;
+$light-error: #b3261e;
+$light-on-error: #ffffff;
+$light-error-container: #f9dedc;
+$light-on-error-container: #410e0b;
 
-// Surface Colors
-$background-color: #1c1b1f;
-$dark-background-color: #121115;
-$surface: #1c1b1f;
+$light-background: #fef7ff;
+$light-surface: #fef7ff;
+$light-on-surface: #1d1b20;
+$light-on-surface-variant: #49454f;
+$surface-variant: #49454f;
+
+$light-outline: #79747e;
+$light-outline-variant: #cac4d0;
+
+$light-inverse-surface: #322f37;
+$light-inverse-on-surface: #f5eff7;
+$light-inverse-primary: #d0bcff;
+
+// Dark Theme Colors (current default)
+$dark-primary: #d0bcff;
+$dark-on-primary: #381e72;
+$dark-primary-container: #4f378b;
+$dark-on-primary-container: #eaddff;
+
+$dark-secondary: #ccc2dc;
+$dark-on-secondary: #332d41;
+$dark-secondary-container: #4a4458;
+$dark-on-secondary-container: #e8def8;
+
+$dark-tertiary: #efb8c8;
+$dark-on-tertiary: #492532;
+$dark-tertiary-container: #633b48;
+$dark-on-tertiary-container: #ffd8e4;
+
+$dark-error: #f2b8b5;
+$dark-on-error: #601410;
+$dark-error-container: #8c1d18;
+$dark-on-error-container: #f9dedc;
+
+$dark-background: #1c1b1f;
+$dark-surface: #1c1b1f;
+$dark-on-surface: #e6e1e6;
+$dark-on-surface-variant: #cac7cd;
+
+$dark-outline: #938f99;
+$dark-outline-variant: #49454f;
+
+$dark-inverse-surface: #e6e1e6;
+$dark-inverse-on-surface: #313033;
+$dark-inverse-primary: #6750a4;
+
+// Default to dark theme (can be overridden by data-theme)
+$primary: $dark-primary;
+$on-primary: $dark-on-primary;
+$primary-container: $dark-primary-container;
+$on-primary-container: $dark-on-primary-container;
+
+$secondary: $dark-secondary;
+$on-secondary: $dark-on-secondary;
+$secondary-container: $dark-secondary-container;
+$on-secondary-container: $dark-on-secondary-container;
+
+$tertiary: $dark-tertiary;
+$on-tertiary: $dark-on-tertiary;
+$tertiary-container: $dark-tertiary-container;
+$on-tertiary-container: $dark-on-tertiary-container;
+
+$error: $dark-error;
+$on-error: $dark-on-error;
+$error-container: $dark-error-container;
+$on-error-container: $dark-on-error-container;
+
+$background-color: $dark-background;
+$surface: $dark-surface;
 $surface-dim: #1c1b1f;
 $surface-bright: #3c3a3e;
 $surface-container-lowest: #161518;
@@ -56,28 +102,15 @@ $surface-container-low: #2b2a2e;
 $surface-container: #2f2d33;
 $surface-container-high: #3a383c;
 $surface-container-highest: #454349;
-$on-surface: #e6e1e6;
-$on-surface-variant: #cac7cd;
-// Surface variant
-$surface-variant: #49454f;
+$on-surface: $dark-on-surface;
+$on-surface-variant: $dark-on-surface-variant;
 
-// Outline Colors
-$outline: #938f99;
-$outline-variant: #49454f;
+$outline: $dark-outline;
+$outline-variant: $dark-outline-variant;
 
-// Inverse Colors
-$inverse-surface: #e6e1e6;
-$inverse-on-surface: #313033;
-$inverse-primary: #d0bcff;
-
-// Scrim Colors
-$scrim: #000000;
-
-// Shadow Colors
-$shadow: #000000;
-
-// Outline (Elevated) Colors
-$outline-elevated: #938f99;
+$inverse-surface: $dark-inverse-surface;
+$inverse-on-surface: $dark-inverse-on-surface;
+$inverse-primary: $dark-inverse-primary;
 
 // Muted color alias for legacy usages
 $muted-color: $on-surface-variant;
@@ -86,7 +119,94 @@ $muted-color: $on-surface-variant;
 $body-color: $on-surface;
 $border-color: $outline;
 // Container name used for CSS Container Queries (interpolated where needed)
-$app-container: 'app';
+$app-container: "app";
+
+// ===========================================
+// Material Expressive 3 - Theme-aware CSS Variables
+// ===========================================
+// These variables are set on :root and updated by data-theme attribute
+// Allows runtime theme switching via ThemeProvider
+
+:root {
+  --md-sys-color-primary: #{$dark-primary};
+  --md-sys-color-on-primary: #{$dark-on-primary};
+  --md-sys-color-primary-container: #{$dark-primary-container};
+  --md-sys-color-on-primary-container: #{$dark-on-primary-container};
+
+  --md-sys-color-secondary: #{$dark-secondary};
+  --md-sys-color-on-secondary: #{$dark-on-secondary};
+  --md-sys-color-secondary-container: #{$dark-secondary-container};
+  --md-sys-color-on-secondary-container: #{$dark-on-secondary-container};
+
+  --md-sys-color-tertiary: #{$dark-tertiary};
+  --md-sys-color-on-tertiary: #{$dark-on-tertiary};
+  --md-sys-color-tertiary-container: #{$dark-tertiary-container};
+  --md-sys-color-on-tertiary-container: #{$dark-on-tertiary-container};
+
+  --md-sys-color-error: #{$dark-error};
+  --md-sys-color-on-error: #{$dark-on-error};
+  --md-sys-color-error-container: #{$dark-error-container};
+  --md-sys-color-on-error-container: #{$dark-on-error-container};
+
+  --md-sys-color-background: #{$dark-background};
+  --md-sys-color-surface: #{$dark-surface};
+  --md-sys-color-surface-dim: #{$dark-surface-dim};
+  --md-sys-color-surface-bright: #{$dark-surface-bright};
+  --md-sys-color-surface-container: #{$dark-surface-container};
+  --md-sys-color-surface-container-low: #{$dark-surface-container-low};
+  --md-sys-color-surface-container-high: #{$dark-surface-container-high};
+  --md-sys-color-on-surface: #{$dark-on-surface};
+  --md-sys-color-on-surface-variant: #{$dark-on-surface-variant};
+  --md-sys-color-surface-variant: #{$dark-surface-variant};
+
+  --md-sys-color-outline: #{$dark-outline};
+  --md-sys-color-outline-variant: #{$dark-outline-variant};
+
+  --md-sys-color-inverse-surface: #{$dark-inverse-surface};
+  --md-sys-color-inverse-on-surface: #{$dark-inverse-on-surface};
+  --md-sys-color-inverse-primary: #{$dark-inverse-primary};
+}
+
+// Light theme
+[data-theme="light"] {
+  --md-sys-color-primary: #{$light-primary};
+  --md-sys-color-on-primary: #{$light-on-primary};
+  --md-sys-color-primary-container: #{$light-primary-container};
+  --md-sys-color-on-primary-container: #{$light-on-primary-container};
+
+  --md-sys-color-secondary: #{$light-secondary};
+  --md-sys-color-on-secondary: #{$light-on-secondary};
+  --md-sys-color-secondary-container: #{$light-secondary-container};
+  --md-sys-color-on-secondary-container: #{$light-on-secondary-container};
+
+  --md-sys-color-tertiary: #{$light-tertiary};
+  --md-sys-color-on-tertiary: #{$light-on-tertiary};
+  --md-sys-color-tertiary-container: #{$light-tertiary-container};
+  --md-sys-color-on-tertiary-container: #{$light-on-tertiary-container};
+
+  --md-sys-color-error: #{$light-error};
+  --md-sys-color-on-error: #{$light-on-error};
+  --md-sys-color-error-container: #{$light-error-container};
+  --md-sys-color-on-error-container: #{$light-on-error-container};
+
+  --md-sys-color-background: #{$light-background};
+  --md-sys-color-surface: #{$light-surface};
+  --md-sys-color-surface-dim: #{$light-surface};
+  --md-sys-color-surface-bright: #{$light-surface};
+  --md-sys-color-surface-container: #{$light-surface};
+  --md-sys-color-surface-container-low: #{$light-surface};
+  --md-sys-color-surface-container-high: #{$light-surface};
+  --md-sys-color-on-surface: #{$light-on-surface};
+  --md-sys-color-on-surface-variant: #{$light-on-surface-variant};
+  --md-sys-color-surface-variant: #{$light-surface-variant};
+
+  --md-sys-color-outline: #{$light-outline};
+  --md-sys-color-outline-variant: #{$light-outline-variant};
+
+  --md-sys-color-inverse-surface: #{$light-inverse-surface};
+  --md-sys-color-inverse-on-surface: #{$light-inverse-on-surface};
+  --md-sys-color-inverse-primary: #{$light-inverse-primary};
+}
 
 // ===========================================
 // Material Expressive 3 - Status Colors
@@ -116,8 +236,8 @@ $brand-blue: #3e62c0;
 
 // ===========================================
 // Material Expressive 3 - Typography System
-$font-family: 'Roboto', sans-serif;
-$font-family-code: 'Roboto Mono', monospace;
+$font-family: "Roboto", sans-serif;
+$font-family-code: "Roboto Mono", monospace;
 
 // Font sizes (Material You scale)
 $headline-large: 28px;
@@ -164,11 +284,21 @@ $modal-z-index: 5;
 
 // Elevation/Shadow (Material You)
 $shadow-none: none;
-$shadow-1: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px rgba(0, 0, 0, 0.15);
-$shadow-2: 0px 3px 6px rgba(0, 0, 0, 0.3), 0px 3px 6px rgba(0, 0, 0, 0.15);
-$shadow-3: 0px 6px 10px rgba(0, 0, 0, 0.3), 0px 3px 5px rgba(0, 0, 0, 0.15);
-$shadow-4: 0px 8px 12px rgba(0, 0, 0, 0.3), 0px 5px 6px rgba(0, 0, 0, 0.15);
-$shadow-5: 0px 12px 16px rgba(0, 0, 0, 0.3), 0px 5px 6px rgba(0, 0, 0, 0.15);
+$shadow-1:
+  0px 1px 2px rgba(0, 0, 0, 0.3),
+  0px 1px 3px rgba(0, 0, 0, 0.15);
+$shadow-2:
+  0px 3px 6px rgba(0, 0, 0, 0.3),
+  0px 3px 6px rgba(0, 0, 0, 0.15);
+$shadow-3:
+  0px 6px 10px rgba(0, 0, 0, 0.3),
+  0px 3px 5px rgba(0, 0, 0, 0.15);
+$shadow-4:
+  0px 8px 12px rgba(0, 0, 0, 0.3),
+  0px 5px 6px rgba(0, 0, 0, 0.15);
+$shadow-5:
+  0px 12px 16px rgba(0, 0, 0, 0.3),
+  0px 5px 6px rgba(0, 0, 0, 0.15);
 
 // Border radius (Material You)
 $border-radius-none: m.$shape-corner-none;
@@ -178,4 +308,3 @@ $border-radius-md: m.$shape-corner-medium;
 $border-radius-lg: m.$shape-corner-large;
 $border-radius-xl: m.$shape-corner-extra-large;
 $border-radius-full: m.$shape-corner-full;
-

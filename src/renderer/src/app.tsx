@@ -130,7 +130,7 @@ export function App() {
         possibleLocales.find((l) => l === locale?.slice(0, 2)) ?? "en";
 
       await workwondersRef.current.init({
-        organization: "hydra",
+        organization: "kraken",
         token,
         locale: parsedLocale,
       });

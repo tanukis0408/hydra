@@ -12,7 +12,6 @@
 
   // Apply Material You elevated card style
   @include mixins.card-elevated;
-A
   // State layer (Material You)
   &::after {
     content: "";
@@ -37,11 +36,7 @@ A
   }
 
   &__backdrop {
-    background: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.7) 50%,
-      transparent 100%
-    );
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
     width: 100%;
     height: 100%;
     display: flex;

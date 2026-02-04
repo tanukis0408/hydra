@@ -1,18 +1,18 @@
-@use "../../scss/globals.scss";
+@use "../../scss/globals.scss" as g;
 @use "../../scss/mixins.scss" as mixins;
 
 .badge {
   @include mixins.chip;
 
   // Compact chip sizing for dense UI (e.g. download sources)
-  font-size: globals.$label-small;
-  padding: calc(globals.$spacing-unit * 0.5) globals.$spacing-unit;
+  font-size: g.$label-small;
+  padding: calc(g.$spacing-unit * 0.5) g.$spacing-unit;
   gap: 4px;
   box-shadow: none;
 
   // Improve contrast on image backdrops
-  background-color: rgba(globals.$secondary-container, 0.9);
-  border: 1px solid rgba(globals.$outline-variant, 0.9);
+  background-color: rgba(g.$secondary-container, 0.9);
+  border: 1px solid rgba(g.$outline-variant, 0.9);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
