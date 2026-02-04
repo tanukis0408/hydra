@@ -1,0 +1,334 @@
+// ===========================================
+// Material Expressive 3 - Motion Tokens
+// ===========================================
+// Based on Material Design 3 / Material You specifications
+// Duration values in milliseconds
+
+// Motion Duration Scale
+$motion-duration-none: 0ms;
+$motion-duration-short-1: 50ms;
+$motion-duration-short-2: 100ms;
+$motion-duration-short-3: 150ms;
+$motion-duration-medium-1: 200ms;
+$motion-duration-medium-2: 250ms;
+$motion-duration-medium-3: 300ms;
+$motion-duration-long-1: 350ms;
+$motion-duration-long-2: 400ms;
+$motion-duration-long-3: 450ms;
+$motion-duration-long-4: 500ms;
+$motion-duration-extra-long-1: 600ms;
+$motion-duration-extra-long-2: 700ms;
+
+// Motion Easing Curves
+$motion-easing-linear: linear;
+$motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+$motion-easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
+$motion-easing-decelerated: cubic-bezier(0, 0, 0.2, 1);
+$motion-easing-accelerated: cubic-bezier(0.4, 0, 1, 1);
+
+// Legacy easing for backward compatibility
+$ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+$ease-out: cubic-bezier(0, 0, 0.2, 1);
+$ease-in: cubic-bezier(0.4, 0, 1, 1);
+
+// ===========================================
+// Material Expressive 3 - State Tokens
+// ===========================================
+// State layer opacities for different interaction states
+
+// Default state
+$state-layer-opacity-hover: 8%;
+$state-layer-opacity-focus: 12%;
+$state-layer-opacity-pressed: 12%;
+$state-layer-opacity-dragged: 16%;
+$state-layer-opacity-selected: 12%;
+
+// Disabled state
+$state-layer-opacity-disabled: 0;
+$state-layer-opacity-disabled-container: 4%;
+
+// On colors state layers
+$state-layer-on-primary-hover: 8%;
+$state-layer-on-primary-focus: 12%;
+$state-layer-on-primary-pressed: 12%;
+
+$state-layer-on-secondary-hover: 8%;
+$state-layer-on-secondary-focus: 12%;
+$state-layer-on-secondary-pressed: 12%;
+
+$state-layer-on-surface-hover: 8%;
+$state-layer-on-surface-focus: 12%;
+$state-layer-on-surface-pressed: 12%;
+
+// Surface variant state layers
+$state-layer-surface-variant-hover: 8%;
+$state-layer-surface-variant-focus: 12%;
+$state-layer-surface-variant-pressed: 12%;
+
+// ===========================================
+// Material Expressive 3 - Shape Tokens
+// ===========================================
+// Rounded shape scale
+
+$shape-corner-none: 0;
+$shape-corner-extra-small: 4px;
+$shape-corner-small: 8px;
+$shape-corner-medium: 12px;
+$shape-corner-large: 16px;
+$shape-corner-extra-large: 20px;
+$shape-corner-full: 9999px;
+
+// Component-specific shapes
+$shape-corner-button: $shape-corner-full;
+$shape-corner-button-icon: $shape-corner-medium;
+$shape-corner-card: $shape-corner-large;
+$shape-corner-dialog: $shape-corner-extra-large;
+$shape-corner-bottom-sheet: $shape-corner-extra-large;
+$shape-corner-snackbar: $shape-corner-medium;
+$shape-corner-navigation-bar: $shape-corner-extra-large;
+$shape-corner-navigation-rail: $shape-corner-large;
+$shape-corner-navigation-drawer: $shape-corner-none;
+$shape-corner-fab: $shape-corner-large;
+$shape-corner-chip: $shape-corner-full;
+$shape-corner-text-field: $shape-corner-medium;
+$shape-corner-segmented-button: $shape-corner-small;
+
+// ===========================================
+// Material Expressive 3 - Typography Tokens
+// ===========================================
+// Font weights
+
+$font-weight-thin: 100;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// ===========================================
+// Material Expressive 3 - Icon Tokens
+// ===========================================
+// Icon sizes
+
+$icon-size-none: 0px;
+$icon-size-xsmall: 12px;
+$icon-size-small: 16px;
+$icon-size-medium: 20px;
+$icon-size-large: 24px;
+$icon-size-xlarge: 32px;
+$icon-size-xxlarge: 48px;
+$icon-size-huge: 64px;
+
+// ===========================================
+// Material Expressive 3 - Gap Tokens
+// ===========================================
+// Spacing scale (based on 4px grid)
+
+$gap-none: 0px;
+$gap-xsmall: 2px;
+$gap-small: 4px;
+$gap-medium: 8px;
+$gap-large: 12px;
+$gap-xlarge: 16px;
+$gap-xxlarge: 24px;
+$gap-huge: 32px;
+$gap-xhuge: 48px;
+$gap-2xhuge: 64px;
+
+// ===========================================
+// Material Expressive 3 - Transition Mixins
+// ===========================================
+
+@mixin transition-base {
+  transition-property: all;
+  transition-timing-function: $motion-easing-standard;
+  transition-duration: $motion-duration-medium-1;
+}
+
+@mixin transition-fast {
+  transition-property: all;
+  transition-timing-function: $motion-easing-standard;
+  transition-duration: $motion-duration-short-3;
+}
+
+@mixin transition-slow {
+  transition-property: all;
+  transition-timing-function: $motion-easing-standard;
+  transition-duration: $motion-duration-long-2;
+}
+
+@mixin transition-elevation {
+  transition-property: box-shadow;
+  transition-timing-function: $motion-easing-emphasized;
+  transition-duration: $motion-duration-long-2;
+}
+
+@mixin transition-opacity {
+  transition-property: opacity;
+  transition-timing-function: $motion-easing-decelerated;
+  transition-duration: $motion-duration-medium-2;
+}
+
+@mixin transition-transform {
+  transition-property: transform;
+  transition-timing-function: $motion-easing-standard;
+  transition-duration: $motion-duration-medium-2;
+}
+
+@mixin transition-colors {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: $motion-easing-standard;
+  transition-duration: $motion-duration-short-2;
+}
+
+// ===========================================
+// Material Expressive 3 - Elevation / Shadow Tokens
+// These map to the shadow definitions used across the app.
+// ===========================================
+$shadow-none: none;
+$shadow-1: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px rgba(0, 0, 0, 0.15);
+$shadow-2: 0px 3px 6px rgba(0, 0, 0, 0.3), 0px 3px 6px rgba(0, 0, 0, 0.15);
+$shadow-3: 0px 6px 10px rgba(0, 0, 0, 0.3), 0px 3px 5px rgba(0, 0, 0, 0.15);
+$shadow-4: 0px 8px 12px rgba(0, 0, 0, 0.3), 0px 5px 6px rgba(0, 0, 0, 0.15);
+$shadow-5: 0px 12px 16px rgba(0, 0, 0, 0.3), 0px 5px 6px rgba(0, 0, 0, 0.15);
+
+// ===========================================
+// Material Expressive 3 - Animation Keyframes
+// ===========================================
+
+// Fade in animation
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Fade out animation
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+// Scale in animation (centered)
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// Scale in animation (from bottom)
+@keyframes scaleInFromBottom {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+// Slide in from right
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Slide in from left
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Slide in from bottom
+@keyframes slideInBottom {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Slide in from top
+@keyframes slideInTop {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Pulse animation
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+// Shake animation (for errors)
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-4px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(4px);
+  }
+}
+
+// Ripple effect animation
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+// ===========================================
+// Material Expressive 3 - Responsive Breakpoints
+// ===========================================
+
+$breakpoint-compact: 0px;
+$breakpoint-medium: 600px;
+$breakpoint-expanded: 840px;
+$breakpoint-large: 1200px;
+$breakpoint-xlarge: 1600px;
