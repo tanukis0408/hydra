@@ -171,11 +171,14 @@ export class PythonRPC {
         }
 
         dialog.showErrorBox(
-          "Fatal",
-          "Kraken Python Instance binary not found. Please check if it has been removed by Windows Defender."
+          "Download service unavailable",
+          "Kraken couldn't start the Python download service.\n\n" +
+            "The bundled binary is missing (often removed by Windows Defender).\n" +
+            "Reinstall Kraken or allow the binary, or install Python to use the fallback.\n\n" +
+            "You can still use the app, but downloads and torrents will be disabled."
         );
 
-        app.quit();
+        pythonRpcLogger.error("Python RPC binary missing; running in fallback-free mode.");
         return;
       }
 
