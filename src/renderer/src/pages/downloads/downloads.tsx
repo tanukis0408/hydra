@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 
+import { TextField } from "@renderer/components";
 import { useAppSelector, useDownload, useLibrary } from "@renderer/hooks";
 
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -21,6 +22,7 @@ export default function Downloads() {
 
   const [showBinaryNotFoundModal, setShowBinaryNotFoundModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [filterQuery, setFilterQuery] = useState("");
 
   const { removeGameInstaller, pauseSeeding } = useDownload();
 
@@ -60,6 +62,14 @@ export default function Downloads() {
     setShowDeleteModal(true);
   };
 
+  const filteredLibrary = useMemo(() => {
+    const query = filterQuery.trim().toLowerCase();
+    if (!query) return library;
+    return library.filter((game) =>
+      game.title.toLowerCase().includes(query)
+    );
+  }, [library, filterQuery]);
+
   const libraryGroup: Record<string, LibraryGame[]> = useMemo(() => {
     const initialValue: Record<string, LibraryGame[]> = {
       downloading: [],
@@ -68,7 +78,7 @@ export default function Downloads() {
     };
 
     const result = orderBy(
-      library,
+      filteredLibrary,
       (game) => game.download?.timestamp,
       "desc"
     ).reduce((prev, next) => {
@@ -101,7 +111,7 @@ export default function Downloads() {
       queued,
       complete,
     };
-  }, [library, lastPacket?.gameId, extraction?.visibleId]);
+  }, [filteredLibrary, lastPacket?.gameId, extraction?.visibleId]);
 
   const queuedGameIds = useMemo(
     () => libraryGroup.queued.map((game) => game.id),
@@ -130,6 +140,10 @@ export default function Downloads() {
     return Object.values(libraryGroup).some((group) => group.length > 0);
   }, [libraryGroup]);
 
+  const hasDownloads = useMemo(() => {
+    return library.some((game) => game.download);
+  }, [library]);
+
   return (
     <>
       <BinaryNotFoundModal
@@ -143,21 +157,32 @@ export default function Downloads() {
         deleteGame={handleDeleteGame}
       />
 
-      {hasItemsInLibrary ? (
+      {hasDownloads ? (
         <section className="downloads__container">
-          <div className="downloads__groups">
-            {downloadGroups.map((group) => (
-              <DownloadGroup
-                key={group.title}
-                title={group.title}
-                library={group.library}
-                openDeleteGameModal={handleOpenDeleteGameModal}
-                openGameInstaller={handleOpenGameInstaller}
-                seedingStatus={seedingStatus}
-                queuedGameIds={group.queuedGameIds}
-              />
-            ))}
+          <div className="downloads__toolbar">
+            <TextField
+              containerProps={{ className: "downloads__filter" }}
+              theme="dark"
+              value={filterQuery}
+              placeholder={t("filter")}
+              onChange={(event) => setFilterQuery(event.target.value)}
+            />
           </div>
+          {hasItemsInLibrary && (
+            <div className="downloads__groups">
+              {downloadGroups.map((group) => (
+                <DownloadGroup
+                  key={group.title}
+                  title={group.title}
+                  library={group.library}
+                  openDeleteGameModal={handleOpenDeleteGameModal}
+                  openGameInstaller={handleOpenGameInstaller}
+                  seedingStatus={seedingStatus}
+                  queuedGameIds={group.queuedGameIds}
+                />
+              ))}
+            </div>
+          )}
         </section>
       ) : (
         <div className="downloads__no-downloads">
