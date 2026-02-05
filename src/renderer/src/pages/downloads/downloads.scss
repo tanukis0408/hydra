@@ -12,10 +12,90 @@
     align-items: center;
     gap: g.$spacing-unit;
     margin-bottom: calc(g.$spacing-unit * 2);
+    padding-inline: calc(g.$spacing-unit * 3);
+    padding-top: calc(g.$spacing-unit * 2);
   }
 
   &__filter {
     width: min(520px, 100%);
+  }
+
+  &__clear-filter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(g.$spacing-unit / 2);
+    border-radius: g.$border-radius-full;
+    border: none;
+    background: transparent;
+    color: var(--md-sys-color-on-surface-variant);
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+  }
+
+  &__summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: calc(g.$spacing-unit * 2);
+    padding-inline: calc(g.$spacing-unit * 3);
+    margin-bottom: calc(g.$spacing-unit * 3);
+  }
+
+  &__summary-card {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: calc(g.$spacing-unit / 2);
+    padding: calc(g.$spacing-unit * 2);
+    border-radius: g.$border-radius-lg;
+    background: var(--md-sys-color-surface-container);
+    border: 1px solid var(--md-sys-color-outline-variant);
+    box-shadow: g.$shadow-1;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        120% 120% at 0% 0%,
+        rgba(255, 255, 255, 0.08),
+        transparent 60%
+      );
+      pointer-events: none;
+    }
+
+    &--active .downloads__summary-value {
+      color: var(--md-sys-color-primary);
+    }
+
+    &--queued .downloads__summary-value {
+      color: var(--md-sys-color-tertiary);
+    }
+
+    &--completed .downloads__summary-value {
+      color: var(--md-sys-color-secondary);
+    }
+  }
+
+  &__summary-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: var(--md-sys-color-on-surface-variant);
+    z-index: 1;
+  }
+
+  &__summary-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--md-sys-color-on-surface);
+    z-index: 1;
   }
 
   &__groups {

@@ -10,7 +10,7 @@ import { DeleteGameModal } from "./delete-game-modal";
 import { DownloadGroup } from "./download-group";
 import type { GameShop, LibraryGame, SeedingStatus } from "@types";
 import { orderBy } from "lodash-es";
-import { ArrowDownIcon } from "@primer/octicons-react";
+import { ArrowDownIcon, XCircleIcon } from "@primer/octicons-react";
 
 export default function Downloads() {
   const { library, updateLibrary } = useLibrary();
@@ -144,6 +144,35 @@ export default function Downloads() {
     return library.some((game) => game.download);
   }, [library]);
 
+  const summaryCards = useMemo(
+    () => [
+      {
+        id: "downloading",
+        label: t("download_in_progress"),
+        value: libraryGroup.downloading.length,
+        tone: "active",
+      },
+      {
+        id: "queued",
+        label: t("queued_downloads"),
+        value: libraryGroup.queued.length,
+        tone: "queued",
+      },
+      {
+        id: "completed",
+        label: t("downloads_completed"),
+        value: libraryGroup.complete.length,
+        tone: "completed",
+      },
+    ],
+    [
+      libraryGroup.downloading.length,
+      libraryGroup.queued.length,
+      libraryGroup.complete.length,
+      t,
+    ]
+  );
+
   return (
     <>
       <BinaryNotFoundModal
@@ -166,7 +195,32 @@ export default function Downloads() {
               value={filterQuery}
               placeholder={t("filter")}
               onChange={(event) => setFilterQuery(event.target.value)}
+              rightContent={
+                filterQuery ? (
+                  <button
+                    type="button"
+                    className="downloads__clear-filter"
+                    onClick={() => setFilterQuery("")}
+                    aria-label={t("remove")}
+                  >
+                    <XCircleIcon size={16} />
+                  </button>
+                ) : null
+              }
             />
+          </div>
+          <div className="downloads__summary">
+            {summaryCards.map((card) => (
+              <div
+                key={card.id}
+                className={`downloads__summary-card downloads__summary-card--${card.tone}`}
+              >
+                <span className="downloads__summary-label">{card.label}</span>
+                <span className="downloads__summary-value">
+                  {card.value}
+                </span>
+              </div>
+            ))}
           </div>
           {hasItemsInLibrary && (
             <div className="downloads__groups">
