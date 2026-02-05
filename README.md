@@ -8,8 +8,8 @@
     faster flows, and a cleaner architecture. Built with Electron, React, TypeScript, and Python.
   </p>
 
-  [![build](https://img.shields.io/github/actions/workflow/status/YOUR_GITHUB_USERNAME/kraken/build.yml)](https://github.com/YOUR_GITHUB_USERNAME/kraken/actions)
-  [![release](https://img.shields.io/github/package-json/v/YOUR_GITHUB_USERNAME/kraken)](https://github.com/YOUR_GITHUB_USERNAME/kraken/releases)
+  [![build](https://img.shields.io/github/actions/workflow/status/tanukis0408/hydra/build.yml)](https://github.com/tanukis0408/hydra/actions)
+  [![release](https://img.shields.io/github/package-json/v/tanukis0408/hydra)](https://github.com/tanukis0408/hydra/releases)
   [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
   ![Kraken Launcher Preview](./docs/screenshot.png)
@@ -31,6 +31,10 @@ Kraken is under active development. Expect breaking changes between versions.
 ## Build from source
 
 1. Clone the repo.
+   ```bash
+   git clone git@github.com:tanukis0408/hydra.git
+   cd hydra
+   ```
 2. Install dependencies with `yarn`.
 3. Run `yarn dev` for the desktop app.
 
