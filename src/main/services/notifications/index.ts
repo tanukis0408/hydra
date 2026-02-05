@@ -5,7 +5,10 @@ import fs from "node:fs";
 import axios from "axios";
 import path from "node:path";
 import sound from "sound-play";
-import { achievementSoundPath } from "@main/constants";
+import {
+  ACHIEVEMENT_CUSTOM_SOUND_DIR,
+  achievementSoundPath,
+} from "@main/constants";
 import icon from "@resources/icon.png?asset";
 import { NotificationOptions, toXmlString } from "./xml";
 import { logger } from "../logger";
@@ -68,8 +71,33 @@ async function getAchievementSoundPath(): Promise<string> {
     logger.error("Failed to get theme sound path", error);
   }
 
+  const customSoundPath = getCustomAchievementSoundPath();
+  if (customSoundPath) {
+    return customSoundPath;
+  }
+
   return achievementSoundPath;
 }
+
+const getCustomAchievementSoundPath = (): string | null => {
+  if (!fs.existsSync(ACHIEVEMENT_CUSTOM_SOUND_DIR)) {
+    return null;
+  }
+
+  const formats = ["wav", "mp3", "ogg", "m4a"];
+
+  for (const format of formats) {
+    const soundPath = path.join(
+      ACHIEVEMENT_CUSTOM_SOUND_DIR,
+      `achievement.${format}`
+    );
+    if (fs.existsSync(soundPath)) {
+      return soundPath;
+    }
+  }
+
+  return null;
+};
 
 export const publishDownloadCompleteNotification = async (game: Game) => {
   const userPreferences = await db.get<string, UserPreferences>(

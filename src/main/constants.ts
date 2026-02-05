@@ -36,6 +36,11 @@ export const achievementSoundPath = app.isPackaged
   ? path.join(process.resourcesPath, "achievement.wav")
   : path.join(__dirname, "..", "..", "resources", "achievement.wav");
 
+export const ACHIEVEMENT_CUSTOM_SOUND_DIR = path.join(
+  SystemPath.getPath("userData"),
+  "achievement-sound"
+);
+
 export const backupsPath = path.join(SystemPath.getPath("userData"), "Backups");
 
 export const appVersion = app.getVersion() + (isStaging ? "-staging" : "");

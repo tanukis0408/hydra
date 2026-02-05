@@ -19,7 +19,12 @@ import languageResources from "@locales";
 import { orderBy } from "lodash-es";
 import { settingsContext } from "@renderer/context";
 import "./settings-general.scss";
-import { DesktopDownloadIcon, UnmuteIcon } from "@primer/octicons-react";
+import {
+  DesktopDownloadIcon,
+  UnmuteIcon,
+  UploadIcon,
+  TrashIcon,
+} from "@primer/octicons-react";
 import { logger } from "@renderer/logger";
 import { AchievementCustomNotificationPosition } from "@types";
 
@@ -46,7 +51,21 @@ export function SettingsGeneral() {
   const [canInstallCommonRedist, setCanInstallCommonRedist] = useState(false);
   const [installingCommonRedist, setInstallingCommonRedist] = useState(false);
 
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<{
+    downloadsPath: string;
+    downloadNotificationsEnabled: boolean;
+    repackUpdatesNotificationsEnabled: boolean;
+    friendRequestNotificationsEnabled: boolean;
+    friendStartGameNotificationsEnabled: boolean;
+    achievementNotificationsEnabled: boolean;
+    achievementCustomNotificationsEnabled: boolean;
+    achievementCustomNotificationPosition: AchievementCustomNotificationPosition;
+    achievementSoundVolume: number;
+    achievementCustomSoundPath: string | null;
+    language: string;
+    customStyles: string;
+    useNativeHttpDownloader: boolean;
+  }>({
     downloadsPath: "",
     downloadNotificationsEnabled: false,
     repackUpdatesNotificationsEnabled: false,
@@ -57,6 +76,7 @@ export function SettingsGeneral() {
     achievementCustomNotificationPosition:
       "top-left" as AchievementCustomNotificationPosition,
     achievementSoundVolume: 15,
+    achievementCustomSoundPath: null,
     language: "",
     customStyles: window.localStorage.getItem("customStyles") || "",
     useNativeHttpDownloader: true,
@@ -133,6 +153,8 @@ export function SettingsGeneral() {
         achievementSoundVolume: Math.round(
           (userPreferences.achievementSoundVolume ?? 0.15) * 100
         ),
+        achievementCustomSoundPath:
+          userPreferences.achievementCustomSoundPath ?? null,
         friendRequestNotificationsEnabled:
           userPreferences.friendRequestNotificationsEnabled ?? false,
         friendStartGameNotificationsEnabled:
@@ -196,6 +218,29 @@ export function SettingsGeneral() {
     await handleChange({ achievementCustomNotificationPosition: value });
 
     window.electron.updateAchievementCustomNotificationWindow();
+  };
+
+  const handleSelectAchievementSound = async () => {
+    const { filePaths } = await window.electron.showOpenDialog({
+      properties: ["openFile"],
+      filters: [
+        {
+          name: "Audio",
+          extensions: ["wav", "mp3", "ogg", "m4a"],
+        },
+      ],
+    });
+
+    if (filePaths && filePaths.length > 0) {
+      const originalPath = filePaths[0];
+      await window.electron.copyAchievementSound(originalPath);
+      await handleChange({ achievementCustomSoundPath: originalPath });
+    }
+  };
+
+  const handleRemoveAchievementSound = async () => {
+    await window.electron.removeAchievementSound();
+    await handleChange({ achievementCustomSoundPath: null });
   };
 
   const handleChooseDownloadsPath = async () => {
@@ -369,36 +414,70 @@ export function SettingsGeneral() {
         )}
 
       {form.achievementNotificationsEnabled && (
-        <div className="settings-general__volume-control">
-          <label htmlFor="achievement-volume">
-            {t("achievement_sound_volume")}
-          </label>
-          <div className="settings-general__volume-slider-wrapper">
-            <UnmuteIcon size={16} className="settings-general__volume-icon" />
-            <input
-              id="achievement-volume"
-              type="range"
-              min="0"
-              max="100"
-              value={form.achievementSoundVolume}
-              onChange={(e) => {
-                const volumePercent = parseInt(e.target.value, 10);
-                if (!isNaN(volumePercent)) {
-                  handleVolumeChange(volumePercent);
-                }
-              }}
-              className="settings-general__volume-slider"
-              style={
-                {
-                  "--volume-percent": `${form.achievementSoundVolume}%`,
-                } as React.CSSProperties
+        <>
+          <div className="settings-general__achievement-sound">
+            <TextField
+              label={t("select_achievement_sound")}
+              value={form.achievementCustomSoundPath ?? ""}
+              placeholder={
+                form.achievementCustomSoundPath
+                  ? undefined
+                  : t("no_sound_file_selected")
+              }
+              readOnly
+              disabled
+              rightContent={
+                <Button theme="outline" onClick={handleSelectAchievementSound}>
+                  <UploadIcon />
+                  {t(
+                    form.achievementCustomSoundPath
+                      ? "change_achievement_sound"
+                      : "select_achievement_sound"
+                  )}
+                </Button>
               }
             />
-            <span className="settings-general__volume-value">
-              {form.achievementSoundVolume}%
-            </span>
+            {form.achievementCustomSoundPath && (
+              <div className="settings-general__achievement-sound-actions">
+                <Button theme="outline" onClick={handleRemoveAchievementSound}>
+                  <TrashIcon />
+                  {t("remove_achievement_sound")}
+                </Button>
+              </div>
+            )}
           </div>
-        </div>
+
+          <div className="settings-general__volume-control">
+            <label htmlFor="achievement-volume">
+              {t("achievement_sound_volume")}
+            </label>
+            <div className="settings-general__volume-slider-wrapper">
+              <UnmuteIcon size={16} className="settings-general__volume-icon" />
+              <input
+                id="achievement-volume"
+                type="range"
+                min="0"
+                max="100"
+                value={form.achievementSoundVolume}
+                onChange={(e) => {
+                  const volumePercent = parseInt(e.target.value, 10);
+                  if (!isNaN(volumePercent)) {
+                    handleVolumeChange(volumePercent);
+                  }
+                }}
+                className="settings-general__volume-slider"
+                style={
+                  {
+                    "--volume-percent": `${form.achievementSoundVolume}%`,
+                  } as React.CSSProperties
+                }
+              />
+              <span className="settings-general__volume-value">
+                {form.achievementSoundVolume}%
+              </span>
+            </div>
+          </div>
+        </>
       )}
 
       <h2 className="settings-general__section-title">{t("common_redist")}</h2>

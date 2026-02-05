@@ -382,6 +382,8 @@ type ElectronBridge = {
   >;
   updateAchievementCustomNotificationWindow: () => IpcInvokeReturn;
   showAchievementTestNotification: () => IpcInvokeReturn;
+  copyAchievementSound: (sourcePath: string) => IpcInvokeReturn;
+  removeAchievementSound: () => IpcInvokeReturn;
 
   /* Themes */
   addCustomTheme: (theme: Theme) => IpcInvokeReturn;
