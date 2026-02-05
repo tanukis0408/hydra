@@ -150,7 +150,9 @@ function SpeedChart({
 
       canvas.width = clientWidth * dpr;
       canvas.height = 100 * dpr;
-      ctx.scale(dpr, dpr);
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       const width = clientWidth;
       const height = 100;
@@ -161,8 +163,6 @@ function SpeedChart({
       // Calculate how many bars can fit in the available width
       const totalBars = Math.max(1, Math.floor((width + barGap) / barSpacing));
       const maxHeight = peakSpeed || Math.max(...speeds, 1);
-
-      ctx.clearRect(0, 0, width, height);
 
       let r = 255,
         g = 255,
