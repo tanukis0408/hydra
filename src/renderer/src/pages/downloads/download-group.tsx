@@ -14,6 +14,7 @@ import {
   useDownload,
   useLibrary,
   useDate,
+  useToast,
 } from "@renderer/hooks";
 
 import "./download-group.scss";
@@ -30,6 +31,7 @@ import {
   ArrowUpIcon,
   ClockIcon,
   ColumnsIcon,
+  CopyIcon,
   DownloadIcon,
   FileDirectoryIcon,
   LinkIcon,
@@ -496,6 +498,7 @@ export function DownloadGroup({
   const { t } = useTranslation("downloads");
   const { t: tGameDetails } = useTranslation("game_details");
   const navigate = useNavigate();
+  const { showSuccessToast, showWarningToast } = useToast();
 
   const userPreferences = useAppSelector(
     (state) => state.userPreferences.value
@@ -563,6 +566,7 @@ export function DownloadGroup({
   const [dominantColors, setDominantColors] = useState<Record<string, string>>(
     {}
   );
+  const [defaultDownloadsPath, setDefaultDownloadsPath] = useState("");
   const [optimisticallyResumed, setOptimisticallyResumed] = useState<
     Record<string, boolean>
   >({});
@@ -576,6 +580,48 @@ export function DownloadGroup({
   const [gameActionTypes, setGameActionTypes] = useState<
     Record<string, "install" | "open-folder">
   >({});
+
+  useEffect(() => {
+    window.electron.getDefaultDownloadsPath().then((path) => {
+      setDefaultDownloadsPath(path);
+    });
+  }, []);
+
+  const buildDownloadPath = useCallback(
+    (game: LibraryGame) => {
+      const download = game.download;
+      if (!download) return "";
+
+      const basePath = download.downloadPath || defaultDownloadsPath;
+      if (!basePath) return "";
+
+      if (!download.folderName) return basePath;
+
+      const separator = window.electron.platform === "win32" ? "\\" : "/";
+      const normalizedBase = basePath.replace(/[\\/]+$/, "");
+      const normalizedFolder = download.folderName.replace(/^[\\/]+/, "");
+      return `${normalizedBase}${separator}${normalizedFolder}`;
+    },
+    [defaultDownloadsPath]
+  );
+
+  const handleCopyDownloadPath = useCallback(
+    async (game: LibraryGame) => {
+      const downloadPath = buildDownloadPath(game);
+      if (!downloadPath) {
+        showWarningToast(t("download_path_unavailable"));
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(downloadPath);
+        showSuccessToast(t("download_path_copied"));
+      } catch {
+        showWarningToast(t("download_path_unavailable"));
+      }
+    },
+    [buildDownloadPath, showSuccessToast, showWarningToast, t]
+  );
 
   const extractDominantColor = useCallback(
     async (imageUrl: string, gameId: string) => {
@@ -749,9 +795,17 @@ export function DownloadGroup({
     const isGameDownloading = isGameDownloadingMap[game.id];
 
     const deleting = isGameDeleting(game.id);
+    const downloadPath = buildDownloadPath(game);
+    const copyDownloadPathAction = {
+      label: t("copy_download_path"),
+      disabled: !downloadPath,
+      icon: <CopyIcon />,
+      onClick: () => handleCopyDownloadPath(game),
+    };
 
     if (game.download?.progress === 1) {
       const actions = [
+        copyDownloadPathAction,
         {
           label: t("extract"),
           disabled: game.download.extracting,
@@ -796,6 +850,7 @@ export function DownloadGroup({
 
     if (isGameDownloading) {
       return [
+        copyDownloadPathAction,
         {
           label: t("pause"),
           onClick: () => {
@@ -825,6 +880,7 @@ export function DownloadGroup({
     const isInQueue = queueIndex !== -1;
 
     const actions = [
+      copyDownloadPathAction,
       {
         label: t("resume"),
         disabled: isResumeDisabled,

@@ -25,7 +25,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { useSubscription } from "./hooks/use-subscription";
 import KrakenCloudModal from "./pages/shared-modals/kraken-cloud/kraken-cloud-modal";
-import { ThemeProvider } from "./contexts/theme.context";
+import { ThemeProvider, useTheme } from "./contexts/theme.context";
 import { ThemeToggle } from "./components/theme-toggle/theme-toggle";
 import { ArchiveDeletionModal } from "./pages/downloads/archive-deletion-error-modal";
 
@@ -35,12 +35,146 @@ import {
   getAchievementSoundUrl,
   getAchievementSoundVolume,
 } from "./helpers";
+import { buildMaterialYouPalette } from "./helpers/material-theme";
 import { levelDBService } from "./services/leveldb.service";
 import type { UserPreferences } from "@types";
 import "./app.scss";
+import { average } from "color.js";
 
 export interface AppProps {
   children: React.ReactNode;
+}
+
+const MATERIAL_YOU_VARIABLES = [
+  "--kraken-primary",
+  "--kraken-on-primary",
+  "--kraken-primary-container",
+  "--kraken-on-primary-container",
+  "--kraken-secondary",
+  "--kraken-on-secondary",
+  "--kraken-secondary-container",
+  "--kraken-on-secondary-container",
+  "--kraken-tertiary",
+  "--kraken-on-tertiary",
+  "--kraken-tertiary-container",
+  "--kraken-on-tertiary-container",
+] as const;
+
+const applyMaterialPalette = (
+  root: HTMLElement,
+  palette: ReturnType<typeof buildMaterialYouPalette>
+) => {
+  root.style.setProperty("--kraken-primary", palette.primary);
+  root.style.setProperty("--kraken-on-primary", palette.onPrimary);
+  root.style.setProperty("--kraken-primary-container", palette.primaryContainer);
+  root.style.setProperty(
+    "--kraken-on-primary-container",
+    palette.onPrimaryContainer
+  );
+  root.style.setProperty("--kraken-secondary", palette.secondary);
+  root.style.setProperty("--kraken-on-secondary", palette.onSecondary);
+  root.style.setProperty(
+    "--kraken-secondary-container",
+    palette.secondaryContainer
+  );
+  root.style.setProperty(
+    "--kraken-on-secondary-container",
+    palette.onSecondaryContainer
+  );
+  root.style.setProperty("--kraken-tertiary", palette.tertiary);
+  root.style.setProperty("--kraken-on-tertiary", palette.onTertiary);
+  root.style.setProperty(
+    "--kraken-tertiary-container",
+    palette.tertiaryContainer
+  );
+  root.style.setProperty(
+    "--kraken-on-tertiary-container",
+    palette.onTertiaryContainer
+  );
+};
+
+const clearMaterialPalette = (root: HTMLElement) => {
+  MATERIAL_YOU_VARIABLES.forEach((variable) => {
+    root.style.removeProperty(variable);
+  });
+};
+
+const isMaterialImageSource = (value?: string | null) =>
+  Boolean(value) &&
+  (value?.startsWith("local:") ||
+    value?.startsWith("http") ||
+    value?.startsWith("data:"));
+
+function MaterialStyleSync() {
+  const { theme } = useTheme();
+  const userPreferences = useAppSelector(
+    (state) => state.userPreferences.value
+  );
+  const userDetails = useAppSelector((state) => state.userDetails.userDetails);
+  const profileBackground = useAppSelector(
+    (state) => state.userDetails.profileBackground
+  );
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const style = userPreferences?.themeStyle ?? "expressive";
+
+    root.setAttribute("data-material-style", style);
+
+    if (style !== "material-you") {
+      clearMaterialPalette(root);
+      return;
+    }
+
+    let cancelled = false;
+
+    const run = async () => {
+      const source =
+        (userPreferences?.materialYouWallpaperPath
+          ? `local:${userPreferences.materialYouWallpaperPath}`
+          : undefined) ||
+        userDetails?.backgroundImageUrl ||
+        profileBackground ||
+        "";
+
+      const fallback =
+        getComputedStyle(root)
+          .getPropertyValue("--md-sys-color-primary")
+          .trim() || "#d0bcff";
+
+      let baseColor = fallback;
+
+      if (isMaterialImageSource(source)) {
+        try {
+          const color = await average(source, { amount: 1, format: "hex" });
+          const colorString =
+            typeof color === "string" ? color : color.toString();
+          if (colorString) baseColor = colorString;
+        } catch {
+          baseColor = fallback;
+        }
+      }
+
+      if (cancelled) return;
+
+      const palette = buildMaterialYouPalette(baseColor, theme);
+      applyMaterialPalette(root, palette);
+    };
+
+    run();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [
+    theme,
+    userPreferences?.themeStyle,
+    userPreferences?.materialYouWallpaperPath,
+    userDetails?.backgroundImageUrl,
+    profileBackground,
+  ]);
+
+  return null;
 }
 
 export function App() {
@@ -306,6 +440,7 @@ export function App() {
   return (
     <ThemeProvider>
       <>
+        <MaterialStyleSync />
         {window.electron.platform === "win32" && (
           <div className="title-bar">
             <h4>

@@ -14,10 +14,19 @@
     margin-bottom: calc(g.$spacing-unit * 2);
     padding-inline: calc(g.$spacing-unit * 3);
     padding-top: calc(g.$spacing-unit * 2);
+    flex-wrap: wrap;
   }
 
   &__filter {
     width: min(520px, 100%);
+  }
+
+  &__toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: g.$spacing-unit;
+    margin-left: auto;
+    flex-wrap: wrap;
   }
 
   &__clear-filter {
@@ -70,15 +79,15 @@
     }
 
     &--active .downloads__summary-value {
-      color: var(--md-sys-color-primary);
+      color: var(--kraken-primary);
     }
 
     &--queued .downloads__summary-value {
-      color: var(--md-sys-color-tertiary);
+      color: var(--kraken-tertiary);
     }
 
     &--completed .downloads__summary-value {
-      color: var(--md-sys-color-secondary);
+      color: var(--kraken-secondary);
     }
   }
 

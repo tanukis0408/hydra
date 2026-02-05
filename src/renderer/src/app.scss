@@ -1,5 +1,107 @@
 @use "./scss/globals.scss" as g;
 
+:root {
+  --kraken-primary: #{g.$primary};
+  --kraken-on-primary: #{g.$on-primary};
+  --kraken-primary-container: #{g.$primary-container};
+  --kraken-on-primary-container: #{g.$on-primary-container};
+  --kraken-secondary: #{g.$secondary};
+  --kraken-on-secondary: #{g.$on-secondary};
+  --kraken-secondary-container: #{g.$secondary-container};
+  --kraken-on-secondary-container: #{g.$on-secondary-container};
+  --kraken-tertiary: #{g.$tertiary};
+  --kraken-on-tertiary: #{g.$on-tertiary};
+  --kraken-tertiary-container: #{g.$tertiary-container};
+  --kraken-on-tertiary-container: #{g.$on-tertiary-container};
+  --kraken-icon-color: var(--kraken-primary);
+  --kraken-icon-muted: var(--md-sys-color-on-surface-variant);
+}
+
+[data-theme="light"] {
+  --kraken-primary: #{g.$light-primary};
+  --kraken-on-primary: #{g.$light-on-primary};
+  --kraken-primary-container: #{g.$light-primary-container};
+  --kraken-on-primary-container: #{g.$light-on-primary-container};
+  --kraken-secondary: #{g.$light-secondary};
+  --kraken-on-secondary: #{g.$light-on-secondary};
+  --kraken-secondary-container: #{g.$light-secondary-container};
+  --kraken-on-secondary-container: #{g.$light-on-secondary-container};
+  --kraken-tertiary: #{g.$light-tertiary};
+  --kraken-on-tertiary: #{g.$light-on-tertiary};
+  --kraken-tertiary-container: #{g.$light-tertiary-container};
+  --kraken-on-tertiary-container: #{g.$light-on-tertiary-container};
+}
+
+[data-material-style="material-you"] {
+  --md-sys-color-primary: var(--kraken-primary);
+  --md-sys-color-on-primary: var(--kraken-on-primary);
+  --md-sys-color-primary-container: var(--kraken-primary-container);
+  --md-sys-color-on-primary-container: var(--kraken-on-primary-container);
+  --md-sys-color-secondary: var(--kraken-secondary);
+  --md-sys-color-on-secondary: var(--kraken-on-secondary);
+  --md-sys-color-secondary-container: var(--kraken-secondary-container);
+  --md-sys-color-on-secondary-container: var(--kraken-on-secondary-container);
+  --md-sys-color-tertiary: var(--kraken-tertiary);
+  --md-sys-color-on-tertiary: var(--kraken-on-tertiary);
+  --md-sys-color-tertiary-container: var(--kraken-tertiary-container);
+  --md-sys-color-on-tertiary-container: var(--kraken-on-tertiary-container);
+  --kraken-icon-color: var(--kraken-primary);
+  --kraken-icon-muted: color-mix(
+    in srgb,
+    var(--kraken-primary) 60%,
+    var(--md-sys-color-on-surface-variant)
+  );
+}
+
+[data-material-style="material-you"] .button--primary {
+  background-color: var(--kraken-primary);
+  color: var(--kraken-on-primary);
+}
+
+[data-material-style="material-you"] .button--tonal {
+  background-color: var(--kraken-primary-container);
+  color: var(--kraken-on-primary-container);
+}
+
+[data-material-style="material-you"] .button--outline,
+[data-material-style="material-you"] .button--text {
+  color: var(--kraken-primary);
+}
+
+[data-material-style="material-you"] .button--outline {
+  border-color: color-mix(
+    in srgb,
+    var(--kraken-primary) 45%,
+    transparent
+  );
+}
+
+[data-material-style="material-you"] .sidebar__menu-item--active {
+  background-color: color-mix(
+    in srgb,
+    var(--kraken-primary) 18%,
+    transparent
+  );
+  color: var(--kraken-primary);
+}
+
+[data-material-style="material-you"] .sidebar__help-button-icon {
+  background: linear-gradient(
+    0deg,
+    var(--kraken-primary) 50%,
+    var(--kraken-tertiary) 100%
+  );
+  color: var(--kraken-on-primary);
+}
+
+[data-material-style="material-you"] .sidebar :where(.octicon, .lucide) {
+  color: var(--kraken-icon-color);
+}
+
+[data-material-style="material-you"] .header :where(.octicon, .lucide) {
+  color: var(--kraken-icon-color);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -131,7 +233,11 @@ progress[value]::-webkit-progress-bar {
 }
 
 progress[value]::-webkit-progress-value {
-  background: linear-gradient(90deg, g.$primary, g.$secondary);
+  background: linear-gradient(
+    90deg,
+    var(--kraken-primary),
+    var(--kraken-secondary)
+  );
   border-radius: g.$border-radius-full;
 }
 

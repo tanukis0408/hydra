@@ -416,6 +416,10 @@
   "downloads": {
     "resume": "Resume",
     "pause": "Pause",
+    "pause_all": "Pause all",
+    "resume_all": "Resume all",
+    "hide_completed": "Hide completed",
+    "show_completed": "Show completed",
     "eta": "Conclusion {{eta}}",
     "paused": "Paused",
     "verifying": "Verifying…",
@@ -454,7 +458,10 @@
     "network": "NETWORK",
     "peak": "PEAK",
     "move_up": "Move up",
-    "move_down": "Move down"
+    "move_down": "Move down",
+    "copy_download_path": "Copy download path",
+    "download_path_copied": "Download path copied",
+    "download_path_unavailable": "Download path unavailable"
   },
   "settings": {
     "downloads_path": "Downloads path",
@@ -568,6 +575,15 @@
     "delete_theme_description": "This will delete the theme {{theme}}",
     "cancel": "Cancel",
     "appearance": "Appearance",
+    "material_style": "Material style",
+    "material_style_description": "Choose between expressive styling or dynamic wallpaper-driven colors.",
+    "material_expressive": "Material Expressive",
+    "material_you": "Material You",
+    "material_you_wallpaper": "Material You wallpaper",
+    "material_you_wallpaper_placeholder": "Use your profile banner",
+    "material_you_wallpaper_choose": "Choose image",
+    "material_you_wallpaper_clear": "Clear",
+    "material_you_wallpaper_hint": "Pick an image to generate dynamic colors. If empty, Kraken uses your profile banner when available.",
     "debrid": "Debrid",
     "debrid_description": "Debrid services are premium unrestricted downloaders that allow you to quickly download files hosted on various file hosting services, only limited by your internet speed.",
     "enable_torbox": "Enable TorBox",

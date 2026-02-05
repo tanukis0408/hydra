@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import { TextField } from "@renderer/components";
+import { Button, TextField } from "@renderer/components";
 import { useAppSelector, useDownload, useLibrary } from "@renderer/hooks";
 
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -11,6 +11,7 @@ import { DownloadGroup } from "./download-group";
 import type { GameShop, LibraryGame, SeedingStatus } from "@types";
 import { orderBy } from "lodash-es";
 import { ArrowDownIcon, XCircleIcon } from "@primer/octicons-react";
+import { Downloader } from "@shared";
 
 export default function Downloads() {
   const { library, updateLibrary } = useLibrary();
@@ -23,8 +24,18 @@ export default function Downloads() {
   const [showBinaryNotFoundModal, setShowBinaryNotFoundModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [filterQuery, setFilterQuery] = useState("");
+  const [hideCompleted, setHideCompleted] = useState(
+    window.localStorage.getItem("downloadsHideCompleted") === "true"
+  );
+  const [isBulkActionRunning, setIsBulkActionRunning] = useState(false);
 
-  const { removeGameInstaller, pauseSeeding } = useDownload();
+  const {
+    removeGameInstaller,
+    pauseSeeding,
+    pauseDownload,
+    resumeDownload,
+    lastPacket,
+  } = useDownload();
 
   const handleDeleteGame = async () => {
     if (gameToBeDeleted.current) {
@@ -35,7 +46,9 @@ export default function Downloads() {
     }
   };
 
-  const { lastPacket } = useDownload();
+  const userPreferences = useAppSelector(
+    (state) => state.userPreferences.value
+  );
 
   const [seedingStatus, setSeedingStatus] = useState<SeedingStatus[]>([]);
 
@@ -50,6 +63,13 @@ export default function Downloads() {
       unsubscribeExtraction();
     };
   }, [updateLibrary]);
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      "downloadsHideCompleted",
+      String(hideCompleted)
+    );
+  }, [hideCompleted]);
 
   const handleOpenGameInstaller = (shop: GameShop, objectId: string) =>
     window.electron.openGameInstaller(shop, objectId).then((isBinaryInPath) => {
@@ -118,27 +138,95 @@ export default function Downloads() {
     [libraryGroup.queued]
   );
 
+  const activeDownloads = useMemo(
+    () =>
+      libraryGroup.downloading.filter((game) => {
+        if (!game.download) return false;
+        return extraction?.visibleId !== game.id;
+      }),
+    [libraryGroup.downloading, extraction?.visibleId]
+  );
+
+  const resumableDownloads = useMemo(
+    () =>
+      libraryGroup.queued.filter((game) => {
+        if (!game.download) return false;
+        if (
+          game.download.downloader === Downloader.RealDebrid &&
+          !userPreferences?.realDebridApiToken
+        )
+          return false;
+        if (
+          game.download.downloader === Downloader.TorBox &&
+          !userPreferences?.torBoxApiToken
+        )
+          return false;
+        return true;
+      }),
+    [
+      libraryGroup.queued,
+      userPreferences?.realDebridApiToken,
+      userPreferences?.torBoxApiToken,
+    ]
+  );
+
+  const handlePauseAll = async () => {
+    if (!activeDownloads.length) return;
+    setIsBulkActionRunning(true);
+    try {
+      for (const game of activeDownloads) {
+        await pauseDownload(game.shop, game.objectId);
+      }
+    } finally {
+      setIsBulkActionRunning(false);
+    }
+  };
+
+  const handleResumeAll = async () => {
+    if (!resumableDownloads.length) return;
+    setIsBulkActionRunning(true);
+    try {
+      for (const game of resumableDownloads) {
+        await resumeDownload(game.shop, game.objectId);
+      }
+    } finally {
+      setIsBulkActionRunning(false);
+    }
+  };
+
   const downloadGroups = [
     {
+      id: "downloading",
       title: t("download_in_progress"),
       library: libraryGroup.downloading,
       queuedGameIds: [] as string[],
     },
     {
+      id: "queued",
       title: t("queued_downloads"),
       library: libraryGroup.queued,
       queuedGameIds,
     },
     {
+      id: "completed",
       title: t("downloads_completed"),
       library: libraryGroup.complete,
       queuedGameIds: [] as string[],
     },
   ];
 
-  const hasItemsInLibrary = useMemo(() => {
-    return Object.values(libraryGroup).some((group) => group.length > 0);
-  }, [libraryGroup]);
+  const visibleGroups = useMemo(
+    () =>
+      hideCompleted
+        ? downloadGroups.filter((group) => group.id !== "completed")
+        : downloadGroups,
+    [downloadGroups, hideCompleted]
+  );
+
+  const hasItemsInLibrary = useMemo(
+    () => visibleGroups.some((group) => group.library.length > 0),
+    [visibleGroups]
+  );
 
   const hasDownloads = useMemo(() => {
     return library.some((game) => game.download);
@@ -208,6 +296,29 @@ export default function Downloads() {
                 ) : null
               }
             />
+            <div className="downloads__toolbar-actions">
+              <Button
+                variant="outline"
+                onClick={handlePauseAll}
+                disabled={!activeDownloads.length || isBulkActionRunning}
+              >
+                {t("pause_all")}
+              </Button>
+              <Button
+                variant="outline"
+                onClick={handleResumeAll}
+                disabled={!resumableDownloads.length || isBulkActionRunning}
+              >
+                {t("resume_all")}
+              </Button>
+              <Button
+                variant={hideCompleted ? "tonal" : "outline"}
+                onClick={() => setHideCompleted((prev) => !prev)}
+                aria-pressed={hideCompleted}
+              >
+                {hideCompleted ? t("show_completed") : t("hide_completed")}
+              </Button>
+            </div>
           </div>
           <div className="downloads__summary">
             {summaryCards.map((card) => (
@@ -224,9 +335,9 @@ export default function Downloads() {
           </div>
           {hasItemsInLibrary && (
             <div className="downloads__groups">
-              {downloadGroups.map((group) => (
+              {visibleGroups.map((group) => (
                 <DownloadGroup
-                  key={group.title}
+                  key={group.id}
                   title={group.title}
                   library={group.library}
                   openDeleteGameModal={handleOpenDeleteGameModal}

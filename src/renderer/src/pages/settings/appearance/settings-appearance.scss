@@ -5,6 +5,55 @@
   flex-direction: column;
   gap: 16px;
 
+  &__material {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px solid g.$outline-variant;
+    background: g.$surface-container;
+    box-shadow: g.$shadow-1;
+  }
+
+  &__material-header {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: g.$on-surface;
+    }
+  }
+
+  &__material-hint {
+    font-size: 12px;
+    line-height: 1.5;
+    color: g.$on-surface-variant;
+  }
+
+  &__material-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__material-preview {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__material-swatch {
+    width: 22px;
+    height: 22px;
+    border-radius: 8px;
+    border: 1px solid g.$outline-variant;
+    box-shadow: g.$shadow-1;
+  }
+
   &__actions {
     display: flex;
     justify-content: space-between;

@@ -102,6 +102,8 @@ export type AchievementCustomNotificationPosition =
   | "bottom-center"
   | "bottom-right";
 
+export type ThemeStyle = "expressive" | "material-you";
+
 export interface UserPreferences {
   downloadsPath?: string | null;
   ggDealsApiKey?: string | null;
@@ -132,6 +134,8 @@ export interface UserPreferences {
   enableNewDownloadOptionsBadges?: boolean;
   useNativeHttpDownloader?: boolean;
   createStartMenuShortcut?: boolean;
+  themeStyle?: ThemeStyle;
+  materialYouWallpaperPath?: string | null;
 }
 
 export interface ScreenState {

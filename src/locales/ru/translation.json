@@ -397,6 +397,10 @@
   "downloads": {
     "resume": "Возобновить",
     "pause": "Приостановить",
+    "pause_all": "Приостановить все",
+    "resume_all": "Возобновить все",
+    "hide_completed": "Скрыть завершённые",
+    "show_completed": "Показать завершённые",
     "eta": "Окончание {{eta}}",
     "paused": "Приостановлено",
     "verifying": "Проверка…",
@@ -433,7 +437,10 @@
     "yes": "Да",
     "no": "Нет",
     "network": "СЕТЬ",
-    "peak": "ПИК"
+    "peak": "ПИК",
+    "copy_download_path": "Скопировать путь загрузки",
+    "download_path_copied": "Путь загрузки скопирован",
+    "download_path_unavailable": "Путь загрузки недоступен"
   },
   "settings": {
     "downloads_path": "Путь загрузок",
@@ -547,6 +554,15 @@
     "delete_theme_description": "Это приведет к удалению темы {{theme}}",
     "cancel": "Отменить",
     "appearance": "Внешний вид",
+    "material_style": "Стиль Material",
+    "material_style_description": "Выберите между выразительным стилем и динамическими цветами от обоев.",
+    "material_expressive": "Material Expressive",
+    "material_you": "Material You",
+    "material_you_wallpaper": "Обои для Material You",
+    "material_you_wallpaper_placeholder": "Использовать баннер профиля",
+    "material_you_wallpaper_choose": "Выбрать изображение",
+    "material_you_wallpaper_clear": "Очистить",
+    "material_you_wallpaper_hint": "Выберите изображение для генерации динамических цветов. Если не выбрано, Kraken использует баннер профиля.",
     "debrid": "Debrid",
     "debrid_description": "Сервисы Debrid - это премиум-загрузчики без ограничений, которые позволяют быстро скачивать файлы с различных файлообменников, ограничиваясь только скоростью вашего интернета.",
     "enable_torbox": "Включить TorBox",
