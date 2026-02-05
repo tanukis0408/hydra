@@ -653,6 +653,8 @@ contextBridge.exposeInMainWorld("electron", {
   copyAchievementSound: (sourcePath: string) =>
     ipcRenderer.invoke("copyAchievementSound", sourcePath),
   removeAchievementSound: () => ipcRenderer.invoke("removeAchievementSound"),
+  getAchievementSoundDataUrl: () =>
+    ipcRenderer.invoke("getAchievementSoundDataUrl"),
 
   /* Themes */
   addCustomTheme: (theme: Theme) => ipcRenderer.invoke("addCustomTheme", theme),

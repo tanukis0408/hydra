@@ -143,6 +143,12 @@ export const getAchievementSoundUrl = async (): Promise<string> => {
         return soundDataUrl;
       }
     }
+
+    const customSoundDataUrl =
+      await window.electron.getAchievementSoundDataUrl();
+    if (customSoundDataUrl) {
+      return customSoundDataUrl;
+    }
   } catch (error) {
     console.error("Failed to get theme sound", error);
   }
