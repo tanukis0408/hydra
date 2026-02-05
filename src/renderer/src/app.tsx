@@ -66,7 +66,10 @@ const applyMaterialPalette = (
 ) => {
   root.style.setProperty("--kraken-primary", palette.primary);
   root.style.setProperty("--kraken-on-primary", palette.onPrimary);
-  root.style.setProperty("--kraken-primary-container", palette.primaryContainer);
+  root.style.setProperty(
+    "--kraken-primary-container",
+    palette.primaryContainer
+  );
   root.style.setProperty(
     "--kraken-on-primary-container",
     palette.onPrimaryContainer
@@ -187,7 +190,8 @@ function UiPreferencesSync() {
     const prefersReduced =
       window.matchMedia &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const shouldReduce = Boolean(userPreferences?.reduceMotion) || prefersReduced;
+    const shouldReduce =
+      Boolean(userPreferences?.reduceMotion) || prefersReduced;
 
     if (shouldReduce) {
       root.setAttribute("data-reduce-motion", "true");
@@ -233,8 +237,11 @@ export function App() {
     clearUserDetails,
   } = useUserDetails();
 
-  const { hideKrakenCloudModal, isKrakenCloudModalVisible, krakenCloudFeature } =
-    useSubscription();
+  const {
+    hideKrakenCloudModal,
+    isKrakenCloudModalVisible,
+    krakenCloudFeature,
+  } = useSubscription();
 
   const dispatch = useAppDispatch();
 

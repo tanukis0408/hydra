@@ -7,7 +7,11 @@ export const createGame = async (game: Game) => {
     return;
   }
 
-  return KrakenApi.post(`/profile/games`, {
+  return KrakenApi.post<{
+    id: string;
+    playTimeInMilliseconds: number;
+    lastTimePlayed: Date | null;
+  }>(`/profile/games`, {
     objectId: game.objectId,
     playTimeInMilliseconds: Math.trunc(game.playTimeInMilliseconds ?? 0),
     shop: game.shop,

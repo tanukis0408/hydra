@@ -14,7 +14,9 @@ const addGameToFavorites = async (
   if (!game) return;
 
   if (shop !== "custom") {
-    KrakenApi.put(`/profile/games/${shop}/${objectId}/favorite`).catch(() => {});
+    KrakenApi.put(`/profile/games/${shop}/${objectId}/favorite`).catch(
+      () => {}
+    );
   }
 
   try {

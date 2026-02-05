@@ -78,9 +78,7 @@ export default function Settings() {
                   {categories.map((category, index) => (
                     <Button
                       key={category.contentTitle}
-                      theme={
-                        safeIndex === index ? "primary" : "outline"
-                      }
+                      theme={safeIndex === index ? "primary" : "outline"}
                       onClick={() => setCurrentCategoryIndex(index)}
                     >
                       {category.tabLabel}

@@ -97,11 +97,14 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     [dispatch]
   );
 
-  const setThemeMode = useCallback((mode: ThemeMode) => {
-    setThemeModeState(mode);
-    localStorage.setItem("themeMode", mode);
-    syncPreferences(mode);
-  }, [syncPreferences]);
+  const setThemeMode = useCallback(
+    (mode: ThemeMode) => {
+      setThemeModeState(mode);
+      localStorage.setItem("themeMode", mode);
+      syncPreferences(mode);
+    },
+    [syncPreferences]
+  );
 
   const toggleThemeMode = useCallback(() => {
     setThemeModeState((prev) => {

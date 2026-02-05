@@ -104,17 +104,25 @@ export class PythonRPC {
   }
 
   private static async spawnPythonFromResources(commonArgs: string[]) {
-    const scriptPath = path.join(process.resourcesPath, "python_rpc", "main.py");
+    const scriptPath = path.join(
+      process.resourcesPath,
+      "python_rpc",
+      "main.py"
+    );
 
     if (!fs.existsSync(scriptPath)) {
       return null;
     }
 
     for (const pythonCommand of pythonExecutableCandidates) {
-      const childProcess = cp.spawn(pythonCommand, [scriptPath, ...commonArgs], {
-        windowsHide: true,
-        stdio: ["inherit", "inherit"],
-      });
+      const childProcess = cp.spawn(
+        pythonCommand,
+        [scriptPath, ...commonArgs],
+        {
+          windowsHide: true,
+          stdio: ["inherit", "inherit"],
+        }
+      );
 
       const spawned = await new Promise<boolean>((resolve) => {
         childProcess.once("spawn", () => resolve(true));
@@ -162,7 +170,8 @@ export class PythonRPC {
         const fallbackProcess = await this.spawnPythonFromResources(commonArgs);
         if (fallbackProcess) {
           this.pythonProcess = fallbackProcess;
-          this.rpc.defaults.headers.common["x-hydra-rpc-password"] = rpcPassword;
+          this.rpc.defaults.headers.common["x-hydra-rpc-password"] =
+            rpcPassword;
           await this.waitForHealthCheck();
           pythonRpcLogger.log(
             `Python RPC started (script fallback) on port ${port}`
@@ -178,7 +187,9 @@ export class PythonRPC {
             "You can still use the app, but downloads and torrents will be disabled."
         );
 
-        pythonRpcLogger.error("Python RPC binary missing; running in fallback-free mode.");
+        pythonRpcLogger.error(
+          "Python RPC binary missing; running in fallback-free mode."
+        );
         return;
       }
 

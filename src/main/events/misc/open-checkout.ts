@@ -13,9 +13,11 @@ const openCheckout = async (_event: Electron.IpcMainInvokeEvent) => {
     return;
   }
 
-  const paymentToken = await KrakenApi.post("/auth/payment", {
+  const { accessToken: paymentToken } = await KrakenApi.post<{
+    accessToken: string;
+  }>("/auth/payment", {
     refreshToken: auth.refreshToken,
-  }).then((response) => response.accessToken);
+  });
 
   const params = new URLSearchParams({
     token: paymentToken,

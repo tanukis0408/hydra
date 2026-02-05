@@ -15,11 +15,14 @@ export class KrakenDebridClient {
 
   public static async getDownloadUrl(magnet: string) {
     try {
-      const response = await KrakenApi.post("/debrid/request-file", {
-        magnet,
-      });
+      const response = await KrakenApi.post<{ downloadUrl: string | null }>(
+        "/debrid/request-file",
+        {
+          magnet,
+        }
+      );
 
-      return response.downloadUrl;
+      return response.downloadUrl ?? null;
     } catch (error) {
       return null;
     }

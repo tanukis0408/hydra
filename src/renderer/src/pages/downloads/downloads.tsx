@@ -85,9 +85,7 @@ export default function Downloads() {
   const filteredLibrary = useMemo(() => {
     const query = filterQuery.trim().toLowerCase();
     if (!query) return library;
-    return library.filter((game) =>
-      game.title.toLowerCase().includes(query)
-    );
+    return library.filter((game) => game.title.toLowerCase().includes(query));
   }, [library, filterQuery]);
 
   const libraryGroup: Record<string, LibraryGame[]> = useMemo(() => {
@@ -194,26 +192,35 @@ export default function Downloads() {
     }
   };
 
-  const downloadGroups = [
-    {
-      id: "downloading",
-      title: t("download_in_progress"),
-      library: libraryGroup.downloading,
-      queuedGameIds: [] as string[],
-    },
-    {
-      id: "queued",
-      title: t("queued_downloads"),
-      library: libraryGroup.queued,
+  const downloadGroups = useMemo(
+    () => [
+      {
+        id: "downloading",
+        title: t("download_in_progress"),
+        library: libraryGroup.downloading,
+        queuedGameIds: [] as string[],
+      },
+      {
+        id: "queued",
+        title: t("queued_downloads"),
+        library: libraryGroup.queued,
+        queuedGameIds,
+      },
+      {
+        id: "completed",
+        title: t("downloads_completed"),
+        library: libraryGroup.complete,
+        queuedGameIds: [] as string[],
+      },
+    ],
+    [
+      libraryGroup.downloading,
+      libraryGroup.queued,
+      libraryGroup.complete,
       queuedGameIds,
-    },
-    {
-      id: "completed",
-      title: t("downloads_completed"),
-      library: libraryGroup.complete,
-      queuedGameIds: [] as string[],
-    },
-  ];
+      t,
+    ]
+  );
 
   const visibleGroups = useMemo(
     () =>
@@ -327,9 +334,7 @@ export default function Downloads() {
                 className={`downloads__summary-card downloads__summary-card--${card.tone}`}
               >
                 <span className="downloads__summary-label">{card.label}</span>
-                <span className="downloads__summary-value">
-                  {card.value}
-                </span>
+                <span className="downloads__summary-value">{card.value}</span>
               </div>
             ))}
           </div>

@@ -6,11 +6,7 @@ export const ThemeToggle: React.FC = () => {
   const { theme, themeMode, toggleThemeMode } = useTheme();
 
   const label =
-    themeMode === "system"
-      ? "Auto"
-      : theme === "light"
-      ? "Light"
-      : "Dark";
+    themeMode === "system" ? "Auto" : theme === "light" ? "Light" : "Dark";
 
   const nextLabel =
     themeMode === "light" ? "Dark" : themeMode === "dark" ? "Auto" : "Light";

@@ -79,9 +79,9 @@ export default function Library() {
         filtered = library
           .filter((game) => game.lastTimePlayed !== null)
           .sort(
-            (a: any, b: any) =>
-              new Date(b.lastTimePlayed).getTime() -
-              new Date(a.lastTimePlayed).getTime()
+            (a: LibraryGame, b: LibraryGame) =>
+              new Date(b.lastTimePlayed!).getTime() -
+              new Date(a.lastTimePlayed!).getTime()
           );
         break;
       case "favorites":

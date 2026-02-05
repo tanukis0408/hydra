@@ -3,6 +3,30 @@ import { UnlockedAchievement } from "@types";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { achievementsLogger } from "../logger";
 
+type IniSection = Record<string, string | number>;
+type IniData = Record<string, IniSection>;
+
+type GoldbergAchievement = {
+  name?: string;
+  earned?: boolean;
+  earned_time?: number;
+};
+
+type GoldbergAchievements =
+  | GoldbergAchievement[]
+  | Record<string, GoldbergAchievement>;
+
+type SteamCacheAchievement = {
+  bAchieved?: boolean;
+  strID?: string;
+  rtUnlocked?: number;
+};
+
+type SteamCacheRecord = [
+  string,
+  { data?: { vecHighlight?: SteamCacheAchievement[] } },
+];
+
 export const parseAchievementFile = (
   filePath: string,
   type: Cracker
@@ -26,7 +50,7 @@ export const parseAchievementFile = (
     }
 
     if (type === Cracker.goldberg) {
-      const parsed = jsonParse(filePath);
+      const parsed = jsonParse<GoldbergAchievements>(filePath);
       return processGoldberg(parsed);
     }
 
@@ -67,7 +91,7 @@ export const parseAchievementFile = (
     }
 
     if (type === Cracker.empress) {
-      const parsed = jsonParse(filePath);
+      const parsed = jsonParse<GoldbergAchievements>(filePath);
       return processGoldberg(parsed);
     }
 
@@ -76,7 +100,7 @@ export const parseAchievementFile = (
     }
 
     if (type === Cracker.Steam) {
-      const parsed = jsonParse(filePath);
+      const parsed = jsonParse<SteamCacheRecord[]>(filePath);
       return processSteamCacheAchievement(parsed);
     }
 
@@ -90,7 +114,7 @@ export const parseAchievementFile = (
   }
 };
 
-const iniParse = (filePath: string) => {
+const iniParse = (filePath: string): IniData => {
   const fileContent = readFileSync(filePath, "utf-8");
 
   const lines =
@@ -116,8 +140,8 @@ const iniParse = (filePath: string) => {
   return object;
 };
 
-const jsonParse = (filePath: string) => {
-  return JSON.parse(readFileSync(filePath, "utf-8"));
+const jsonParse = <T = unknown>(filePath: string): T => {
+  return JSON.parse(readFileSync(filePath, "utf-8")) as T;
 };
 
 const processRazor1911 = (filePath: string): UnlockedAchievement[] => {
@@ -144,26 +168,33 @@ const processRazor1911 = (filePath: string): UnlockedAchievement[] => {
   return achievements;
 };
 
-const processOnlineFix = (unlockedAchievements: any): UnlockedAchievement[] => {
+const processOnlineFix = (
+  unlockedAchievements: IniData
+): UnlockedAchievement[] => {
   const parsedUnlockedAchievements: UnlockedAchievement[] = [];
 
   for (const achievement of Object.keys(unlockedAchievements)) {
     const unlockedAchievement = unlockedAchievements[achievement];
 
-    if (unlockedAchievement?.achieved == "true") {
+    if (unlockedAchievement?.["achieved"] == "true") {
+      const timestamp = Number(unlockedAchievement["timestamp"]);
       parsedUnlockedAchievements.push({
         name: achievement,
-        unlockTime: unlockedAchievement.timestamp * 1000,
+        unlockTime: timestamp * 1000,
       });
-    } else if (unlockedAchievement?.Achieved == "true") {
-      const unlockTime = unlockedAchievement.TimeUnlocked;
+    } else if (unlockedAchievement?.["Achieved"] == "true") {
+      const unlockTime = unlockedAchievement["TimeUnlocked"];
+      if (unlockTime == null) continue;
+
+      const unlockTimeNumber = Number(unlockTime);
+      if (Number.isNaN(unlockTimeNumber)) continue;
 
       parsedUnlockedAchievements.push({
         name: achievement,
         unlockTime:
-          unlockTime.length === 7
-            ? unlockTime * 1000 * 1000
-            : unlockTime * 1000,
+          String(unlockTime).length === 7
+            ? unlockTimeNumber * 1000 * 1000
+            : unlockTimeNumber * 1000,
       });
     }
   }
@@ -171,20 +202,26 @@ const processOnlineFix = (unlockedAchievements: any): UnlockedAchievement[] => {
   return parsedUnlockedAchievements;
 };
 
-const processCreamAPI = (unlockedAchievements: any): UnlockedAchievement[] => {
+const processCreamAPI = (
+  unlockedAchievements: IniData
+): UnlockedAchievement[] => {
   const parsedUnlockedAchievements: UnlockedAchievement[] = [];
 
   for (const achievement of Object.keys(unlockedAchievements)) {
     const unlockedAchievement = unlockedAchievements[achievement];
 
-    if (unlockedAchievement?.achieved == "true") {
-      const unlockTime = unlockedAchievement.unlocktime;
+    if (unlockedAchievement?.["achieved"] == "true") {
+      const unlockTime = unlockedAchievement["unlocktime"];
+      if (unlockTime == null) continue;
+
+      const unlockTimeNumber = Number(unlockTime);
+      if (Number.isNaN(unlockTimeNumber)) continue;
       parsedUnlockedAchievements.push({
         name: achievement,
         unlockTime:
-          unlockTime.length === 7
-            ? unlockTime * 1000 * 1000
-            : unlockTime * 1000,
+          String(unlockTime).length === 7
+            ? unlockTimeNumber * 1000 * 1000
+            : unlockTimeNumber * 1000,
       });
     }
   }
@@ -192,17 +229,21 @@ const processCreamAPI = (unlockedAchievements: any): UnlockedAchievement[] => {
   return parsedUnlockedAchievements;
 };
 
-const processSkidrow = (unlockedAchievements: any): UnlockedAchievement[] => {
+const processSkidrow = (
+  unlockedAchievements: IniData
+): UnlockedAchievement[] => {
   const parsedUnlockedAchievements: UnlockedAchievement[] = [];
   const achievements = unlockedAchievements["Achievements"];
+  if (!achievements) return parsedUnlockedAchievements;
 
   for (const achievement of Object.keys(achievements)) {
-    const unlockedAchievement = achievements[achievement].split("@");
+    const unlockedAchievement = String(achievements[achievement]).split("@");
 
     if (unlockedAchievement[0] === "1") {
       parsedUnlockedAchievements.push({
         name: achievement,
-        unlockTime: unlockedAchievement[unlockedAchievement.length - 1] * 1000,
+        unlockTime:
+          Number(unlockedAchievement[unlockedAchievement.length - 1]) * 1000,
       });
     }
   }
@@ -210,14 +251,16 @@ const processSkidrow = (unlockedAchievements: any): UnlockedAchievement[] => {
   return parsedUnlockedAchievements;
 };
 
-const processGoldberg = (unlockedAchievements: any): UnlockedAchievement[] => {
+const processGoldberg = (
+  unlockedAchievements: GoldbergAchievements
+): UnlockedAchievement[] => {
   const newUnlockedAchievements: UnlockedAchievement[] = [];
 
   if (Array.isArray(unlockedAchievements)) {
     for (const achievement of unlockedAchievements) {
-      if (achievement?.earned) {
+      if (achievement?.earned && typeof achievement.earned_time === "number") {
         newUnlockedAchievements.push({
-          name: achievement.name,
+          name: achievement.name ?? "",
           unlockTime: achievement.earned_time * 1000,
         });
       }
@@ -229,7 +272,10 @@ const processGoldberg = (unlockedAchievements: any): UnlockedAchievement[] => {
   for (const achievement of Object.keys(unlockedAchievements)) {
     const unlockedAchievement = unlockedAchievements[achievement];
 
-    if (unlockedAchievement?.earned) {
+    if (
+      unlockedAchievement?.earned &&
+      typeof unlockedAchievement.earned_time === "number"
+    ) {
       newUnlockedAchievements.push({
         name: achievement,
         unlockTime: unlockedAchievement.earned_time * 1000,
@@ -240,7 +286,7 @@ const processGoldberg = (unlockedAchievements: any): UnlockedAchievement[] => {
 };
 
 const processSteamCacheAchievement = (
-  unlockedAchievements: any[]
+  unlockedAchievements: SteamCacheRecord[]
 ): UnlockedAchievement[] => {
   const newUnlockedAchievements: UnlockedAchievement[] = [];
 
@@ -254,13 +300,15 @@ const processSteamCacheAchievement = (
   }
 
   const unlockedAchievementsData =
-    unlockedAchievements[achievementIndex][1]["data"]["vecHighlight"];
+    unlockedAchievements[achievementIndex][1].data?.vecHighlight;
+
+  if (!unlockedAchievementsData) return [];
 
   for (const achievement of unlockedAchievementsData) {
     if (achievement.bAchieved) {
       newUnlockedAchievements.push({
-        name: achievement.strID,
-        unlockTime: achievement.rtUnlocked * 1000,
+        name: achievement.strID ?? "",
+        unlockTime: (achievement.rtUnlocked ?? 0) * 1000,
       });
     }
   }
@@ -268,11 +316,12 @@ const processSteamCacheAchievement = (
   return newUnlockedAchievements;
 };
 
-const process3DM = (unlockedAchievements: any): UnlockedAchievement[] => {
+const process3DM = (unlockedAchievements: IniData): UnlockedAchievement[] => {
   const newUnlockedAchievements: UnlockedAchievement[] = [];
 
   const achievements = unlockedAchievements["State"];
   const times = unlockedAchievements["Time"];
+  if (!achievements || !times) return newUnlockedAchievements;
 
   for (const achievement of Object.keys(achievements)) {
     if (achievements[achievement] == "0101") {
@@ -282,7 +331,7 @@ const process3DM = (unlockedAchievements: any): UnlockedAchievement[] => {
         name: achievement,
         unlockTime:
           new DataView(
-            new Uint8Array(Buffer.from(time.toString(), "hex")).buffer
+            new Uint8Array(Buffer.from(String(time), "hex")).buffer
           ).getUint32(0, true) * 1000,
       });
     }
@@ -291,16 +340,20 @@ const process3DM = (unlockedAchievements: any): UnlockedAchievement[] => {
   return newUnlockedAchievements;
 };
 
-const processDefault = (unlockedAchievements: any): UnlockedAchievement[] => {
+const processDefault = (
+  unlockedAchievements: IniData
+): UnlockedAchievement[] => {
   const newUnlockedAchievements: UnlockedAchievement[] = [];
 
   for (const achievement of Object.keys(unlockedAchievements)) {
     const unlockedAchievement = unlockedAchievements[achievement];
 
-    if (unlockedAchievement?.Achieved == "1") {
+    if (unlockedAchievement?.["Achieved"] == "1") {
+      const unlockTime = Number(unlockedAchievement["UnlockTime"]);
+      if (Number.isNaN(unlockTime)) continue;
       newUnlockedAchievements.push({
         name: achievement,
-        unlockTime: unlockedAchievement.UnlockTime * 1000,
+        unlockTime: unlockTime * 1000,
       });
     }
   }
@@ -308,7 +361,7 @@ const processDefault = (unlockedAchievements: any): UnlockedAchievement[] => {
   return newUnlockedAchievements;
 };
 
-const processRld = (unlockedAchievements: any): UnlockedAchievement[] => {
+const processRld = (unlockedAchievements: IniData): UnlockedAchievement[] => {
   const newUnlockedAchievements: UnlockedAchievement[] = [];
 
   for (const achievement of Object.keys(unlockedAchievements)) {
@@ -319,7 +372,7 @@ const processRld = (unlockedAchievements: any): UnlockedAchievement[] => {
     if (unlockedAchievement?.State) {
       const unlocked = new DataView(
         new Uint8Array(
-          Buffer.from(unlockedAchievement.State.toString(), "hex")
+          Buffer.from(String(unlockedAchievement.State), "hex")
         ).buffer
       ).getUint32(0, true);
 
@@ -329,7 +382,7 @@ const processRld = (unlockedAchievements: any): UnlockedAchievement[] => {
           unlockTime:
             new DataView(
               new Uint8Array(
-                Buffer.from(unlockedAchievement.Time.toString(), "hex")
+                Buffer.from(String(unlockedAchievement.Time), "hex")
               ).buffer
             ).getUint32(0, true) * 1000,
         });
@@ -340,7 +393,9 @@ const processRld = (unlockedAchievements: any): UnlockedAchievement[] => {
   return newUnlockedAchievements;
 };
 
-const processUserStats = (unlockedAchievements: any): UnlockedAchievement[] => {
+const processUserStats = (
+  unlockedAchievements: IniData
+): UnlockedAchievement[] => {
   const newUnlockedAchievements: UnlockedAchievement[] = [];
 
   const achievements = unlockedAchievements["ACHIEVEMENTS"];
@@ -348,7 +403,7 @@ const processUserStats = (unlockedAchievements: any): UnlockedAchievement[] => {
   if (!achievements) return [];
 
   for (const achievement of Object.keys(achievements)) {
-    const unlockedAchievement = achievements[achievement];
+    const unlockedAchievement = String(achievements[achievement]);
 
     const unlockTime = Number(
       unlockedAchievement.slice(1, -1).replace("unlocked = true, time = ", "")

@@ -90,10 +90,7 @@ export function SettingsContextProvider({
   }, [defaultTab]);
 
   useEffect(() => {
-    localStorage.setItem(
-      "kraken.settings.tab",
-      String(currentCategoryIndex)
-    );
+    localStorage.setItem("kraken.settings.tab", String(currentCategoryIndex));
   }, [currentCategoryIndex]);
 
   useEffect(() => {

@@ -6,7 +6,12 @@ import { ImportThemeModal } from "./modals/import-theme-modal";
 import { settingsContext } from "@renderer/context";
 import { useNavigate } from "react-router-dom";
 import { levelDBService } from "@renderer/services/leveldb.service";
-import { Button, CheckboxField, SelectField, TextField } from "@renderer/components";
+import {
+  Button,
+  CheckboxField,
+  SelectField,
+  TextField,
+} from "@renderer/components";
 import { useAppSelector } from "@renderer/hooks";
 import { useTranslation } from "react-i18next";
 
@@ -197,9 +202,7 @@ export function SettingsAppearance({
             htmlFor="settings-ui-scale"
           >
             <span>{t("ui_scale")}</span>
-            <span className="settings-appearance__scale-value">
-              {uiScale}%
-            </span>
+            <span className="settings-appearance__scale-value">{uiScale}%</span>
           </label>
           <input
             id="settings-ui-scale"
