@@ -1,6 +1,6 @@
 import { Downloader } from "@shared";
 
-export const VERSION_CODENAME = "Harbinger";
+export const VERSION_CODENAME = "Aqua";
 
 export const DOWNLOADER_NAME = {
   [Downloader.RealDebrid]: "Real-Debrid",
@@ -12,7 +12,7 @@ export const DOWNLOADER_NAME = {
   [Downloader.Buzzheavier]: "Buzzheavier",
   [Downloader.FuckingFast]: "FuckingFast",
   [Downloader.TorBox]: "TorBox",
-  [Downloader.Hydra]: "Nimbus",
+  [Downloader.Kraken]: "Nimbus",
   [Downloader.VikingFile]: "VikingFile",
   [Downloader.Rootz]: "Rootz",
 };

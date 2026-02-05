@@ -6,7 +6,7 @@ import "./show-game-launcher-window";
 import "./get-kraken-decky-plugin-info";
 import "./kraken-api-call";
 import "./install-common-redist";
-import "./install-kraken-decky-plugin";
+import "./install-hydra-decky-plugin";
 import "./is-main-window-open";
 import "./open-checkout";
 import "./open-external";

@@ -141,7 +141,7 @@ export function DownloadSettingsModal({
     };
 
     return allDownloaders
-      .filter((downloader) => downloader !== Downloader.Hydra) // Temporarily comment out Nimbus
+      .filter((downloader) => downloader !== Downloader.Kraken) // Temporarily comment out Nimbus
       .map((downloader) => {
         const status = downloaderMap.get(downloader);
         const canHandle = status !== undefined;
@@ -153,7 +153,7 @@ export function DownloadSettingsModal({
         } else if (downloader === Downloader.TorBox) {
           isConfigured = !!userPreferences?.torBoxApiToken;
         }
-        // } else if (downloader === Downloader.Hydra) {
+        // } else if (downloader === Downloader.Kraken) {
         //   isConfigured = isFeatureEnabled(Feature.Nimbus);
         // }
 
