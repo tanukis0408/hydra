@@ -10,6 +10,7 @@ import { LibraryGameCard } from "./library-game-card";
 import { LibraryGameCardLarge } from "./library-game-card-large";
 import { ViewOptions, ViewMode } from "./view-options";
 import { FilterOptions, FilterOption } from "./filter-options";
+import { LibraryStats } from "./library-stats";
 import "./library.scss";
 
 export default function Library() {
@@ -138,6 +139,7 @@ export default function Library() {
     <section className="library__content">
       {hasGames && (
         <div className="library__page-header">
+          <LibraryStats library={library} />
           <div className="library__controls-row">
             <div className="library__controls-left">
               <FilterOptions
