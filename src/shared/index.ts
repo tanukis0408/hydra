@@ -30,7 +30,7 @@ export class UserNotLoggedInError extends Error {
 
 export class SubscriptionRequiredError extends Error {
   constructor() {
-    super("user does not have hydra cloud subscription");
+    super("user does not have kraken cloud subscription");
     this.name = "SubscriptionRequiredError";
   }
 }

@@ -72,7 +72,7 @@
     "download_now": "Сцягнуць зараз"
   },
   "activation": {
-    "title": "Актываваць Hydra",
+    "title": "Актываваць Kraken",
     "installation_id": "ID усталёўкі:",
     "enter_activation_code": "Увядзіце ваш код актывацыі",
     "message": "Калі вы ня ведаеце, дзе яго атрымаць, то не мусіць гэтага рабіць.",
@@ -120,7 +120,7 @@
     "repack_count_other": "{{count}} рэпакаў дададзена"
   },
   "system_tray": {
-    "open": "Адкрыць Hydra",
+    "open": "Адкрыць Kraken",
     "quit": "Выйсьці"
   },
   "game_card": {
