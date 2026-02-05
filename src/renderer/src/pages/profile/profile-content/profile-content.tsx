@@ -15,6 +15,7 @@ import type { GameShop } from "@types";
 import { LockedProfile } from "./locked-profile";
 import { ReportProfile } from "../report-profile/report-profile";
 import { BadgesBox } from "./badges-box";
+import { KrakenBadgesBox } from "./kraken-badges-box";
 import { FriendsBox, FriendsBoxAddButton } from "./friends-box";
 import { RecentGamesBox } from "./recent-games-box";
 import { UserStatsBox } from "./user-stats-box";
@@ -432,6 +433,16 @@ export function ProfileContent() {
 
         {shouldShowRightContent && (
           <div className="profile-content__right-content">
+            {userStats && (
+              <ProfileSection
+                title={t("kraken_badges_title", {
+                  defaultValue: "Kraken Badges",
+                })}
+                defaultOpen={true}
+              >
+                <KrakenBadgesBox />
+              </ProfileSection>
+            )}
             {userStats && (
               <ProfileSection title={t("stats")} defaultOpen={true}>
                 <UserStatsBox />
