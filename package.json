@@ -1,12 +1,12 @@
 {
   "name": "krakenlauncher",
   "version": "1.0.0",
-  "description": "Kraken Launcher — Aqua",
+  "description": "Kraken Launcher - Aqua",
   "main": "./out/main/index.js",
   "author": "Los Broxas",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hydralauncher/hydra.git"
+    "url": "https://github.com/YOUR_GITHUB_USERNAME/kraken.git"
   },
   "type": "module",
   "engines": {
