@@ -28,6 +28,10 @@ const binaryNameByPlatform: Partial<Record<NodeJS.Platform, string>> = {
   win32: "hydra-python-rpc.exe",
 };
 
+const binaryFolderCandidates = ["hydra-python-rpc", "kraken-python-rpc"];
+const pythonExecutableCandidates =
+  process.platform === "win32" ? ["python"] : ["python3", "python"];
+
 const RPC_PORT_RANGE_START = 8080;
 const RPC_PORT_RANGE_END = 9000;
 const DEFAULT_RPC_PORT = 8084;
@@ -90,6 +94,42 @@ export class PythonRPC {
     throw new Error("RPC health check timed out");
   }
 
+  private static resolveBinaryPath(binaryName: string): string | null {
+    for (const folder of binaryFolderCandidates) {
+      const candidate = path.join(process.resourcesPath, folder, binaryName);
+      if (fs.existsSync(candidate)) return candidate;
+    }
+
+    return null;
+  }
+
+  private static async spawnPythonFromResources(commonArgs: string[]) {
+    const scriptPath = path.join(process.resourcesPath, "python_rpc", "main.py");
+
+    if (!fs.existsSync(scriptPath)) {
+      return null;
+    }
+
+    for (const pythonCommand of pythonExecutableCandidates) {
+      const childProcess = cp.spawn(pythonCommand, [scriptPath, ...commonArgs], {
+        windowsHide: true,
+        stdio: ["inherit", "inherit"],
+      });
+
+      const spawned = await new Promise<boolean>((resolve) => {
+        childProcess.once("spawn", () => resolve(true));
+        childProcess.once("error", () => resolve(false));
+      });
+
+      if (spawned) {
+        this.logStderr(childProcess.stderr);
+        return childProcess;
+      }
+    }
+
+    return null;
+  }
+
   public static async spawn(
     initialDownload?: GamePayload,
     initialSeeding?: GamePayload[]
@@ -116,13 +156,20 @@ export class PythonRPC {
 
     if (app.isPackaged) {
       const binaryName = binaryNameByPlatform[process.platform]!;
-      const binaryPath = path.join(
-        process.resourcesPath,
-        "hydra-python-rpc",
-        binaryName
-      );
+      const binaryPath = this.resolveBinaryPath(binaryName);
 
-      if (!fs.existsSync(binaryPath)) {
+      if (!binaryPath) {
+        const fallbackProcess = await this.spawnPythonFromResources(commonArgs);
+        if (fallbackProcess) {
+          this.pythonProcess = fallbackProcess;
+          this.rpc.defaults.headers.common["x-hydra-rpc-password"] = rpcPassword;
+          await this.waitForHealthCheck();
+          pythonRpcLogger.log(
+            `Python RPC started (script fallback) on port ${port}`
+          );
+          return;
+        }
+
         dialog.showErrorBox(
           "Fatal",
           "Kraken Python Instance binary not found. Please check if it has been removed by Windows Defender."
