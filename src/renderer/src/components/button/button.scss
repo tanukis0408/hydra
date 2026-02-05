@@ -1,5 +1,4 @@
 @use "../../scss/g.scss" as g;
-@use "sass:color" as color;
 @use "../../scss/material-tokens.scss" as m;
 
 .button {
@@ -46,22 +45,30 @@
   // Filled Button (Primary)
   // ===========================================
   &--primary {
-    background-color: g.$primary;
-    color: g.$on-primary;
+    background-color: var(--kraken-primary);
+    color: var(--kraken-on-primary);
     box-shadow: m.$shadow-1;
 
     &:hover:not(:disabled) {
       box-shadow: m.$shadow-2;
-      background-color: color.adjust(g.$primary, $lightness: 3%);
+      background-color: color-mix(
+        in srgb,
+        var(--kraken-primary) 92%,
+        white
+      );
     }
 
     &:active:not(:disabled) {
       box-shadow: m.$shadow-1;
-      background-color: color.adjust(g.$primary, $lightness: -5%);
+      background-color: color-mix(
+        in srgb,
+        var(--kraken-primary) 88%,
+        black
+      );
     }
 
     &:focus-visible {
-      outline: 2px solid g.$primary;
+      outline: 2px solid var(--kraken-primary);
       outline-offset: 2px;
     }
   }
@@ -70,22 +77,30 @@
   // Tonal Button (New in Material Expressive 3)
   // ===========================================
   &--tonal {
-    background-color: g.$secondary-container;
-    color: g.$on-secondary-container;
+    background-color: var(--kraken-secondary-container);
+    color: var(--kraken-on-secondary-container);
     box-shadow: m.$shadow-1;
 
     &:hover:not(:disabled) {
       box-shadow: g.$shadow-2;
-      background-color: rgba(g.$on-secondary-container, 0.08);
+      background-color: color-mix(
+        in srgb,
+        var(--kraken-secondary-container) 85%,
+        white
+      );
     }
 
     &:active:not(:disabled) {
       box-shadow: g.$shadow-1;
-      background-color: rgba(g.$on-secondary-container, 0.12);
+      background-color: color-mix(
+        in srgb,
+        var(--kraken-secondary-container) 80%,
+        black
+      );
     }
 
     &:focus-visible {
-      outline: 2px solid g.$secondary-container;
+      outline: 2px solid var(--kraken-secondary);
       outline-offset: 2px;
     }
   }
@@ -95,19 +110,27 @@
   // ===========================================
   &--outline {
     background-color: transparent;
-    color: g.$primary;
-    border: 1px solid g.$outline;
+    color: var(--kraken-primary);
+    border: 1px solid var(--md-sys-color-outline);
 
     &:hover:not(:disabled) {
-      background-color: rgba(g.$primary, 0.08);
+      background-color: color-mix(
+        in srgb,
+        var(--kraken-primary) 12%,
+        transparent
+      );
     }
 
     &:active:not(:disabled) {
-      background-color: rgba(g.$primary, 0.12);
+      background-color: color-mix(
+        in srgb,
+        var(--kraken-primary) 18%,
+        transparent
+      );
     }
 
     &:focus-visible {
-      outline: 2px solid g.$primary;
+      outline: 2px solid var(--kraken-primary);
       outline-offset: 2px;
     }
   }
@@ -117,19 +140,27 @@
   // ===========================================
   &--text {
     background-color: transparent;
-    color: g.$primary;
+    color: var(--kraken-primary);
     box-shadow: none;
 
     &:hover:not(:disabled) {
-      background-color: rgba(g.$primary, 0.08);
+      background-color: color-mix(
+        in srgb,
+        var(--kraken-primary) 12%,
+        transparent
+      );
     }
 
     &:active:not(:disabled) {
-      background-color: rgba(g.$primary, 0.12);
+      background-color: color-mix(
+        in srgb,
+        var(--kraken-primary) 18%,
+        transparent
+      );
     }
 
     &:focus-visible {
-      outline: 2px solid g.$primary;
+      outline: 2px solid var(--kraken-primary);
       outline-offset: 2px;
     }
   }
@@ -138,13 +169,13 @@
   // Dark Button
   // ===========================================
   &--dark {
-    background-color: g.$surface;
-    color: g.$on-surface;
+    background-color: var(--md-sys-color-surface-container);
+    color: var(--md-sys-color-on-surface);
     box-shadow: m.$shadow-1;
-    border: 1px solid rgba(g.$outline, 0.12);
+    border: 1px solid var(--md-sys-color-outline-variant);
 
     &:hover:not(:disabled) {
-      background-color: g.$surface-container-high;
+      background-color: var(--md-sys-color-surface-container-high);
       box-shadow: m.$shadow-2;
     }
 
@@ -153,7 +184,7 @@
     }
 
     &:focus-visible {
-      outline: 2px solid g.$outline;
+      outline: 2px solid var(--md-sys-color-outline);
       outline-offset: 2px;
     }
   }
@@ -162,21 +193,30 @@
   // Danger Button
   // ===========================================
   &--danger {
-    background-color: g.$error;
-    color: g.$on-error;
+    background-color: var(--md-sys-color-error);
+    color: var(--md-sys-color-on-error);
     box-shadow: g.$shadow-1;
 
     &:hover:not(:disabled) {
       box-shadow: g.$shadow-2;
-      background-color: color.adjust(g.$error, $lightness: 3%);
+      background-color: color-mix(
+        in srgb,
+        var(--md-sys-color-error) 90%,
+        white
+      );
     }
 
     &:active:not(:disabled) {
       box-shadow: g.$shadow-1;
+      background-color: color-mix(
+        in srgb,
+        var(--md-sys-color-error) 86%,
+        black
+      );
     }
 
     &:focus-visible {
-      outline: 2px solid g.$error;
+      outline: 2px solid var(--md-sys-color-error);
       outline-offset: 2px;
     }
   }

@@ -27,6 +27,7 @@
 ## Status
 
 Kraken is under active development. Expect breaking changes between versions.
+Current release: 1.0.0 Aqua (release candidate).
 
 ## Build from source
 

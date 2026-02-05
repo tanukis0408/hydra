@@ -5,7 +5,9 @@
   flex-direction: column;
   gap: 16px;
 
-  &__material {
+  &__material,
+  &__theme-mode,
+  &__ui-preferences {
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -46,6 +48,31 @@
     gap: 8px;
   }
 
+  &__scale {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  &__scale-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 500;
+    color: g.$on-surface;
+  }
+
+  &__scale-value {
+    font-size: 12px;
+    color: g.$on-surface-variant;
+  }
+
+  &__scale-slider {
+    width: 100%;
+    accent-color: var(--kraken-primary);
+  }
+
   &__material-swatch {
     width: 22px;
     height: 22px;
@@ -75,8 +102,12 @@
       min-height: 160px;
       display: flex;
       flex-direction: column;
-      background-color: rgba(g.$border-color, 0.01);
-      border: 1px solid g.$border-color;
+      background-color: color-mix(
+        in srgb,
+        var(--md-sys-color-outline-variant) 4%,
+        transparent
+      );
+      border: 1px solid var(--md-sys-color-outline-variant);
       border-radius: 12px;
       gap: 4px;
       transition: background-color 0.2s ease;
@@ -84,7 +115,11 @@
       position: relative;
 
       &--active {
-        background-color: rgba(g.$border-color, 0.04);
+        background-color: color-mix(
+          in srgb,
+          var(--md-sys-color-outline-variant) 10%,
+          transparent
+        );
       }
 
       &__header {
@@ -97,7 +132,7 @@
         &__title {
           font-size: 18px;
           font-weight: 600;
-          color: g.$muted-color;
+          color: var(--md-sys-color-on-surface-variant);
           text-transform: capitalize;
         }
 
@@ -110,23 +145,27 @@
             width: 16px;
             height: 16px;
             border-radius: 4px;
-            border: 1px solid g.$border-color;
+            border: 1px solid var(--md-sys-color-outline-variant);
           }
         }
       }
 
       &__author {
         font-size: 12px;
-        color: g.$body-color;
+        color: var(--md-sys-color-on-surface);
         font-weight: 400;
 
         &__name {
           font-weight: 600;
-          color: rgba(g.$muted-color, 0.8);
+          color: color-mix(
+            in srgb,
+            var(--md-sys-color-on-surface-variant) 80%,
+            transparent
+          );
           margin-left: 4px;
 
           &:hover {
-            color: g.$muted-color;
+            color: var(--md-sys-color-on-surface-variant);
             cursor: pointer;
             text-decoration: underline;
             text-underline-offset: 2px;
@@ -171,22 +210,30 @@
     justify-content: center;
     align-items: center;
     padding: 40px 24px;
-    background-color: rgba(g.$border-color, 0.01);
+    background-color: color-mix(
+      in srgb,
+      var(--md-sys-color-outline-variant) 4%,
+      transparent
+    );
     cursor: pointer;
-    border: 1px dashed g.$border-color;
+    border: 1px dashed var(--md-sys-color-outline-variant);
     border-radius: 12px;
     gap: 12px;
     transition: background-color 0.2s ease;
 
     &:hover {
-      background-color: rgba(g.$border-color, 0.03);
+      background-color: color-mix(
+        in srgb,
+        var(--md-sys-color-outline-variant) 8%,
+        transparent
+      );
     }
 
     &__icon {
       svg {
         width: 32px;
         height: 32px;
-        color: g.$body-color;
+        color: var(--md-sys-color-on-surface);
         opacity: 0.7;
       }
     }
@@ -197,7 +244,11 @@
       font-size: 14.5px;
       line-height: 1.6;
       font-weight: 400;
-      color: rgba(g.$body-color, 0.85);
+      color: color-mix(
+        in srgb,
+        var(--md-sys-color-on-surface) 85%,
+        transparent
+      );
     }
   }
 }

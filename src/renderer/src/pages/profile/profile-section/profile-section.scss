@@ -3,7 +3,7 @@
 .profile-section {
   background-color: g.$background-color;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(var(--md-sys-color-on-surface-rgb), 0.05);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   overflow: hidden;
 
@@ -15,7 +15,7 @@
     padding-right: calc(g.$spacing-unit * 2);
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(var(--md-sys-color-on-surface-rgb), 0.1);
     }
   }
 
@@ -39,8 +39,8 @@
   }
 
   &__count {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(var(--md-sys-color-on-surface-rgb), 0.1);
+    color: rgba(var(--md-sys-color-on-surface-rgb), 0.7);
     padding: 4px 8px;
     border-radius: 6px;
     font-size: 12px;

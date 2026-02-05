@@ -31,7 +31,7 @@
 
   &__cloud-sync-kraken-cloud {
     background: linear-gradient(270deg, #16b195 50%, #3e62c0 100%);
-    color: #fff;
+    color: var(--md-sys-color-on-surface);
     padding: 0 g.$spacing-unit;
     border-radius: 4px;
     font-size: g.$small-font-size;

@@ -3,16 +3,27 @@ import { useTheme } from "@renderer/contexts/theme.context";
 import "./theme-toggle.scss";
 
 export const ThemeToggle: React.FC = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, themeMode, toggleThemeMode } = useTheme();
+
+  const label =
+    themeMode === "system"
+      ? "Auto"
+      : theme === "light"
+      ? "Light"
+      : "Dark";
+
+  const nextLabel =
+    themeMode === "light" ? "Dark" : themeMode === "dark" ? "Auto" : "Light";
 
   return (
     <button
       type="button"
       className="theme-toggle"
-      aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
-      onClick={toggleTheme}
+      aria-label={`Switch theme mode to ${nextLabel}`}
+      title={`Theme mode: ${label}`}
+      onClick={toggleThemeMode}
     >
-      {theme === "light" ? "🌞" : "🌙"}
+      {label}
     </button>
   );
 };

@@ -15,6 +15,10 @@
   --kraken-on-tertiary-container: #{g.$on-tertiary-container};
   --kraken-icon-color: var(--kraken-primary);
   --kraken-icon-muted: var(--md-sys-color-on-surface-variant);
+  --kraken-on-dark: #ffffff;
+  --kraken-on-dark-rgb: 255, 255, 255;
+  --kraken-on-dark-muted: rgba(255, 255, 255, 0.7);
+  color-scheme: dark;
 }
 
 [data-theme="light"] {
@@ -30,6 +34,7 @@
   --kraken-on-tertiary: #{g.$light-on-tertiary};
   --kraken-tertiary-container: #{g.$light-tertiary-container};
   --kraken-on-tertiary-container: #{g.$light-on-tertiary-container};
+  color-scheme: light;
 }
 
 [data-material-style="material-you"] {
@@ -106,24 +111,33 @@
   box-sizing: border-box;
 }
 
+[data-reduce-motion="true"] *,
+[data-reduce-motion="true"] *::before,
+[data-reduce-motion="true"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
 ::-webkit-scrollbar {
   width: 9px;
-  background-color: g.$background-color;
+  background-color: var(--md-sys-color-background);
 }
 
 ::-webkit-scrollbar-track {
-  background-color: g.$surface-variant;
+  background-color: var(--md-sys-color-surface-variant);
   border-radius: g.$border-radius-full;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: g.$outline-variant;
+  background-color: var(--md-sys-color-outline-variant);
   border-radius: g.$border-radius-full;
-  border: 2px solid g.$surface-variant;
+  border: 2px solid var(--md-sys-color-surface-variant);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: g.$outline;
+  background-color: var(--md-sys-color-outline);
 }
 
 html,
@@ -138,9 +152,9 @@ body {
   user-select: none;
   font-family: g.$font-family;
   font-size: g.$body-font-size;
-  color: g.$on-surface;
+  color: var(--md-sys-color-on-surface);
   margin: 0;
-  background-color: g.$background-color;
+  background-color: var(--md-sys-color-background);
   letter-spacing: g.$letter-spacing-tracking-normal;
 }
 
@@ -222,13 +236,13 @@ img {
 progress[value] {
   -webkit-appearance: none;
   appearance: none;
-  background-color: g.$surface-variant;
+  background-color: var(--md-sys-color-surface-variant);
   border-radius: g.$border-radius-full;
   overflow: hidden;
 }
 
 progress[value]::-webkit-progress-bar {
-  background-color: g.$surface-variant;
+  background-color: var(--md-sys-color-surface-variant);
   border-radius: g.$border-radius-full;
 }
 
@@ -257,7 +271,7 @@ progress[value]::-webkit-progress-value {
     flex-direction: column;
     position: relative;
     height: 100%;
-    background: g.$background-color;
+    background: var(--md-sys-color-background);
   }
 }
 
@@ -266,16 +280,20 @@ progress[value]::-webkit-progress-value {
   width: 100%;
   height: 35px;
   min-height: 35px;
-  background-color: g.$surface;
+  background-color: var(--md-sys-color-surface);
   align-items: center;
   padding: 0 calc(g.$spacing-unit * 2);
   -webkit-app-region: drag;
   z-index: 4;
-  border-bottom: 1px solid g.$border-color;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
   box-shadow: g.$shadow-1;
 
   &__cloud-text {
-    background: linear-gradient(270deg, g.$primary 50%, g.$tertiary 100%);
+    background: linear-gradient(
+      270deg,
+      var(--kraken-primary) 50%,
+      var(--kraken-tertiary) 100%
+    );
     background-clip: text;
     color: transparent;
     font-weight: 600;

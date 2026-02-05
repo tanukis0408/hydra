@@ -18,22 +18,25 @@
 
     // Default to outlined Material You input style
     @include mixins.input-outlined;
+    background-color: var(--md-sys-color-surface-container);
+    border-radius: g.$border-radius-md;
 
     &--primary {
       // outlined is default, keep background transparent to blend with surface
     }
 
     &--dark {
-      background-color: g.$background-color;
+      background-color: var(--md-sys-color-surface-container);
     }
 
     &--has-error {
-      border-color: g.$danger-color;
+      border-color: var(--md-sys-color-error);
     }
 
     &--focused {
-      border-color: g.$primary;
-      box-shadow: inset 0 0 0 1px rgba(g.$primary, 0.3);
+      border-color: var(--kraken-primary);
+      box-shadow: inset 0 0 0 1px
+        color-mix(in srgb, var(--kraken-primary) 35%, transparent);
     }
   }
 
@@ -43,11 +46,15 @@
     width: 100%;
     height: 100%;
     outline: none;
-    color: g.$on-surface;
+    color: var(--md-sys-color-on-surface);
     cursor: default;
     font-family: inherit;
     text-overflow: ellipsis;
     padding: 0;
+
+    &::placeholder {
+      color: var(--md-sys-color-on-surface-variant);
+    }
 
     &:focus {
       cursor: text;
@@ -60,8 +67,12 @@
 
   &__toggle-password-button {
     cursor: pointer;
-    color: g.$on-surface-variant;
+    color: var(--md-sys-color-on-surface-variant);
     padding: g.$spacing-unit;
+
+    &:hover {
+      color: var(--md-sys-color-on-surface);
+    }
   }
 
   &__text-field-wrapper {
@@ -72,6 +83,6 @@
   }
 
   &__error-label {
-    color: g.$error-color;
+    color: var(--md-sys-color-error);
   }
 }

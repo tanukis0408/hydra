@@ -1,14 +1,22 @@
 .theme-toggle {
-  background: transparent;
-  border: none;
+  background: color-mix(
+    in srgb,
+    var(--md-sys-color-surface) 80%,
+    var(--md-sys-color-outline-variant)
+  );
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: 999px;
   cursor: pointer;
-  font-size: 16px;
-  padding: 6px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  color: var(--md-sys-color-on-surface);
 }
 
 .theme-toggle:focus {
-  outline: 2px solid rgba(0,0,0,0.12);
+  outline: 2px solid var(--md-sys-color-outline);
+  outline-offset: 2px;
 }

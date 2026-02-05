@@ -59,7 +59,10 @@ export function SettingsContextProvider({
     authorId: null,
     authorName: null,
   });
-  const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
+  const [currentCategoryIndex, setCurrentCategoryIndex] = useState(() => {
+    const stored = Number(localStorage.getItem("kraken.settings.tab"));
+    return Number.isFinite(stored) ? stored : 0;
+  });
   const [blockedUsers, setBlockedUsers] = useState<UserBlocks["blocks"]>([]);
 
   const [searchParams] = useSearchParams();
@@ -85,6 +88,13 @@ export function SettingsContextProvider({
       if (!Number.isNaN(idx)) setCurrentCategoryIndex(idx);
     }
   }, [defaultTab]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "kraken.settings.tab",
+      String(currentCategoryIndex)
+    );
+  }, [currentCategoryIndex]);
 
   useEffect(() => {
     if (appearance.theme) setCurrentCategoryIndex(3);

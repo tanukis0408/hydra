@@ -29,7 +29,7 @@
     padding: g.$spacing-unit;
     border: 1px solid g.$border-color;
     border-radius: 4px;
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: rgba(var(--md-sys-color-on-surface-rgb), 0.05);
   }
 
   &__preview-image {

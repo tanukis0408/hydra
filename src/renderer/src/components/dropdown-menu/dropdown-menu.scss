@@ -2,9 +2,9 @@
 
 .dropdown-menu {
   &__content {
-    background-color: g.$dark-background-color;
-    border: 1px solid g.$border-color;
-    border-radius: 6px;
+    background-color: var(--md-sys-color-surface);
+    border: 1px solid var(--md-sys-color-outline-variant);
+    border-radius: g.$border-radius-md;
     min-width: 200px;
     flex-direction: column;
     align-items: center;
@@ -21,13 +21,13 @@
     padding: 4px 12px;
     font-size: 14px;
     font-weight: 500;
-    color: g.$muted-color;
+    color: var(--md-sys-color-on-surface-variant);
   }
 
   &__separator {
     width: 100%;
     height: 1px;
-    background-color: g.$border-color;
+    background-color: var(--md-sys-color-outline-variant);
   }
 
   &__item {
@@ -42,6 +42,7 @@
     cursor: pointer;
     transition: background-color 0.1s ease-in-out;
     font-size: 14px;
+    color: var(--md-sys-color-on-surface);
   }
 
   &__item--disabled {
@@ -50,12 +51,20 @@
   }
 
   &:not(&__item--disabled) &__item:hover {
-    background-color: g.$background-color;
-    color: g.$muted-color;
+    background-color: color-mix(
+      in srgb,
+      var(--kraken-primary) 10%,
+      transparent
+    );
+    color: var(--md-sys-color-on-surface);
   }
 
   &__item:focus {
-    background-color: g.$background-color;
+    background-color: color-mix(
+      in srgb,
+      var(--kraken-primary) 10%,
+      transparent
+    );
     outline: none;
   }
 

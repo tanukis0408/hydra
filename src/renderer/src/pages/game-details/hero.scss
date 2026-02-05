@@ -69,7 +69,7 @@ $hero-height: 350px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: g.$muted-color;
+    color: var(--kraken-on-dark-muted);
     border: solid 1px g.$border-color;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.8);
     animation: slide-in 0.3s cubic-bezier(0.33, 1, 0.68, 1);
@@ -80,7 +80,7 @@ $hero-height: 350px;
 
     &:hover {
       background-color: rgba(0, 0, 0, 0.5);
-      color: g.$body-color;
+      color: var(--kraken-on-dark);
     }
   }
 
@@ -164,7 +164,7 @@ $hero-height: 350px;
     align-self: flex-end;
     font-size: 1.8rem;
     font-weight: bold;
-    color: #ffffff;
+    color: var(--kraken-on-dark);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     text-align: left;
     line-height: 1.2;
@@ -195,7 +195,7 @@ $hero-height: 350px;
     align-items: center;
     justify-content: center;
     gap: g.$spacing-unit;
-    color: g.$muted-color;
+    color: var(--kraken-on-dark-muted);
     font-size: g.$small-font-size;
     border: solid 1px g.$border-color;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.8);
@@ -212,6 +212,7 @@ $hero-height: 350px;
 
     &:hover {
       background-color: rgba(0, 0, 0, 0.5);
+      color: var(--kraken-on-dark);
     }
   }
 
@@ -236,7 +237,7 @@ $hero-height: 350px;
     right: calc(g.$spacing-unit * 2);
     z-index: 100;
     padding: calc(g.$spacing-unit * 1.5) calc(g.$spacing-unit * 2);
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(var(--md-sys-color-on-surface-rgb), 0.08);
     backdrop-filter: blur(20px);
     border-radius: 8px;
     transition: all ease 0.2s;
@@ -250,7 +251,7 @@ $hero-height: 350px;
     border: solid 1px g.$border-color;
     box-shadow:
       0px 0px 10px 0px rgba(0, 0, 0, 0.8),
-      0px 2px 8px 0px rgba(255, 255, 255, 0.1);
+      0px 2px 8px 0px rgba(var(--md-sys-color-on-surface-rgb), 0.1);
     animation: slide-in 0.3s cubic-bezier(0.33, 1, 0.68, 1);
     overflow: visible;
 
@@ -260,7 +261,7 @@ $hero-height: 350px;
     }
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.12);
+      background-color: rgba(var(--md-sys-color-on-surface-rgb), 0.12);
       color: g.$body-color;
     }
   }

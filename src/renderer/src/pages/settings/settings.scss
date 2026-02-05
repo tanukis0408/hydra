@@ -8,13 +8,13 @@
   }
 
   &__content {
-    background-color: g.$background-color;
+    background-color: var(--md-sys-color-surface);
     width: 100%;
     height: 100%;
     padding: calc(g.$spacing-unit * 3);
-    border: solid 1px g.$border-color;
-    box-shadow: 0px 0px 15px 0px #000000;
-    border-radius: 8px;
+    border: solid 1px var(--md-sys-color-outline-variant);
+    box-shadow: g.$shadow-2;
+    border-radius: g.$border-radius-lg;
     gap: calc(g.$spacing-unit * 2);
     display: flex;
     flex-direction: column;

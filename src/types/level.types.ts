@@ -103,6 +103,7 @@ export type AchievementCustomNotificationPosition =
   | "bottom-right";
 
 export type ThemeStyle = "expressive" | "material-you";
+export type ThemeMode = "light" | "dark" | "system";
 
 export interface UserPreferences {
   downloadsPath?: string | null;
@@ -136,6 +137,9 @@ export interface UserPreferences {
   createStartMenuShortcut?: boolean;
   themeStyle?: ThemeStyle;
   materialYouWallpaperPath?: string | null;
+  themeMode?: ThemeMode;
+  uiScale?: number;
+  reduceMotion?: boolean;
 }
 
 export interface ScreenState {

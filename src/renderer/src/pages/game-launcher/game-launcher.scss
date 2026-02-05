@@ -199,7 +199,7 @@
     align-items: center;
     gap: calc(g.$spacing-unit / 2);
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(var(--md-sys-color-on-surface-rgb), 0.5);
   }
 
   &__button {

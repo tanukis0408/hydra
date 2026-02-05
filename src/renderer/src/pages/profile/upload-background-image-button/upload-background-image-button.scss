@@ -15,7 +15,7 @@
   &__menu {
     background-color: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(var(--md-sys-color-on-surface-rgb), 0.08);
     border-radius: 6px;
     min-width: 180px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
@@ -48,7 +48,7 @@
     text-align: left;
 
     &:hover:not(:disabled) {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(var(--md-sys-color-on-surface-rgb), 0.1);
     }
 
     &:disabled {
@@ -57,7 +57,7 @@
     }
 
     &:focus {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(var(--md-sys-color-on-surface-rgb), 0.1);
       outline: none;
     }
   }

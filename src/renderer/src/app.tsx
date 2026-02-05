@@ -177,6 +177,42 @@ function MaterialStyleSync() {
   return null;
 }
 
+function UiPreferencesSync() {
+  const userPreferences = useAppSelector(
+    (state) => state.userPreferences.value
+  );
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const prefersReduced =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const shouldReduce = Boolean(userPreferences?.reduceMotion) || prefersReduced;
+
+    if (shouldReduce) {
+      root.setAttribute("data-reduce-motion", "true");
+    } else {
+      root.removeAttribute("data-reduce-motion");
+    }
+
+    const rawScale = userPreferences?.uiScale ?? 1;
+    const scale = Math.min(Math.max(rawScale, 0.8), 1.25);
+
+    root.style.setProperty("--kraken-ui-scale", String(scale));
+    if (document.body) {
+      document.body.style.zoom = String(scale);
+    }
+
+    return () => {
+      if (document.body) {
+        document.body.style.zoom = "";
+      }
+    };
+  }, [userPreferences?.reduceMotion, userPreferences?.uiScale]);
+
+  return null;
+}
+
 export function App() {
   const contentRef = useRef<HTMLDivElement>(null);
   const { updateLibrary, library } = useLibrary();
@@ -441,6 +477,7 @@ export function App() {
     <ThemeProvider>
       <>
         <MaterialStyleSync />
+        <UiPreferencesSync />
         {window.electron.platform === "win32" && (
           <div className="title-bar">
             <h4>

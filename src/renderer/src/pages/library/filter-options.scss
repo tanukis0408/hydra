@@ -14,7 +14,7 @@
   &__tab {
     background: none;
     border: none;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(var(--md-sys-color-on-surface-rgb), 0.6);
     padding: calc(g.$spacing-unit) calc(g.$spacing-unit * 2);
     cursor: pointer;
     font-size: 14px;
@@ -36,11 +36,11 @@
     min-width: 18px;
     height: 18px;
     padding: 0 6px;
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: rgba(var(--md-sys-color-on-surface-rgb), 0.15);
     border-radius: 9px;
     font-size: 11px;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(var(--md-sys-color-on-surface-rgb), 0.9);
     line-height: 1;
   }
 

@@ -1,12 +1,12 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import "./settings-appearance.scss";
 import { ThemeActions, ThemeCard, ThemePlaceholder } from "./index";
-import type { Theme, ThemeStyle } from "@types";
+import type { Theme, ThemeMode, ThemeStyle } from "@types";
 import { ImportThemeModal } from "./modals/import-theme-modal";
 import { settingsContext } from "@renderer/context";
 import { useNavigate } from "react-router-dom";
 import { levelDBService } from "@renderer/services/leveldb.service";
-import { Button, SelectField, TextField } from "@renderer/components";
+import { Button, CheckboxField, SelectField, TextField } from "@renderer/components";
 import { useAppSelector } from "@renderer/hooks";
 import { useTranslation } from "react-i18next";
 
@@ -39,6 +39,9 @@ export function SettingsAppearance({
   );
 
   const [themeStyle, setThemeStyle] = useState<ThemeStyle>("expressive");
+  const [themeMode, setThemeMode] = useState<ThemeMode>("system");
+  const [uiScale, setUiScale] = useState(100);
+  const [reduceMotion, setReduceMotion] = useState(false);
   const [materialWallpaperPath, setMaterialWallpaperPath] = useState("");
 
   const loadThemes = useCallback(async () => {
@@ -54,6 +57,9 @@ export function SettingsAppearance({
     if (!userPreferences) return;
 
     setThemeStyle(userPreferences.themeStyle ?? "expressive");
+    setThemeMode(userPreferences.themeMode ?? "system");
+    setUiScale(Math.round((userPreferences.uiScale ?? 1) * 100));
+    setReduceMotion(userPreferences.reduceMotion ?? false);
     setMaterialWallpaperPath(userPreferences.materialYouWallpaperPath ?? "");
   }, [userPreferences]);
 
@@ -98,6 +104,29 @@ export function SettingsAppearance({
     loadThemes();
   }, [loadThemes]);
 
+  const handleThemeModeChange = async (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const value = event.target.value as ThemeMode;
+    setThemeMode(value);
+    await updateUserPreferences({ themeMode: value });
+  };
+
+  const handleUiScaleChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = Number(event.target.value);
+    if (Number.isNaN(value)) return;
+    setUiScale(value);
+    await updateUserPreferences({ uiScale: value / 100 });
+  };
+
+  const handleReduceMotionToggle = async () => {
+    const next = !reduceMotion;
+    setReduceMotion(next);
+    await updateUserPreferences({ reduceMotion: next });
+  };
+
   const handleThemeStyleChange = async (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -131,6 +160,69 @@ export function SettingsAppearance({
 
   return (
     <div className="settings-appearance">
+      <div className="settings-appearance__theme-mode">
+        <div className="settings-appearance__material-header">
+          <h3>{t("theme_mode")}</h3>
+          <p className="settings-appearance__material-hint">
+            {t("theme_mode_description")}
+          </p>
+        </div>
+
+        <SelectField
+          value={themeMode}
+          onChange={handleThemeModeChange}
+          options={[
+            {
+              key: "system",
+              value: "system",
+              label: t("theme_mode_system"),
+            },
+            { key: "light", value: "light", label: t("theme_mode_light") },
+            { key: "dark", value: "dark", label: t("theme_mode_dark") },
+          ]}
+        />
+      </div>
+
+      <div className="settings-appearance__ui-preferences">
+        <div className="settings-appearance__material-header">
+          <h3>{t("ui_scale")}</h3>
+          <p className="settings-appearance__material-hint">
+            {t("ui_scale_description")}
+          </p>
+        </div>
+
+        <div className="settings-appearance__scale">
+          <label
+            className="settings-appearance__scale-label"
+            htmlFor="settings-ui-scale"
+          >
+            <span>{t("ui_scale")}</span>
+            <span className="settings-appearance__scale-value">
+              {uiScale}%
+            </span>
+          </label>
+          <input
+            id="settings-ui-scale"
+            className="settings-appearance__scale-slider"
+            type="range"
+            min="80"
+            max="125"
+            step="5"
+            value={uiScale}
+            onChange={handleUiScaleChange}
+          />
+        </div>
+
+        <CheckboxField
+          label={t("reduce_motion")}
+          checked={reduceMotion}
+          onChange={handleReduceMotionToggle}
+        />
+        <p className="settings-appearance__material-hint">
+          {t("reduce_motion_description")}
+        </p>
+      </div>
+
       <div className="settings-appearance__material">
         <div className="settings-appearance__material-header">
           <h3>{t("material_style")}</h3>

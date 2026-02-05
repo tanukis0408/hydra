@@ -473,11 +473,11 @@ $margin-bottom: 28px;
     );
     &__icon {
       path {
-        fill: #fff;
+        fill: var(--md-sys-color-on-surface);
       }
     }
     &__label {
-      color: #fff;
+      color: var(--md-sys-color-on-surface);
     }
   }
 
@@ -501,11 +501,11 @@ $margin-bottom: 28px;
     );
     &__icon {
       path {
-        fill: #fff;
+        fill: var(--md-sys-color-on-surface);
       }
     }
     &__label {
-      color: #fff;
+      color: var(--md-sys-color-on-surface);
     }
   }
 

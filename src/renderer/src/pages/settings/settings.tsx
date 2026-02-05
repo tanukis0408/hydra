@@ -43,24 +43,28 @@ export default function Settings() {
     <SettingsContextProvider>
       <SettingsContextConsumer>
         {({ currentCategoryIndex, setCurrentCategoryIndex, appearance }) => {
+          const safeIndex = Math.min(
+            currentCategoryIndex,
+            categories.length - 1
+          );
           const renderCategory = () => {
-            if (currentCategoryIndex === 0) {
+            if (safeIndex === 0) {
               return <SettingsGeneral />;
             }
 
-            if (currentCategoryIndex === 1) {
+            if (safeIndex === 1) {
               return <SettingsBehavior />;
             }
 
-            if (currentCategoryIndex === 2) {
+            if (safeIndex === 2) {
               return <SettingsDownloadSources />;
             }
 
-            if (currentCategoryIndex === 3) {
+            if (safeIndex === 3) {
               return <SettingsAppearance appearance={appearance} />;
             }
 
-            if (currentCategoryIndex === 4) {
+            if (safeIndex === 4) {
               return <SettingsDebrid />;
             }
 
@@ -75,7 +79,7 @@ export default function Settings() {
                     <Button
                       key={category.contentTitle}
                       theme={
-                        currentCategoryIndex === index ? "primary" : "outline"
+                        safeIndex === index ? "primary" : "outline"
                       }
                       onClick={() => setCurrentCategoryIndex(index)}
                     >
@@ -84,7 +88,7 @@ export default function Settings() {
                   ))}
                 </section>
 
-                <h2>{categories[currentCategoryIndex].contentTitle}</h2>
+                <h2>{categories[safeIndex].contentTitle}</h2>
                 {renderCategory()}
               </div>
             </section>

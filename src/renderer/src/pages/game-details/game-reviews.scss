@@ -4,7 +4,7 @@
   &__reviews-section {
     margin-top: calc(g.$spacing-unit * 3);
     padding-top: calc(g.$spacing-unit * 3);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(var(--md-sys-color-on-surface-rgb), 0.1);
     width: 100%;
     margin-left: auto;
     margin-right: auto;
@@ -33,8 +33,8 @@
   }
 
   &__reviews-badge {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(var(--md-sys-color-on-surface-rgb), 0.1);
+    color: rgba(var(--md-sys-color-on-surface-rgb), 0.7);
     padding: 4px 8px;
     border-radius: 6px;
     font-size: 12px;
@@ -52,7 +52,7 @@
 
   &__reviews-separator {
     height: 1px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(var(--md-sys-color-on-surface-rgb), 0.1);
     margin: calc(g.$spacing-unit * 3) 0;
     width: 100%;
   }
@@ -73,17 +73,17 @@
   &__reviews-empty-icon {
     font-size: 48px;
     margin-bottom: calc(g.$spacing-unit * 2);
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(var(--md-sys-color-on-surface-rgb), 0.6);
   }
 
   &__reviews-empty-title {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(var(--md-sys-color-on-surface-rgb), 0.9);
     font-weight: 600;
     margin: 0 0 calc(g.$spacing-unit * 1) 0;
   }
 
   &__reviews-empty-message {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(var(--md-sys-color-on-surface-rgb), 0.6);
     font-size: g.$small-font-size;
     margin: 0;
     line-height: 1.4;
@@ -91,12 +91,12 @@
 
   &__reviews-loading {
     text-align: center;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(var(--md-sys-color-on-surface-rgb), 0.6);
     padding: calc(g.$spacing-unit * 2);
   }
 
   &__load-more-reviews {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(var(--md-sys-color-on-surface-rgb), 0.05);
     border: 1px solid g.$border-color;
     color: g.$body-color;
     padding: calc(g.$spacing-unit * 1) calc(g.$spacing-unit * 2);
@@ -109,7 +109,7 @@
     margin-top: calc(g.$spacing-unit * 2);
 
     &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(var(--md-sys-color-on-surface-rgb), 0.1);
       border-color: g.$brand-teal;
     }
   }

@@ -11,13 +11,17 @@
     display: flex;
     cursor: pointer;
     transition: all ease 0.1s;
-    color: g.$muted-color;
+    color: var(--md-sys-color-on-surface-variant);
     width: 100%;
     overflow: hidden;
     border-radius: 4px;
     padding: g.$spacing-unit g.$spacing-unit;
     &:hover {
-      background-color: rgba(255, 255, 255, 0.15);
+      background-color: color-mix(
+        in srgb,
+        var(--kraken-primary) 10%,
+        transparent
+      );
     }
   }
 
@@ -47,18 +51,22 @@
   }
 
   &__notification-button {
-    color: g.$muted-color;
+    color: var(--md-sys-color-on-surface-variant);
     cursor: pointer;
     border-radius: 50%;
     width: 40px;
     min-width: 40px;
     min-height: 40px;
     height: 40px;
-    background-color: g.$background-color;
+    background-color: var(--md-sys-color-surface-container);
     position: relative;
     transition: all ease 0.3s;
     &:hover {
-      background-color: rgba(255, 255, 255, 0.15);
+      background-color: color-mix(
+        in srgb,
+        var(--kraken-primary) 10%,
+        transparent
+      );
     }
   }
 

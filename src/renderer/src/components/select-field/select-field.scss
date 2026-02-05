@@ -5,40 +5,41 @@
   transition: all ease 0.2s;
   width: fit-content;
   align-items: center;
-  border-radius: 8px;
-  border: 1px solid g.$border-color;
+  border-radius: g.$border-radius-md;
+  border: 1px solid var(--md-sys-color-outline-variant);
   height: 40px;
   min-height: 40px;
+  background-color: var(--md-sys-color-surface-container);
 
   &__container {
     flex: 1;
   }
 
   &:hover {
-    border-color: rgba(255, 255, 255, 0.5);
+    border-color: var(--md-sys-color-on-surface-variant);
   }
 
   &--focused {
-    border-color: #dadbe1;
+    border-color: var(--kraken-primary);
   }
 
   &--primary {
-    background-color: g.$dark-background-color;
+    background-color: var(--md-sys-color-surface-container);
   }
 
   &--dark {
-    background-color: g.$background-color;
+    background-color: var(--md-sys-color-surface-container);
   }
 
   &__option {
-    background-color: g.$dark-background-color;
+    background-color: transparent;
     border-right: 4px solid;
     border-color: transparent;
-    border-radius: 8px;
+    border-radius: g.$border-radius-md;
     width: fit-content;
     height: 100%;
     outline: none;
-    color: #dadbe1;
+    color: var(--md-sys-color-on-surface);
     cursor: default;
     font-family: inherit;
     font-size: g.$body-font-size;
@@ -49,6 +50,6 @@
   &__label {
     margin-bottom: g.$spacing-unit;
     display: block;
-    color: g.$body-color;
+    color: var(--md-sys-color-on-surface-variant);
   }
 }

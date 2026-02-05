@@ -11,8 +11,13 @@
   box-shadow: none;
 
   // Improve contrast on image backdrops
-  background-color: rgba(g.$secondary-container, 0.9);
-  border: 1px solid rgba(g.$outline-variant, 0.9);
+  background-color: color-mix(
+    in srgb,
+    var(--kraken-secondary-container) 90%,
+    transparent
+  );
+  border: 1px solid
+    color-mix(in srgb, var(--md-sys-color-outline-variant) 90%, transparent);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }

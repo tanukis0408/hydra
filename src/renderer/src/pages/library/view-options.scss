@@ -10,7 +10,7 @@
   &__label {
     font-size: 14px;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.95);
+    color: rgba(var(--md-sys-color-on-surface-rgb), 0.95);
     white-space: nowrap;
   }
 
@@ -28,9 +28,9 @@
     gap: calc(g.$spacing-unit);
     padding: 10px;
     border-radius: 6px;
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(var(--md-sys-color-on-surface-rgb), 0.04);
     border: none;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(var(--md-sys-color-on-surface-rgb), 0.9);
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
@@ -38,8 +38,8 @@
     white-space: nowrap;
 
     &:hover {
-      color: rgba(255, 255, 255, 0.9);
-      background: rgba(255, 255, 255, 0.08);
+      color: rgba(var(--md-sys-color-on-surface-rgb), 0.9);
+      background: rgba(var(--md-sys-color-on-surface-rgb), 0.08);
     }
 
     &.active {

@@ -1,11 +1,10 @@
 @use "./globals.scss" as g;
-@use "sass:color" as color;
 
 // Material You Button Mixins
 @mixin button-filled {
   padding: calc(g.$spacing-unit * 1.5) calc(g.$spacing-unit * 3);
-  background-color: g.$primary;
-  color: g.$on-primary;
+  background-color: var(--kraken-primary);
+  color: var(--kraken-on-primary);
   border-radius: g.$border-radius-full;
   font-size: g.$label-large;
   font-weight: 500;
@@ -16,11 +15,20 @@
 
   &:hover {
     box-shadow: g.$shadow-2;
-    background-color: color.adjust(g.$primary, $lightness: -5%);
+    background-color: color-mix(
+      in srgb,
+      var(--kraken-primary) 90%,
+      white
+    );
   }
 
   &:active {
     box-shadow: g.$shadow-1;
+    background-color: color-mix(
+      in srgb,
+      var(--kraken-primary) 88%,
+      black
+    );
   }
 
   &:disabled {
@@ -32,8 +40,8 @@
 @mixin button-outlined {
   padding: calc(g.$spacing-unit * 1.5) calc(g.$spacing-unit * 3);
   background-color: transparent;
-  color: g.$primary;
-  border: 1px solid g.$outline;
+  color: var(--kraken-primary);
+  border: 1px solid var(--md-sys-color-outline);
   border-radius: g.$border-radius-full;
   font-size: g.$label-large;
   font-weight: 500;
@@ -41,11 +49,19 @@
   transition: all 0.2s ease;
 
   &:hover {
-    background-color: rgba(g.$primary, 0.08);
+    background-color: color-mix(
+      in srgb,
+      var(--kraken-primary) 12%,
+      transparent
+    );
   }
 
   &:active {
-    background-color: rgba(g.$primary, 0.12);
+    background-color: color-mix(
+      in srgb,
+      var(--kraken-primary) 18%,
+      transparent
+    );
   }
 
   &:disabled {
@@ -57,7 +73,7 @@
 @mixin button-text {
   padding: calc(g.$spacing-unit * 1.5) calc(g.$spacing-unit * 3);
   background-color: transparent;
-  color: g.$primary;
+  color: var(--kraken-primary);
   border: none;
   border-radius: g.$border-radius-full;
   font-size: g.$label-large;
@@ -66,11 +82,19 @@
   transition: all 0.2s ease;
 
   &:hover {
-    background-color: rgba(g.$primary, 0.08);
+    background-color: color-mix(
+      in srgb,
+      var(--kraken-primary) 12%,
+      transparent
+    );
   }
 
   &:active {
-    background-color: rgba(g.$primary, 0.12);
+    background-color: color-mix(
+      in srgb,
+      var(--kraken-primary) 18%,
+      transparent
+    );
   }
 
   &:disabled {
@@ -81,11 +105,11 @@
 
 // Material You Card Mixin
 @mixin card {
-  background-color: g.$surface;
+  background-color: var(--md-sys-color-surface-container);
   border-radius: g.$border-radius-md;
   padding: calc(g.$spacing-unit * 2);
   box-shadow: g.$shadow-1;
-  border: 1px solid g.$outline-variant;
+  border: 1px solid var(--md-sys-color-outline-variant);
   transition: all 0.2s ease;
 
   &:hover {
@@ -95,7 +119,7 @@
 
 // Material You Elevated Card Mixin
 @mixin card-elevated {
-  background-color: g.$surface;
+  background-color: var(--md-sys-color-surface-container-high);
   border-radius: g.$border-radius-md;
   padding: calc(g.$spacing-unit * 2);
   box-shadow: g.$shadow-2;
@@ -110,27 +134,28 @@
 @mixin input-filled {
   width: 100%;
   padding: calc(g.$spacing-unit * 1.5) calc(g.$spacing-unit * 2);
-  background-color: rgba(g.$on-surface, 0.04);
+  background-color: var(--md-sys-color-surface-container);
   border: 1px solid transparent;
   border-radius: g.$border-radius-xs;
-  color: g.$on-surface;
+  color: var(--md-sys-color-on-surface);
   font-size: g.$body-font-size;
   font-family: g.$font-family;
   transition: all 0.2s ease;
 
   &::placeholder {
-    color: g.$on-surface-variant;
+    color: var(--md-sys-color-on-surface-variant);
   }
 
   &:hover {
-    background-color: rgba(g.$on-surface, 0.08);
+    background-color: var(--md-sys-color-surface-container-high);
   }
 
   &:focus {
     outline: none;
-    background-color: g.$surface;
-    border-color: g.$primary;
-    box-shadow: inset 0 0 0 2px rgba(g.$primary, 0.2);
+    background-color: var(--md-sys-color-surface);
+    border-color: var(--kraken-primary);
+    box-shadow: inset 0 0 0 2px
+      color-mix(in srgb, var(--kraken-primary) 25%, transparent);
   }
 
   &:disabled {
@@ -144,25 +169,26 @@
   width: 100%;
   padding: calc(g.$spacing-unit * 1.5) calc(g.$spacing-unit * 2);
   background-color: transparent;
-  border: 1px solid g.$outline;
+  border: 1px solid var(--md-sys-color-outline-variant);
   border-radius: g.$border-radius-xs;
-  color: g.$on-surface;
+  color: var(--md-sys-color-on-surface);
   font-size: g.$body-font-size;
   font-family: g.$font-family;
   transition: all 0.2s ease;
 
   &::placeholder {
-    color: g.$on-surface-variant;
+    color: var(--md-sys-color-on-surface-variant);
   }
 
   &:hover {
-    border-color: g.$on-surface;
+    border-color: var(--md-sys-color-on-surface-variant);
   }
 
   &:focus {
     outline: none;
-    border-color: g.$primary;
-    box-shadow: inset 0 0 0 1px rgba(g.$primary, 0.3);
+    border-color: var(--kraken-primary);
+    box-shadow: inset 0 0 0 1px
+      color-mix(in srgb, var(--kraken-primary) 35%, transparent);
   }
 
   &:disabled {
@@ -177,8 +203,8 @@
   align-items: center;
   gap: g.$spacing-unit;
   padding: calc(g.$spacing-unit * 0.75) calc(g.$spacing-unit * 1.5);
-  background-color: g.$secondary-container;
-  color: g.$on-secondary-container;
+  background-color: var(--kraken-secondary-container);
+  color: var(--kraken-on-secondary-container);
   border-radius: g.$border-radius-full;
   font-size: g.$label-medium;
   font-weight: 500;
@@ -203,11 +229,11 @@
 
 // Material You Modal/Dialog Mixin
 @mixin modal {
-  background-color: g.$surface;
+  background-color: var(--md-sys-color-surface);
   border-radius: g.$border-radius-lg;
   padding: calc(g.$spacing-unit * 3);
   box-shadow: g.$shadow-5;
-  border: none;
+  border: 1px solid var(--md-sys-color-outline-variant);
   max-width: 90vw;
   animation: modal-enter 0.2s ease;
 
@@ -226,10 +252,10 @@
 // Material You Dropdown Mixin
 @mixin dropdown {
   position: absolute;
-  background-color: g.$surface;
+  background-color: var(--md-sys-color-surface);
   border-radius: g.$border-radius-md;
   box-shadow: g.$shadow-3;
-  border: 1px solid g.$outline-variant;
+  border: 1px solid var(--md-sys-color-outline-variant);
   min-width: 200px;
   z-index: 100;
   animation: dropdown-enter 0.15s ease;
@@ -249,7 +275,7 @@
 // Material You List Item Mixin
 @mixin list-item {
   padding: calc(g.$spacing-unit * 1.5) calc(g.$spacing-unit * 2);
-  color: g.$on-surface;
+  color: var(--md-sys-color-on-surface);
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -257,16 +283,28 @@
   font-size: g.$body-font-size;
 
   &:hover {
-    background-color: rgba(g.$primary, 0.08);
+    background-color: color-mix(
+      in srgb,
+      var(--kraken-primary) 10%,
+      transparent
+    );
   }
 
   &:active {
-    background-color: rgba(g.$primary, 0.12);
+    background-color: color-mix(
+      in srgb,
+      var(--kraken-primary) 16%,
+      transparent
+    );
   }
 
   &.selected {
-    background-color: rgba(g.$primary, 0.12);
-    color: g.$primary;
+    background-color: color-mix(
+      in srgb,
+      var(--kraken-primary) 16%,
+      transparent
+    );
+    color: var(--kraken-primary);
   }
 
   &:disabled {
@@ -279,13 +317,17 @@
 @mixin progress-bar {
   width: 100%;
   height: 4px;
-  background-color: g.$surface-variant;
+  background-color: var(--md-sys-color-surface-variant);
   border-radius: g.$border-radius-full;
   overflow: hidden;
 
   &__fill {
     height: 100%;
-    background: linear-gradient(90deg, g.$primary, g.$secondary);
+    background: linear-gradient(
+      90deg,
+      var(--kraken-primary),
+      var(--kraken-secondary)
+    );
     border-radius: g.$border-radius-full;
     transition: width 0.3s ease;
   }
@@ -294,7 +336,7 @@
 // Material You Divider Mixin
 @mixin divider {
   height: 1px;
-  background-color: g.$outline-variant;
+  background-color: var(--md-sys-color-outline-variant);
   border: none;
   margin: 0;
 }
@@ -417,11 +459,11 @@
 
 // Focus state for accessibility
 @mixin focus-visible {
-  outline: 2px solid g.$primary;
+  outline: 2px solid var(--kraken-primary);
   outline-offset: 2px;
 
   &:focus-visible {
-    outline: 2px solid g.$primary;
+    outline: 2px solid var(--kraken-primary);
     outline-offset: 2px;
   }
 }
