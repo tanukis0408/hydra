@@ -123,7 +123,7 @@ const createGameShortcut = async (
   }
 
   const shortcutName = removeSymbolsFromName(game.title);
-  const deepLink = `hydralauncher://run?shop=${shop}&objectId=${objectId}`;
+  const deepLink = `kraken://run?shop=${shop}&objectId=${objectId}`;
   const outputPath =
     location === "desktop"
       ? SystemPath.getPath("desktop")

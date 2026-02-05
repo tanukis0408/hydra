@@ -285,14 +285,20 @@ export class WindowManager {
       });
 
       authWindow.webContents.on("will-navigate", (_event, url) => {
-        if (url.startsWith("hydralauncher://auth")) {
+        if (
+          url.startsWith("kraken://auth") ||
+          url.startsWith("hydralauncher://auth")
+        ) {
           authWindow.close();
 
           KrakenApi.handleExternalAuth(url);
           return;
         }
 
-        if (url.startsWith("hydralauncher://update-account")) {
+        if (
+          url.startsWith("kraken://update-account") ||
+          url.startsWith("hydralauncher://update-account")
+        ) {
           authWindow.close();
 
           WindowManager.mainWindow?.webContents.send("on-account-updated");

@@ -346,7 +346,7 @@ export class GameFilesManager {
   private async createDesktopShortcutForGame(gameTitle: string): Promise<void> {
     try {
       const shortcutName = removeSymbolsFromName(gameTitle);
-      const deepLink = `hydralauncher://run?shop=${this.shop}&objectId=${this.objectId}`;
+      const deepLink = `kraken://run?shop=${this.shop}&objectId=${this.objectId}`;
       const iconPath = await this.downloadGameIcon();
 
       if (process.platform === "win32") {

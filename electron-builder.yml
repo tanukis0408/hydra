@@ -60,6 +60,7 @@ linux:
   maintainer: electronjs.org
   category: Game
   mimeTypes:
+    - x-scheme-handler/kraken
     - x-scheme-handler/hydralauncher
 appImage:
   artifactName: ${name}-${version}.${ext}
