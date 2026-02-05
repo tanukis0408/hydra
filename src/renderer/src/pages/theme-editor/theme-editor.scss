@@ -72,9 +72,10 @@
         gap: 8px;
 
         .active {
-          background-color: color.adjust(
-            g.$dark-background-color,
-            $lightness: -2%
+          background-color: color-mix(
+            in srgb,
+            var(--md-sys-color-surface) 92%,
+            var(--md-sys-color-outline-variant)
           );
         }
       }

@@ -4,6 +4,7 @@
 // Based on Material Design 3 / Material You specifications
 
 @use "./material-tokens.scss" as m;
+@use "sass:color";
 
 // Light Theme Colors
 $light-primary: #6750a4;
@@ -173,8 +174,9 @@ $app-container: "app";
   --md-sys-color-on-surface: #{$dark-on-surface};
   --md-sys-color-on-surface-variant: #{$dark-on-surface-variant};
   --md-sys-color-surface-variant: #{$dark-surface-variant};
-  --md-sys-color-on-surface-rgb: #{red($dark-on-surface)},
-    #{green($dark-on-surface)}, #{blue($dark-on-surface)};
+  --md-sys-color-on-surface-rgb: #{color.channel($dark-on-surface, "red", $space: rgb)},
+    #{color.channel($dark-on-surface, "green", $space: rgb)},
+    #{color.channel($dark-on-surface, "blue", $space: rgb)};
 
   --md-sys-color-outline: #{$dark-outline};
   --md-sys-color-outline-variant: #{$dark-outline-variant};
@@ -218,8 +220,9 @@ $app-container: "app";
   --md-sys-color-on-surface: #{$light-on-surface};
   --md-sys-color-on-surface-variant: #{$light-on-surface-variant};
   --md-sys-color-surface-variant: #{$light-surface-variant};
-  --md-sys-color-on-surface-rgb: #{red($light-on-surface)},
-    #{green($light-on-surface)}, #{blue($light-on-surface)};
+  --md-sys-color-on-surface-rgb: #{color.channel($light-on-surface, "red", $space: rgb)},
+    #{color.channel($light-on-surface, "green", $space: rgb)},
+    #{color.channel($light-on-surface, "blue", $space: rgb)};
 
   --md-sys-color-outline: #{$light-outline};
   --md-sys-color-outline-variant: #{$light-outline-variant};
