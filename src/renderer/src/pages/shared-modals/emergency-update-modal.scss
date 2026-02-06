@@ -1,0 +1,36 @@
+.emergency-update {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: rgba(var(--md-sys-color-on-surface-rgb), 0.9);
+
+  &__status {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: rgba(var(--md-sys-color-error-container-rgb), 0.12);
+    border: 1px solid rgba(var(--md-sys-color-error-rgb), 0.25);
+    font-size: 14px;
+  }
+
+  &__countdown {
+    color: rgba(var(--md-sys-color-error-rgb), 0.95);
+    font-weight: 600;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  &__link {
+    color: var(--md-sys-color-primary);
+    text-decoration: none;
+    font-size: 13px;
+  }
+}

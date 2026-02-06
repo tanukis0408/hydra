@@ -829,6 +829,15 @@
     "learn_more": "Подробнее",
     "debrid_description": "Скачивайте в 4 раза быстрее с Nimbus"
   },
+  "updates": {
+    "emergency_title": "Срочное обновление",
+    "emergency_description": "Это обязательное обновление для безопасности и стабильности Kraken. Версия {{version}}",
+    "emergency_downloading": "Загружаем обновление. Пожалуйста, не закрывайте Kraken.",
+    "emergency_ready": "Обновление готово к установке.",
+    "emergency_auto_install": "Автоустановка через {{seconds}} сек.",
+    "emergency_install_now": "Установить сейчас",
+    "emergency_release_notes": "Описание релиза"
+  },
   "notifications_page": {
     "title": "Уведомления",
     "mark_all_as_read": "Отметить все как прочитанные",

@@ -6,10 +6,10 @@ import {
   buildGameDetailsPath,
   formatDownloadProgress,
 } from "@renderer/helpers";
-import { LockIcon, PersonIcon, TrophyIcon } from "@primer/octicons-react";
+import { LockIcon, TrophyIcon } from "@primer/octicons-react";
 import { gameDetailsContext } from "@renderer/context";
 import type { ComparedAchievements } from "@types";
-import { Link } from "@renderer/components";
+import { Avatar, Link } from "@renderer/components";
 import { ComparedAchievementList } from "./compared-achievement-list";
 import { AchievementList } from "./achievement-list";
 import { AchievementPanel } from "./achievement-panel";
@@ -45,15 +45,11 @@ function AchievementSummary({ user, isComparison }: AchievementSummaryProps) {
   ) => {
     return (
       <div className="achievements-content__profile-avatar">
-        {user.profileImageUrl ? (
-          <img
-            className="achievements-content__profile-avatar"
-            src={user.profileImageUrl}
-            alt={user.displayName}
-          />
-        ) : (
-          <PersonIcon size={24} />
-        )}
+        <Avatar
+          size={54}
+          src={user.profileImageUrl}
+          alt={user.displayName}
+        />
       </div>
     );
   };
@@ -145,15 +141,12 @@ export function AchievementsContent({
   ) => {
     return (
       <div className="achievements-content__comparison__small-avatar">
-        {user.profileImageUrl ? (
-          <img
-            className="achievements-content__comparison__small-avatar"
-            src={user.profileImageUrl}
-            alt={user.displayName}
-          />
-        ) : (
-          <PersonIcon size={24} />
-        )}
+        <Avatar
+          size={32}
+          src={user.profileImageUrl}
+          alt={user.displayName}
+          shape="circle"
+        />
       </div>
     );
   };

@@ -55,14 +55,10 @@ $logo-max-width: 200px;
     }
 
     &__small-avatar {
-      height: 32px;
-      width: 32px;
-      border-radius: 4px;
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
-      object-fit: cover;
     }
   }
 
@@ -234,15 +230,10 @@ $logo-max-width: 200px;
   }
 
   &__profile-avatar {
-    height: 54px;
-    width: 54px;
-    border-radius: 4px;
     display: flex;
 
     justify-content: center;
     align-items: center;
-    background-color: g.$background-color;
     position: relative;
-    object-fit: cover;
   }
 }

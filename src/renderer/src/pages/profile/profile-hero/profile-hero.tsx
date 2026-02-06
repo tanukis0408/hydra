@@ -401,6 +401,8 @@ export function ProfileHero() {
                 size={96}
                 alt={userProfile?.displayName}
                 src={userProfile?.profileImageUrl}
+                ring={isCreator}
+                accent={isCreator ? creatorAccent : undefined}
               />
             </button>
 

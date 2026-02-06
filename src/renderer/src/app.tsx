@@ -27,6 +27,7 @@ import { useSubscription } from "./hooks/use-subscription";
 import KrakenCloudModal from "./pages/shared-modals/kraken-cloud/kraken-cloud-modal";
 import { WelcomeToKrakenModal } from "./pages/shared-modals/welcome-to-kraken-modal";
 import { ReleaseNotesModal } from "./pages/shared-modals/release-notes-modal";
+import { EmergencyUpdateModal } from "./pages/shared-modals/emergency-update-modal";
 import { ThemeProvider, useTheme } from "./contexts/theme.context";
 import { ThemeToggle } from "./components/theme-toggle/theme-toggle";
 import { ArchiveDeletionModal } from "./pages/downloads/archive-deletion-error-modal";
@@ -268,6 +269,10 @@ export function App() {
   const [showWelcomeModal, setShowWelcomeModal] = useState(false);
   const [showReleaseNotes, setShowReleaseNotes] = useState(false);
   const [appVersion, setAppVersion] = useState<string | null>(null);
+  const [emergencyUpdate, setEmergencyUpdate] = useState<{
+    version: string;
+    downloaded: boolean;
+  } | null>(null);
 
   useEffect(() => {
     Promise.all([
@@ -283,6 +288,25 @@ export function App() {
     window.electron.getVersion().then((version) => {
       setAppVersion(version);
     });
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = window.electron.onAutoUpdaterEvent((event) => {
+      if (event.type === "update-available" && event.info.mandatory) {
+        setEmergencyUpdate({ version: event.info.version, downloaded: false });
+      }
+
+      if (event.type === "update-downloaded" && event.mandatory) {
+        setEmergencyUpdate((current) => ({
+          version: event.version ?? current?.version ?? "?",
+          downloaded: true,
+        }));
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
   }, []);
 
   useEffect(() => {
@@ -549,6 +573,10 @@ export function App() {
     }
   }, [appVersion, dispatch]);
 
+  const handleEmergencyInstall = useCallback(() => {
+    window.electron.restartAndInstallUpdate();
+  }, []);
+
   const handleToastClose = useCallback(() => {
     dispatch(closeToast());
   }, [dispatch]);
@@ -602,6 +630,13 @@ export function App() {
           visible={showReleaseNotes && !showWelcomeModal}
           version={appVersion ?? "1.0.0"}
           onClose={handleReleaseNotesClose}
+        />
+
+        <EmergencyUpdateModal
+          visible={Boolean(emergencyUpdate)}
+          version={emergencyUpdate?.version}
+          downloaded={Boolean(emergencyUpdate?.downloaded)}
+          onInstall={handleEmergencyInstall}
         />
 
         <main>

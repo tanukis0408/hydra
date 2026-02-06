@@ -882,6 +882,15 @@
     "preflight_installing": "Installing dependencies",
     "preflight_installing_detail": "{{detail}}"
   },
+  "updates": {
+    "emergency_title": "Emergency update required",
+    "emergency_description": "This update is mandatory for Kraken security and stability. Version {{version}}",
+    "emergency_downloading": "Downloading the update. Please keep Kraken open.",
+    "emergency_ready": "Update ready to install.",
+    "emergency_auto_install": "Installing automatically in {{seconds}}s.",
+    "emergency_install_now": "Install now",
+    "emergency_release_notes": "Release notes"
+  },
   "notifications_page": {
     "title": "Notifications",
     "mark_all_as_read": "Mark all as read",
