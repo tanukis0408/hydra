@@ -1,49 +1,79 @@
 <div align="center">
 
-  <!-- Замени ссылку ниже на свой логотип, когда он будет готов. Пока стоит эмодзи -->
-  <span style="font-size: 80px;">🐙</span>
-  <!-- <img src="./public/icon.png" width="144"/> -->
-
   <h1 align="center">Kraken Launcher</h1>
 
   <p align="center">
-    <strong>The Beast from the Depths.</strong><br>
-    Kraken is an enhanced fork of Hydra Launcher — an open-source gaming platform designed to manage your gaming library with more power and freedom. Written in Node.js (Electron, React, Typescript) and Python.
+    <strong>Aqua 1.0.0</strong><br>
+    Kraken — форк Hydra Launcher с полностью обновленным визуалом в стиле Material You / Expressive 3,
+    быстрыми сценариями и аккуратной архитектурой. Построен на Electron + React + TypeScript + Python.
   </p>
 
-<!-- Замени ТВОЙ_ЮЗЕРНЕЙМ на свой ник -->
-[![build](https://img.shields.io/github/actions/workflow/status/ТВОЙ_ЮЗЕРНЕЙМ/kraken/build.yml)](https://github.com/ТВОЙ_ЮЗЕРНЕЙМ/kraken/actions)
-[![release](https://img.shields.io/github/package-json/v/ТВОЙ_ЮЗЕРНЕЙМ/kraken)](https://github.com/ТВОЙ_ЮЗЕРНЕЙМ/kraken/releases)
-[![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+  [![build](https://img.shields.io/github/actions/workflow/status/tanukis0408/hydra/build.yml)](https://github.com/tanukis0408/hydra/actions)
+  [![release](https://img.shields.io/github/package-json/v/tanukis0408/hydra)](https://github.com/tanukis0408/hydra/releases)
+  [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-<!-- Скриншот пока можно оставить старый или сделать свой -->
-![Kraken Launcher Preview](./docs/screenshot.png)
+  ![Kraken Launcher Preview](./docs/screenshot.png)
 
 </div>
 
-## 🌊 Why Kraken? (Enhanced Features)
+## Чем Kraken отличается от Hydra
 
-Kraken builds upon the Hydra foundation but dives deeper:
+- Новый дизайн Aqua: Material You / Expressive 3, слои, мягкая типографика и аккуратная анимация.
+- Улучшенные сценарии: более быстрые действия в библиотеке и профиле, меньше кликов.
+- Коллекции профиля: Избранное, Прохожу, Хочу поиграть, Забросил + свои категории.
+- Creator‑бейджи и подписи профиля для выделения авторов и команды.
+- Обновленные уведомления ачивок: красивый визуал + очередь без наложений.
+- Welcome‑тур на первом запуске и Release Notes на новой версии.
+- Живые ссылки на источники и быстрый путь к их добавлению.
 
-- 🐙 **Enhanced UI:** Cleaner interface, dark abyss theme, and better performance.
-- ⏳ **HowLongToBeat:** Integrated game length stats directly in the game card.
-- 💾 **Save Manager:** (Planned) Auto-backup for your game saves.
-- 🛡️ **Privacy & Safety:** Improved connection handling and kill-switch options.
-- 🛠️ **Custom Sources:** Easier management of third-party JSON sources.
+## Почему выбрать Kraken
 
-## Core Features
+- Смотрится как цельный продукт, а не набор экранов.
+- Упор на комфорт: понятный старт, ясные настройки, меньше шума.
+- Быстрые обновления и прозрачный changelog.
+- Развитие активное: Kraken — это не «скин», это переосмысление.
 
-- Add games that you own to your library
-- Manage your downloads with a built-in BitTorrent client
-- Unlock achievements
-- Navigate through a rich catalogue with a powerful suggestion algorithm
-- Discover new games that you haven't played before
+## Обновления
 
-## 🛠️ Build from source
+- Релизы публикуются в GitHub Releases.
+- Внутри приложения авто‑проверка обновлений (скачивание и установка зависит от платформы).
+- Текущий релиз: **1.0.0 Aqua**.
 
-If you want to contribute or build Kraken yourself:
+Kraken repo (обновления):
+- https://github.com/tanukis0408/hydra.git
 
-1. **Clone the repo:**
+Hydra repo:
+- https://github.com/hydralauncher/hydra
+
+Официальный changelog Hydra:
+- https://github.com/hydralauncher/hydra/releases
+
+## Быстрый старт
+
+1. Клонируй репозиторий:
    ```bash
-   git clone https://github.com/ТВОЙ_ЮЗЕРНЕЙМ/kraken.git
-   cd kraken
+   git clone git@github.com:tanukis0408/hydra.git
+   cd hydra
+   ```
+2. Установи зависимости: `yarn`
+3. Запуск: `yarn dev`
+
+## Сборка
+
+- `yarn build`
+- `yarn build:win`, `yarn build:linux`, `yarn build:mac`
+
+## Благодарности
+
+Отдельное спасибо разработчикам оригинальной **Hydra Launcher**.
+Главный разработчик Kraken все еще до безумия любит оригинальную Hydra, но верит, что Kraken — это честный и смелый шаг вперед: новое качество, свежий дизайн и идеи, которые не ломают наследие, а развивают его.
+
+## Автор
+
+Сделано с огромной любовью за 4 дня — **TANUKIS**
+- GitHub: https://github.com/tanukis0408
+- Telegram: https://t.me/bunker_tanukis
+
+## Лицензия
+
+MIT. См. `LICENSE`.
