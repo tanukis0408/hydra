@@ -127,14 +127,15 @@ export function EditProfileModal(
                   const path = filePaths[0];
 
                   if (!hasActiveSubscription) {
-                    const { imagePath } = await window.electron
+                    const processed = await window.electron
                       .processProfileImage(path)
-                      .catch(() => {
-                        showErrorToast(t("image_process_failure"));
-                        return { imagePath: null };
-                      });
-
-                    onChange(imagePath);
+                      .catch(() => null);
+                    const processedPath = processed?.imagePath?.trim();
+                    onChange(
+                      processedPath && processedPath.length > 0
+                        ? processedPath
+                        : path
+                    );
                   } else {
                     onChange(path);
                   }

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.0-hotfix (2026-02-06)
+
+- Added emergency updates (mandatory): auto-download, non-dismissible modal, auto-install countdown
+- Polished avatars: adaptive shape, crisp rendering, initials fallback, creator ring
+- Fixed profile avatar upload fallback when image processing fails
+
 ## 1.0.0 - Aqua (2026-02-06)
 
 - Rebrand: Hydra -> Kraken (UI title, appId, productName and icons)
