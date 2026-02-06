@@ -1,0 +1,61 @@
+@use "../../scss/globals.scss";
+
+.emergency-update-modal__container {
+  display: flex;
+  flex-direction: column;
+  gap: calc(globals.$spacing-unit * 2);
+}
+
+.emergency-update-modal__banner {
+  display: flex;
+  align-items: center;
+  gap: calc(globals.$spacing-unit * 1.5);
+  padding: calc(globals.$spacing-unit * 1.5)
+    calc(globals.$spacing-unit * 2);
+  border-radius: 16px;
+  border: 1px solid globals.$outline-variant;
+  background: linear-gradient(
+      120deg,
+      rgba(242, 184, 181, 0.15),
+      rgba(28, 27, 31, 0.4)
+    ),
+    globals.$surface-container;
+}
+
+.emergency-update-modal__icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 12px;
+  background: globals.$error-container;
+  color: globals.$on-error-container;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+.emergency-update-modal__status {
+  margin: 0;
+  font-weight: 600;
+  color: globals.$on-surface;
+}
+
+.emergency-update-modal__countdown {
+  margin: 0;
+  color: globals.$on-surface-variant;
+}
+
+.emergency-update-modal__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(globals.$spacing-unit * 1.5);
+}
+
+.emergency-update-modal__install {
+  min-width: 180px;
+}
+
+.emergency-update-modal__link {
+  font-weight: 600;
+}

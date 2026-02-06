@@ -882,5 +882,14 @@
     "failed_to_dismiss": "Failed to dismiss notification",
     "friend_request_accepted": "Friend request accepted",
     "friend_request_refused": "Friend request refused"
+  },
+  "updates": {
+    "emergency_title": "Emergency update required",
+    "emergency_description": "A critical update must be installed to keep Kraken safe and stable.",
+    "emergency_downloading": "Downloading required update...",
+    "emergency_ready": "Update {{version}} is ready to install.",
+    "emergency_auto_install": "Auto-install in {{seconds}}s",
+    "emergency_install_now": "Install now",
+    "emergency_release_notes": "Release notes"
   }
 }

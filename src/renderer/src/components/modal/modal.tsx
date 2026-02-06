@@ -16,6 +16,8 @@ export interface ModalProps {
   large?: boolean;
   children: React.ReactNode;
   clickOutsideToClose?: boolean;
+  closeOnEsc?: boolean;
+  showCloseButton?: boolean;
 }
 
 export function Modal({
@@ -26,6 +28,8 @@ export function Modal({
   large,
   children,
   clickOutsideToClose = true,
+  closeOnEsc = true,
+  showCloseButton = true,
 }: ModalProps) {
   const [isClosing, setIsClosing] = useState(false);
   const modalContentRef = useRef<HTMLDivElement | null>(null);
@@ -63,7 +67,7 @@ export function Modal({
   };
 
   useEffect(() => {
-    if (visible) {
+    if (visible && closeOnEsc) {
       const onKeyDown = (e: KeyboardEvent) => {
         if (e.key === "Escape" && isTopMostModal()) {
           handleCloseClick();
@@ -78,7 +82,7 @@ export function Modal({
     }
 
     return () => {};
-  }, [handleCloseClick, visible]);
+  }, [handleCloseClick, visible, closeOnEsc]);
 
   useEffect(() => {
     if (clickOutsideToClose) {
@@ -125,14 +129,16 @@ export function Modal({
             {description && <p>{description}</p>}
           </div>
 
-          <button
-            type="button"
-            onClick={handleCloseClick}
-            className="modal__close-button"
-            aria-label={t("close")}
-          >
-            <XIcon className="modal__close-button-icon" size={24} />
-          </button>
+          {showCloseButton && (
+            <button
+              type="button"
+              onClick={handleCloseClick}
+              className="modal__close-button"
+              aria-label={t("close")}
+            >
+              <XIcon className="modal__close-button-icon" size={24} />
+            </button>
+          )}
         </div>
         <div className="modal__content">{children}</div>
       </div>

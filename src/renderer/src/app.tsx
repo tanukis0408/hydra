@@ -25,6 +25,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { useSubscription } from "./hooks/use-subscription";
 import { HydraCloudModal } from "./pages/shared-modals/hydra-cloud/hydra-cloud-modal";
+import { EmergencyUpdateModal } from "./pages/shared-modals/emergency-update-modal";
 import { ArchiveDeletionModal } from "./pages/downloads/archive-deletion-error-modal";
 
 import {
@@ -80,6 +81,11 @@ export function App() {
   const [showArchiveDeletionModal, setShowArchiveDeletionModal] =
     useState(false);
   const [archivePaths, setArchivePaths] = useState<string[]>([]);
+  const [mandatoryUpdateVersion, setMandatoryUpdateVersion] = useState<
+    string | null
+  >(null);
+  const [mandatoryUpdateDownloaded, setMandatoryUpdateDownloaded] =
+    useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -236,6 +242,21 @@ export function App() {
   }, [onSignIn, updateLibrary, clearUserDetails, dispatch]);
 
   useEffect(() => {
+    const unsubscribe = window.electron.onAutoUpdaterEvent((event) => {
+      if (event.type === "update-available" && event.info.mandatory) {
+        setMandatoryUpdateVersion(event.info.version);
+        setMandatoryUpdateDownloaded(false);
+      }
+
+      if (event.type === "update-downloaded" && event.mandatory) {
+        setMandatoryUpdateDownloaded(true);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
     const asyncScrollAndNotify = async () => {
       if (contentRef.current) contentRef.current.scrollTop = 0;
       await workwondersRef.current?.notifyUrlChange?.();
@@ -321,6 +342,12 @@ export function App() {
         type={toast.type}
         onClose={handleToastClose}
         duration={toast.duration}
+      />
+
+      <EmergencyUpdateModal
+        visible={Boolean(mandatoryUpdateVersion)}
+        version={mandatoryUpdateVersion}
+        downloaded={mandatoryUpdateDownloaded}
       />
 
       <HydraCloudModal

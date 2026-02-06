@@ -3,7 +3,7 @@
   <h1 align="center">Kraken Launcher</h1>
 
   <p align="center">
-    <strong>Aqua 1.0.0</strong><br>
+    <strong>Aqua 1.0.0 Hotfix</strong><br>
     Kraken — форк Hydra Launcher с полностью обновленным визуалом в стиле Material You / Expressive 3,
     быстрыми сценариями и аккуратной архитектурой. Построен на Electron + React + TypeScript + Python.
   </p>
@@ -37,7 +37,7 @@
 
 - Релизы публикуются в GitHub Releases.
 - Внутри приложения авто‑проверка обновлений (скачивание и установка зависит от платформы).
-- Текущий релиз: **1.0.0 Aqua**.
+- Текущий релиз: **1.0.0 Hotfix**.
 
 Kraken repo (обновления):
 - https://github.com/tanukis0408/hydra.git

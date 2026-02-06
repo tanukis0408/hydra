@@ -106,8 +106,11 @@ export interface SteamGame {
 }
 
 export type AppUpdaterEvent =
-  | { type: "update-available"; info: { version: string } }
-  | { type: "update-downloaded" };
+  | {
+      type: "update-available";
+      info: { version: string; mandatory?: boolean };
+    }
+  | { type: "update-downloaded"; mandatory?: boolean };
 
 /* Events */
 export interface StartGameDownloadPayload {

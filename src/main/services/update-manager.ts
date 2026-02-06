@@ -14,6 +14,7 @@ export class UpdateManager {
   private static hasNotified = false;
   private static newVersion = "";
   private static checkTick = 0;
+  private static isMandatoryUpdate = false;
 
   private static mockValuesForDebug() {
     this.sendEvent({ type: "update-available", info: { version: "3.3.1" } });
@@ -22,6 +23,38 @@ export class UpdateManager {
 
   private static sendEvent(event: AppUpdaterEvent) {
     WindowManager.mainWindow?.webContents.send("autoUpdaterEvent", event);
+  }
+
+  private static isEmergencyUpdate(info: UpdateInfo) {
+    if (process.env.KRAKEN_EMERGENCY_UPDATE === "1") return true;
+
+    const notesText: string[] = [];
+
+    if (info.releaseName) notesText.push(info.releaseName);
+
+    if (Array.isArray(info.releaseNotes)) {
+      for (const note of info.releaseNotes) {
+        if (note.version) notesText.push(note.version);
+        if (note.note) notesText.push(note.note);
+      }
+    } else if (typeof info.releaseNotes === "string") {
+      notesText.push(info.releaseNotes);
+    }
+
+    const haystack = notesText.join("\n").toLowerCase();
+
+    if (!haystack) return false;
+
+    const emergencyTags = [
+      "[emergency]",
+      "[critical]",
+      "[urgent]",
+      "emergency",
+      "critical",
+      "urgent",
+    ];
+
+    return emergencyTags.some((tag) => haystack.includes(tag));
   }
 
   private static async isAutoInstallEnabled() {
@@ -47,11 +80,29 @@ export class UpdateManager {
   public static async checkForUpdates() {
     autoUpdater
       .once("update-available", (info: UpdateInfo) => {
-        this.sendEvent({ type: "update-available", info });
+        const isMandatory = this.isEmergencyUpdate(info);
+        this.isMandatoryUpdate = isMandatory;
+
+        this.sendEvent({
+          type: "update-available",
+          info: { version: info.version, mandatory: isMandatory },
+        });
+
         this.newVersion = info.version;
+
+        if (isMandatory) {
+          autoUpdater
+            .downloadUpdate()
+            .catch((error) =>
+              logger.error("Failed to download mandatory update:", error)
+            );
+        }
       })
       .once("update-downloaded", () => {
-        this.sendEvent({ type: "update-downloaded" });
+        this.sendEvent({
+          type: "update-downloaded",
+          mandatory: this.isMandatoryUpdate,
+        });
 
         if (!this.hasNotified) {
           this.hasNotified = true;

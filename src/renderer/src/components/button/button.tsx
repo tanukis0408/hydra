@@ -1,7 +1,6 @@
 import cn from "classnames";
 import { PlacesType, Tooltip } from "react-tooltip";
 import { useId } from "react";
-import { Ripple } from "../ripple";
 
 import "./button.scss";
 
@@ -59,7 +58,6 @@ export function Button({
   tooltip,
   tooltipPlace = "top",
   disabled,
-  loading,
   loading = false,
   ...props
 }: Readonly<ButtonProps>) {
@@ -93,7 +91,6 @@ export function Button({
         {...tooltipProps}
         {...props}
       >
-        <Ripple disabled={disabled} />
         {icon && !loading && (
           <span className="button__icon">{icon}</span>
         )}
