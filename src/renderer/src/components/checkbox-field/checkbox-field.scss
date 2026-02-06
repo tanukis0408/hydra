@@ -59,13 +59,36 @@
 
   &__label {
     cursor: pointer;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
     color: var(--md-sys-color-on-surface);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 
     &:has(+ input:disabled) {
       cursor: not-allowed;
     }
+  }
+
+  &__label-text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &__hint {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    border: 1px solid var(--md-sys-color-outline-variant);
+    color: var(--md-sys-color-on-surface-variant);
+    background-color: color-mix(
+      in srgb,
+      var(--md-sys-color-surface-container-high) 60%,
+      transparent
+    );
+    cursor: help;
   }
 }

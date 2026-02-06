@@ -399,6 +399,7 @@ export function ProfileContent() {
             <AnimatePresence mode="wait">
               {activeTab === "library" && (
                 <LibraryTab
+                  userId={userProfile?.id}
                   sortBy={sortBy}
                   onSortChange={setSortBy}
                   pinnedGames={pinnedGames}

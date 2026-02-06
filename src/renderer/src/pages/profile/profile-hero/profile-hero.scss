@@ -98,17 +98,53 @@
     display: flex;
     gap: g.$spacing-unit;
     align-items: center;
+    flex-wrap: wrap;
+    row-gap: calc(g.$spacing-unit / 2);
   }
 
   &__display-name {
     font-weight: bold;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 100%;
     display: flex;
     align-items: center;
     position: relative;
     text-shadow: 0 0 5px rgb(0 0 0 / 40%);
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  &__display-name--monster {
+    color: var(--creator-accent, #f00070);
+    text-shadow:
+      0 0 10px var(--creator-accent, #f00070),
+      0 0 24px var(--creator-accent, #f00070);
+  }
+
+  &__monster-signature {
+    display: flex;
+    align-items: center;
+    gap: calc(g.$spacing-unit / 2);
+    flex: 0 0 auto;
+  }
+
+  &__monster-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    filter:
+      drop-shadow(0 0 6px var(--creator-accent, #f00070))
+      drop-shadow(0 0 12px var(--creator-accent, #f00070));
+  }
+
+  &__monster-tag {
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--creator-accent, #f00070);
+    text-shadow: 0 0 12px var(--creator-accent, #f00070);
   }
 
   &__current-game {

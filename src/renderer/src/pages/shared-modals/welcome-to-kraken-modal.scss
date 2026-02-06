@@ -1,0 +1,130 @@
+.welcome-kraken {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: rgba(var(--md-sys-color-on-surface-rgb), 0.9);
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 14px;
+
+    p {
+      margin: 0;
+      line-height: 1.5;
+    }
+  }
+
+  &__section--credits {
+    gap: 16px;
+  }
+
+  &__note {
+    padding: 12px 14px;
+    border-radius: 16px;
+    background: color-mix(
+      in srgb,
+      var(--md-sys-color-surface) 86%,
+      var(--md-sys-color-primary) 14%
+    );
+    color: rgba(var(--md-sys-color-on-surface-rgb), 0.92);
+    font-size: 13px;
+    display: grid;
+    gap: 10px;
+  }
+
+  &__list {
+    margin: 0;
+    padding-left: 18px;
+    display: grid;
+    gap: 8px;
+    color: rgba(var(--md-sys-color-on-surface-rgb), 0.88);
+  }
+
+  &__actions-inline {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  &__link-row {
+    display: grid;
+    gap: 6px;
+  }
+
+  &__code {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 12px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.25);
+    color: rgba(var(--md-sys-color-on-surface-rgb), 0.92);
+    word-break: break-all;
+  }
+
+  &__hint {
+    font-size: 12px;
+    color: rgba(var(--md-sys-color-on-surface-rgb), 0.6);
+  }
+
+  &__credits {
+    display: grid;
+    gap: 10px;
+  }
+
+  &__credit-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 13px;
+  }
+
+  &__label {
+    color: rgba(var(--md-sys-color-on-surface-rgb), 0.7);
+  }
+
+  &__tg-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+  }
+
+  &__signature {
+    font-size: 12px;
+    color: rgba(var(--md-sys-color-on-surface-rgb), 0.6);
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  &__steps {
+    display: inline-flex;
+    gap: 8px;
+  }
+
+  &__step {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(var(--md-sys-color-on-surface-rgb), 0.2);
+  }
+
+  &__step--active {
+    width: 18px;
+    background: var(--md-sys-color-primary);
+  }
+
+  &__footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}

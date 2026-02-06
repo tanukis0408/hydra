@@ -11,6 +11,9 @@ import {
   LinkIcon,
   TrashIcon,
   XIcon,
+  TagIcon,
+  DotIcon,
+  DotFillIcon,
 } from "@primer/octicons-react";
 import SteamLogo from "@renderer/assets/steam-logo.svg?react";
 import { LibraryGame } from "@types";
@@ -21,6 +24,8 @@ import {
   ConfirmationModal,
   useGameActions,
 } from "..";
+import { useProfileCollections, buildProfileGameKey } from "@renderer/hooks";
+import { useUserDetails } from "@renderer/hooks";
 
 interface GameContextMenuProps extends Omit<ContextMenuProps, "items"> {
   game: LibraryGame;
@@ -33,9 +38,15 @@ export function GameContextMenu({
   onClose,
 }: GameContextMenuProps) {
   const { t } = useTranslation("game_details");
+  const { t: tProfile } = useTranslation("user_profile");
   const [showConfirmRemoveLibrary, setShowConfirmRemoveLibrary] =
     useState(false);
   const [showConfirmRemoveFiles, setShowConfirmRemoveFiles] = useState(false);
+  const { userDetails } = useUserDetails();
+  const { state, toggleGameCategory } = useProfileCollections(userDetails?.id);
+  const gameKey = buildProfileGameKey(game.shop, game.objectId);
+  const activeCategories = new Set(state.assignments[gameKey] ?? []);
+  const canManageCollections = Boolean(userDetails?.id);
   const {
     canPlay,
     isDeleting,
@@ -55,6 +66,59 @@ export function GameContextMenu({
     handleRemoveFiles,
     handleOpenGameOptions,
   } = useGameActions(game);
+
+  const collectionItems: ContextMenuItemData[] = [
+    {
+      id: "collection-playing",
+      label: tProfile("profile_category_playing", {
+        defaultValue: "Playing",
+      }),
+      icon: activeCategories.has("playing") ? (
+        <DotFillIcon size={16} />
+      ) : (
+        <DotIcon size={16} />
+      ),
+      onClick: () => toggleGameCategory(gameKey, "playing"),
+      disabled: isDeleting || !canManageCollections,
+    },
+    {
+      id: "collection-want-to-play",
+      label: tProfile("profile_category_want_to_play", {
+        defaultValue: "Want to play",
+      }),
+      icon: activeCategories.has("want_to_play") ? (
+        <DotFillIcon size={16} />
+      ) : (
+        <DotIcon size={16} />
+      ),
+      onClick: () => toggleGameCategory(gameKey, "want_to_play"),
+      disabled: isDeleting || !canManageCollections,
+    },
+    {
+      id: "collection-dropped",
+      label: tProfile("profile_category_dropped", {
+        defaultValue: "Dropped",
+      }),
+      icon: activeCategories.has("dropped") ? (
+        <DotFillIcon size={16} />
+      ) : (
+        <DotIcon size={16} />
+      ),
+      onClick: () => toggleGameCategory(gameKey, "dropped"),
+      disabled: isDeleting || !canManageCollections,
+    },
+    ...state.customCategories.map((category) => ({
+      id: `collection-${category.id}`,
+      label: category.label,
+      icon: activeCategories.has(category.id) ? (
+        <DotFillIcon size={16} />
+      ) : (
+        <DotIcon size={16} />
+      ),
+      onClick: () => toggleGameCategory(gameKey, category.id),
+      disabled: isDeleting || !canManageCollections,
+    })),
+  ];
 
   const items: ContextMenuItemData[] = [
     {
@@ -90,6 +154,15 @@ export function GameContextMenu({
         void handleToggleFavorite();
       },
       disabled: isDeleting,
+    },
+    {
+      id: "collections",
+      label: tProfile("profile_collections_title", {
+        defaultValue: "Collections",
+      }),
+      icon: <TagIcon size={16} />,
+      submenu: collectionItems,
+      disabled: isDeleting || !canManageCollections,
     },
     ...(game.executablePath
       ? [

@@ -35,6 +35,8 @@ interface LanguageOption {
 
 export function SettingsGeneral() {
   const { t } = useTranslation("settings");
+  const hint = (key: string, fallback: string) =>
+    t(key, { defaultValue: fallback });
 
   const { updateUserPreferences } = useContext(settingsContext);
 
@@ -306,6 +308,10 @@ export function SettingsGeneral() {
 
       <CheckboxField
         label={t("use_native_http_downloader")}
+        hint={hint(
+          "hint_use_native_http_downloader",
+          "Use the built-in HTTP downloader (recommended)."
+        )}
         checked={form.useNativeHttpDownloader}
         disabled={hasActiveDownload}
         onChange={() =>
@@ -325,6 +331,10 @@ export function SettingsGeneral() {
 
       <CheckboxField
         label={t("enable_download_notifications")}
+        hint={hint(
+          "hint_enable_download_notifications",
+          "Show a notification when a download completes."
+        )}
         checked={form.downloadNotificationsEnabled}
         onChange={() =>
           handleChange({
@@ -335,6 +345,10 @@ export function SettingsGeneral() {
 
       <CheckboxField
         label={t("enable_repack_list_notifications")}
+        hint={hint(
+          "hint_enable_repack_list_notifications",
+          "Notify when new repacks are available."
+        )}
         checked={form.repackUpdatesNotificationsEnabled}
         onChange={() =>
           handleChange({
@@ -346,6 +360,10 @@ export function SettingsGeneral() {
 
       <CheckboxField
         label={t("enable_friend_request_notifications")}
+        hint={hint(
+          "hint_enable_friend_request_notifications",
+          "Notify when you receive a friend request."
+        )}
         checked={form.friendRequestNotificationsEnabled}
         onChange={() =>
           handleChange({
@@ -357,6 +375,10 @@ export function SettingsGeneral() {
 
       <CheckboxField
         label={t("enable_friend_start_game_notifications")}
+        hint={hint(
+          "hint_enable_friend_start_game_notifications",
+          "Notify when a friend starts playing a game."
+        )}
         checked={form.friendStartGameNotificationsEnabled}
         onChange={() =>
           handleChange({
@@ -368,6 +390,10 @@ export function SettingsGeneral() {
 
       <CheckboxField
         label={t("enable_achievement_notifications")}
+        hint={hint(
+          "hint_enable_achievement_notifications",
+          "Show achievement popups and sounds."
+        )}
         checked={form.achievementNotificationsEnabled}
         onChange={async () => {
           await handleChange({
@@ -381,6 +407,10 @@ export function SettingsGeneral() {
 
       <CheckboxField
         label={t("enable_achievement_custom_notifications")}
+        hint={hint(
+          "hint_enable_achievement_custom_notifications",
+          "Use the custom achievement overlay window."
+        )}
         checked={form.achievementCustomNotificationsEnabled}
         disabled={!form.achievementNotificationsEnabled}
         onChange={async () => {

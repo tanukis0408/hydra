@@ -5,8 +5,12 @@ import type { DownloadSource } from "@types";
 import { useAppDispatch } from "./redux";
 import { setGenres, setTags } from "@renderer/features";
 
+const externalResourcesBaseUrl =
+  import.meta.env.RENDERER_VITE_EXTERNAL_RESOURCES_URL ||
+  "https://hydralinks.pages.dev";
+
 export const externalResourcesInstance = axios.create({
-  baseURL: import.meta.env.RENDERER_VITE_EXTERNAL_RESOURCES_URL,
+  baseURL: externalResourcesBaseUrl,
 });
 
 export function useCatalogue() {

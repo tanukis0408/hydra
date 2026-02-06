@@ -13,19 +13,19 @@ export const KrakenCloudModal = ({
   visible,
   onClose,
 }: KrakenCloudModalProps) => {
-  const { t } = useTranslation("kraken_cloud");
+  const { t } = useTranslation("hydra_cloud");
 
   const handleClickOpenCheckout = () => {
     window.electron.openCheckout();
   };
 
   return (
-    <Modal visible={visible} title={t("kraken_cloud")} onClose={onClose}>
+    <Modal visible={visible} title={t("hydra_cloud")} onClose={onClose}>
       <div
         className="kraken-cloud-modal__container"
         data-kraken-cloud-feature={feature}
       >
-        {t("kraken_cloud_feature_found")}
+        {t("hydra_cloud_feature_found")}
         <Button onClick={handleClickOpenCheckout}>{t("learn_more")}</Button>
       </div>
     </Modal>

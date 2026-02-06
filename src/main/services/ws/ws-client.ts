@@ -20,7 +20,10 @@ export class WSClient {
     try {
       const { token } = await KrakenApi.post<{ token: string }>("/auth/ws");
 
-      this.ws = new WebSocket(import.meta.env.MAIN_VITE_WS_URL, {
+      const wsUrl =
+        import.meta.env.MAIN_VITE_WS_URL || "wss://ws.hydralauncher.gg";
+
+      this.ws = new WebSocket(wsUrl, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

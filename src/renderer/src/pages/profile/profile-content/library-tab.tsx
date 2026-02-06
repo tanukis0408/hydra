@@ -6,11 +6,13 @@ import { useFormat } from "@renderer/hooks";
 import type { UserGame } from "@types";
 import { SortOptions } from "./sort-options";
 import { UserLibraryGameCard } from "./user-library-game-card";
+import { ProfileCollections } from "./profile-collections";
 import "./profile-content.scss";
 
 type SortOption = "playtime" | "achievementCount" | "playedRecently";
 
 interface LibraryTabProps {
+  userId?: string;
   sortBy: SortOption;
   onSortChange: (sortBy: SortOption) => void;
   pinnedGames: UserGame[];
@@ -27,6 +29,7 @@ interface LibraryTabProps {
 }
 
 export function LibraryTab({
+  userId,
   sortBy,
   onSortChange,
   pinnedGames,
@@ -74,6 +77,17 @@ export function LibraryTab({
 
       {hasAnyGames && (
         <div>
+          <ProfileCollections
+            userId={userId}
+            isMe={isMe}
+            pinnedGames={pinnedGames}
+            libraryGames={libraryGames}
+            sortBy={sortBy}
+            statIndex={statsIndex}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+          />
+
           {hasPinnedGames && (
             <div style={{ marginBottom: "2rem" }}>
               <div className="profile-content__section-header">

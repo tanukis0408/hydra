@@ -25,6 +25,8 @@ import {
 import { useTranslation } from "react-i18next";
 import { useSubscription } from "./hooks/use-subscription";
 import KrakenCloudModal from "./pages/shared-modals/kraken-cloud/kraken-cloud-modal";
+import { WelcomeToKrakenModal } from "./pages/shared-modals/welcome-to-kraken-modal";
+import { ReleaseNotesModal } from "./pages/shared-modals/release-notes-modal";
 import { ThemeProvider, useTheme } from "./contexts/theme.context";
 import { ThemeToggle } from "./components/theme-toggle/theme-toggle";
 import { ArchiveDeletionModal } from "./pages/downloads/archive-deletion-error-modal";
@@ -247,6 +249,9 @@ export function App() {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const userPreferences = useAppSelector(
+    (state) => state.userPreferences.value
+  );
 
   const draggingDisabled = useAppSelector(
     (state) => state.window.draggingDisabled
@@ -259,6 +264,10 @@ export function App() {
   const [showArchiveDeletionModal, setShowArchiveDeletionModal] =
     useState(false);
   const [archivePaths, setArchivePaths] = useState<string[]>([]);
+  const [preferencesLoaded, setPreferencesLoaded] = useState(false);
+  const [showWelcomeModal, setShowWelcomeModal] = useState(false);
+  const [showReleaseNotes, setShowReleaseNotes] = useState(false);
+  const [appVersion, setAppVersion] = useState<string | null>(null);
 
   useEffect(() => {
     Promise.all([
@@ -266,8 +275,15 @@ export function App() {
       updateLibrary(),
     ]).then(([preferences]) => {
       dispatch(setUserPreferences(preferences as UserPreferences | null));
+      setPreferencesLoaded(true);
     });
   }, [navigate, location.pathname, dispatch, updateLibrary]);
+
+  useEffect(() => {
+    window.electron.getVersion().then((version) => {
+      setAppVersion(version);
+    });
+  }, []);
 
   useEffect(() => {
     const unsubscribe = window.electron.onDownloadProgress(
@@ -342,10 +358,14 @@ export function App() {
 
     setupWorkWonders(userDetails?.workwondersJwt, userPreferences?.language);
 
+    const externalResourcesBase =
+      import.meta.env.RENDERER_VITE_EXTERNAL_RESOURCES_URL ||
+      "https://hydralinks.pages.dev";
+
     if (!document.getElementById("external-resources")) {
       const $script = document.createElement("script");
       $script.id = "external-resources";
-      $script.src = `${import.meta.env.RENDERER_VITE_EXTERNAL_RESOURCES_URL}/bundle.js?t=${Date.now()}`;
+      $script.src = `${externalResourcesBase}/bundle.js?t=${Date.now()}`;
       document.head.appendChild($script);
     }
   }, [fetchUserDetails, updateUserDetails, dispatch, setupWorkWonders]);
@@ -476,6 +496,59 @@ export function App() {
     };
   }, [playAudio]);
 
+  useEffect(() => {
+    if (!preferencesLoaded) return;
+    if (userPreferences?.welcomeTutorialSeen === true) return;
+    setShowWelcomeModal(true);
+  }, [preferencesLoaded, userPreferences?.welcomeTutorialSeen]);
+
+  useEffect(() => {
+    if (!preferencesLoaded || !appVersion) return;
+    if (userPreferences?.welcomeTutorialSeen !== true) return;
+    if (userPreferences?.lastSeenVersion === appVersion) return;
+    setShowReleaseNotes(true);
+  }, [
+    preferencesLoaded,
+    appVersion,
+    userPreferences?.lastSeenVersion,
+    userPreferences?.welcomeTutorialSeen,
+  ]);
+
+  const handleWelcomeClose = useCallback(async () => {
+    setShowWelcomeModal(false);
+    try {
+      await window.electron.updateUserPreferences({
+        welcomeTutorialSeen: true,
+      });
+      const preferences = (await levelDBService.get(
+        "userPreferences",
+        null,
+        "json"
+      )) as UserPreferences | null;
+      dispatch(setUserPreferences(preferences));
+    } catch {
+      // ignore
+    }
+  }, [dispatch]);
+
+  const handleReleaseNotesClose = useCallback(async () => {
+    setShowReleaseNotes(false);
+    if (!appVersion) return;
+    try {
+      await window.electron.updateUserPreferences({
+        lastSeenVersion: appVersion,
+      });
+      const preferences = (await levelDBService.get(
+        "userPreferences",
+        null,
+        "json"
+      )) as UserPreferences | null;
+      dispatch(setUserPreferences(preferences));
+    } catch {
+      // ignore
+    }
+  }, [appVersion, dispatch]);
+
   const handleToastClose = useCallback(() => {
     dispatch(closeToast());
   }, [dispatch]);
@@ -518,6 +591,17 @@ export function App() {
           visible={showArchiveDeletionModal}
           archivePaths={archivePaths}
           onClose={() => setShowArchiveDeletionModal(false)}
+        />
+
+        <WelcomeToKrakenModal
+          visible={showWelcomeModal}
+          onClose={handleWelcomeClose}
+        />
+
+        <ReleaseNotesModal
+          visible={showReleaseNotes && !showWelcomeModal}
+          version={appVersion ?? "1.0.0"}
+          onClose={handleReleaseNotesClose}
         />
 
         <main>

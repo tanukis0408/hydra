@@ -803,7 +803,17 @@
     "user_reviews": "Reviews",
     "delete_review": "Delete Review",
     "loading_reviews": "Loading reviews...",
-    "wrapped_2025": "Wrapped 2025"
+    "wrapped_2025": "Wrapped 2025",
+    "profile_collections_title": "Collections",
+    "profile_collections_edit_hint": "Choose which lists appear on your profile and add custom ones.",
+    "profile_collections_empty": "No games here yet.",
+    "profile_collections_hint": "Right-click a game to add it to a list.",
+    "profile_category_playing": "Playing",
+    "profile_category_want_to_play": "Want to play",
+    "profile_category_dropped": "Dropped",
+    "profile_category_custom": "Custom category",
+    "profile_category_custom_placeholder": "Add a category",
+    "profile_category_exists": "Category already exists."
   },
   "library": {
     "library": "Library",

@@ -141,6 +141,8 @@ export interface UserPreferences {
   themeMode?: ThemeMode;
   uiScale?: number;
   reduceMotion?: boolean;
+  welcomeTutorialSeen?: boolean;
+  lastSeenVersion?: string;
 }
 
 export interface ScreenState {

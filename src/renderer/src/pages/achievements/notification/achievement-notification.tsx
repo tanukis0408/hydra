@@ -23,6 +23,7 @@ import styles from "../../../components/achievements/notification/achievement-no
 import root from "react-shadow";
 
 const NOTIFICATION_TIMEOUT = 4000;
+const CLOSE_DURATION = 260;
 
 export function AchievementNotification() {
   const { t } = useTranslation("achievement");
@@ -38,9 +39,8 @@ export function AchievementNotification() {
   const [currentAchievement, setCurrentAchievement] =
     useState<AchievementNotificationInfo | null>(null);
 
-  const achievementAnimation = useRef(-1);
-  const closingAnimation = useRef(-1);
-  const visibleAnimation = useRef(-1);
+  const closeTimeout = useRef<number | undefined>(undefined);
+  const hideTimeout = useRef<number | undefined>(undefined);
 
   const [shadowRootRef, setShadowRootRef] = useState<HTMLElement | null>(null);
 
@@ -113,54 +113,53 @@ export function AchievementNotification() {
     };
   }, [playAudio]);
 
-  const hasAchievementsPending = achievements.length > 0;
-
-  const startAnimateClosing = useCallback(() => {
-    cancelAnimationFrame(closingAnimation.current);
-    cancelAnimationFrame(visibleAnimation.current);
-    cancelAnimationFrame(achievementAnimation.current);
-
-    setIsClosing(true);
-
-    const zero = performance.now();
-    closingAnimation.current = requestAnimationFrame(
-      function animateClosing(time) {
-        if (time - zero <= 450) {
-          closingAnimation.current = requestAnimationFrame(animateClosing);
-        } else {
-          setIsVisible(false);
-          setAchievements((ach) => ach.slice(1));
-        }
-      }
-    );
+  const clearTimers = useCallback(() => {
+    if (closeTimeout.current) {
+      window.clearTimeout(closeTimeout.current);
+      closeTimeout.current = undefined;
+    }
+    if (hideTimeout.current) {
+      window.clearTimeout(hideTimeout.current);
+      hideTimeout.current = undefined;
+    }
   }, []);
 
-  useEffect(() => {
-    if (hasAchievementsPending) {
-      setIsClosing(false);
-      setIsVisible(true);
+  const scheduleClose = useCallback(() => {
+    clearTimers();
+    if (!currentAchievement) return;
 
-      let zero = performance.now();
-      cancelAnimationFrame(closingAnimation.current);
-      cancelAnimationFrame(visibleAnimation.current);
-      cancelAnimationFrame(achievementAnimation.current);
-      achievementAnimation.current = requestAnimationFrame(
-        function animateLock(time) {
-          if (time - zero > NOTIFICATION_TIMEOUT) {
-            zero = performance.now();
-            startAnimateClosing();
-          }
-          achievementAnimation.current = requestAnimationFrame(animateLock);
-        }
-      );
-    }
-  }, [hasAchievementsPending, startAnimateClosing, currentAchievement]);
+    closeTimeout.current = window.setTimeout(() => {
+      setIsClosing(true);
+      hideTimeout.current = window.setTimeout(() => {
+        setIsVisible(false);
+        setIsClosing(false);
+        setAchievements((ach) => ach.slice(1));
+        setCurrentAchievement(null);
+      }, CLOSE_DURATION);
+    }, NOTIFICATION_TIMEOUT);
+  }, [clearTimers, currentAchievement]);
 
   useEffect(() => {
-    if (achievements.length) {
+    if (!currentAchievement && achievements.length) {
       setCurrentAchievement(achievements[0]);
+      setIsVisible(true);
+      setIsClosing(false);
     }
-  }, [achievements]);
+  }, [achievements, currentAchievement]);
+
+  useEffect(() => {
+    if (currentAchievement) {
+      setIsVisible(true);
+      setIsClosing(false);
+      scheduleClose();
+    } else {
+      clearTimers();
+    }
+  }, [clearTimers, currentAchievement, scheduleClose]);
+
+  useEffect(() => {
+    return () => clearTimers();
+  }, [clearTimers]);
 
   const loadAndApplyTheme = useCallback(async () => {
     if (!shadowRootRef) return;

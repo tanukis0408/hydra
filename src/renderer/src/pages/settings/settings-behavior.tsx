@@ -5,7 +5,6 @@ import { CheckboxField } from "@renderer/components";
 import { useAppSelector } from "@renderer/hooks";
 import { settingsContext } from "@renderer/context";
 import "./settings-behavior.scss";
-import { QuestionIcon } from "@primer/octicons-react";
 
 export function SettingsBehavior() {
   const userPreferences = useAppSelector(
@@ -34,6 +33,8 @@ export function SettingsBehavior() {
   });
 
   const { t } = useTranslation("settings");
+  const hint = (key: string, fallback: string) =>
+    t(key, { defaultValue: fallback });
 
   useEffect(() => {
     if (userPreferences) {
@@ -78,6 +79,10 @@ export function SettingsBehavior() {
     <>
       <CheckboxField
         label={t("quit_app_instead_hiding")}
+        hint={hint(
+          "hint_quit_app_instead_hiding",
+          "Close Kraken instead of minimizing to tray."
+        )}
         checked={form.preferQuitInsteadOfHiding}
         onChange={() =>
           handleChange({
@@ -88,6 +93,10 @@ export function SettingsBehavior() {
 
       <CheckboxField
         label={t("hide_to_tray_on_game_start")}
+        hint={hint(
+          "hint_hide_to_tray_on_game_start",
+          "Hide Kraken to the tray when a game starts."
+        )}
         checked={form.hideToTrayOnGameStart}
         onChange={() =>
           handleChange({
@@ -99,6 +108,10 @@ export function SettingsBehavior() {
       {showRunAtStartup && (
         <CheckboxField
           label={t("launch_with_system")}
+          hint={hint(
+            "hint_launch_with_system",
+            "Start Kraken automatically when Windows starts."
+          )}
           onChange={() => {
             handleChange({ runAtStartup: !form.runAtStartup });
             window.electron.autoLaunch({
@@ -116,6 +129,10 @@ export function SettingsBehavior() {
         >
           <CheckboxField
             label={t("launch_minimized")}
+            hint={hint(
+              "hint_launch_minimized",
+              "Start minimized in tray (requires auto-launch)."
+            )}
             style={{ cursor: form.runAtStartup ? "pointer" : "not-allowed" }}
             checked={form.runAtStartup && form.startMinimized}
             disabled={!form.runAtStartup}
@@ -133,6 +150,10 @@ export function SettingsBehavior() {
       {window.electron.platform === "linux" && (
         <CheckboxField
           label={t("enable_auto_install")}
+          hint={hint(
+            "hint_enable_auto_install",
+            "Allow automatic install of required components on Linux."
+          )}
           checked={form.enableAutoInstall}
           onChange={() =>
             handleChange({ enableAutoInstall: !form.enableAutoInstall })
@@ -142,6 +163,10 @@ export function SettingsBehavior() {
 
       <CheckboxField
         label={t("autoplay_trailers_on_game_page")}
+        hint={hint(
+          "hint_autoplay_trailers_on_game_page",
+          "Automatically play trailers on game pages."
+        )}
         checked={form.autoplayGameTrailers}
         onChange={() =>
           handleChange({ autoplayGameTrailers: !form.autoplayGameTrailers })
@@ -150,6 +175,10 @@ export function SettingsBehavior() {
 
       <CheckboxField
         label={t("disable_nsfw_alert")}
+        hint={hint(
+          "hint_disable_nsfw_alert",
+          "Disable the NSFW content warning."
+        )}
         checked={form.disableNsfwAlert}
         onChange={() =>
           handleChange({ disableNsfwAlert: !form.disableNsfwAlert })
@@ -158,6 +187,10 @@ export function SettingsBehavior() {
 
       <CheckboxField
         label={t("seed_after_download_complete")}
+        hint={hint(
+          "hint_seed_after_download_complete",
+          "Continue seeding torrents after download finishes."
+        )}
         checked={form.seedAfterDownloadComplete}
         onChange={() =>
           handleChange({
@@ -168,6 +201,10 @@ export function SettingsBehavior() {
 
       <CheckboxField
         label={t("show_hidden_achievement_description")}
+        hint={hint(
+          "hint_show_hidden_achievement_description",
+          "Show hidden achievement descriptions before unlocking."
+        )}
         checked={form.showHiddenAchievementsDescription}
         onChange={() =>
           handleChange({
@@ -179,6 +216,10 @@ export function SettingsBehavior() {
 
       <CheckboxField
         label={t("show_download_speed_in_megabytes")}
+        hint={hint(
+          "hint_show_download_speed_in_megabytes",
+          "Display download speed in MB/s."
+        )}
         checked={form.showDownloadSpeedInMegabytes}
         onChange={() =>
           handleChange({
@@ -189,6 +230,10 @@ export function SettingsBehavior() {
 
       <CheckboxField
         label={t("extract_files_by_default")}
+        hint={hint(
+          "hint_extract_files_by_default",
+          "Automatically extract archives after download."
+        )}
         checked={form.extractFilesByDefault}
         onChange={() =>
           handleChange({
@@ -197,27 +242,26 @@ export function SettingsBehavior() {
         }
       />
 
-      <div className={`settings-behavior__checkbox-container--with-tooltip`}>
-        <CheckboxField
-          label={t("enable_steam_achievements")}
-          checked={form.enableSteamAchievements}
-          onChange={() =>
-            handleChange({
-              enableSteamAchievements: !form.enableSteamAchievements,
-            })
-          }
-        />
-
-        <small
-          className="settings-behavior__checkbox-container--tooltip"
-          data-open-article="steam-achievements"
-        >
-          <QuestionIcon size={12} />
-        </small>
-      </div>
+      <CheckboxField
+        label={t("enable_steam_achievements")}
+        hint={hint(
+          "hint_enable_steam_achievements",
+          "Enable Steam achievement scanning. May impact performance."
+        )}
+        checked={form.enableSteamAchievements}
+        onChange={() =>
+          handleChange({
+            enableSteamAchievements: !form.enableSteamAchievements,
+          })
+        }
+      />
 
       <CheckboxField
         label={t("enable_new_download_options_badges")}
+        hint={hint(
+          "hint_enable_new_download_options_badges",
+          "Show a badge when new download options are found."
+        )}
         checked={form.enableNewDownloadOptionsBadges}
         onChange={() =>
           handleChange({
@@ -230,6 +274,10 @@ export function SettingsBehavior() {
       {window.electron.platform === "win32" && (
         <CheckboxField
           label={t("create_start_menu_shortcut_on_download")}
+          hint={hint(
+            "hint_create_start_menu_shortcut_on_download",
+            "Create a Start Menu shortcut after download completes."
+          )}
           checked={form.createStartMenuShortcut}
           onChange={() =>
             handleChange({

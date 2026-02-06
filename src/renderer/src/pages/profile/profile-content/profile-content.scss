@@ -206,6 +206,25 @@
       display: block;
     }
   }
+
+  &__collections {
+    display: flex;
+    flex-direction: column;
+    gap: calc(g.$spacing-unit * 2.5);
+    margin-bottom: calc(g.$spacing-unit * 3);
+  }
+
+  &__collection {
+    display: flex;
+    flex-direction: column;
+    gap: calc(g.$spacing-unit * 1.5);
+  }
+
+  &__collections-empty {
+    margin: 0;
+    color: g.$muted-color;
+    font-size: 0.9rem;
+  }
 }
 
 // Reviews minimal styles

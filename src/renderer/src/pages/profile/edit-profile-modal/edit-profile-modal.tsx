@@ -1,17 +1,18 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Trans, useTranslation } from "react-i18next";
 
-import { DeviceCameraIcon } from "@primer/octicons-react";
+import { DeviceCameraIcon, TrashIcon } from "@primer/octicons-react";
 import {
   Avatar,
   Button,
+  CheckboxField,
   Link,
   Modal,
   ModalProps,
   TextField,
 } from "@renderer/components";
-import { useToast, useUserDetails } from "@renderer/hooks";
+import { useProfileCollections, useToast, useUserDetails } from "@renderer/hooks";
 
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -53,6 +54,16 @@ export function EditProfileModal(
   const { userDetails, fetchUserDetails, hasActiveSubscription } =
     useUserDetails();
 
+  const {
+    state: collectionsState,
+    setSystemVisibility,
+    addCustomCategory,
+    removeCustomCategory,
+    toggleCustomCategoryVisibility,
+  } = useProfileCollections(userDetails?.id);
+
+  const [newCategory, setNewCategory] = useState("");
+
   useEffect(() => {
     if (userDetails) {
       setValue("displayName", userDetails.displayName);
@@ -62,6 +73,21 @@ export function EditProfileModal(
   const { patchUser } = useUserDetails();
 
   const { showSuccessToast, showErrorToast } = useToast();
+
+  const handleAddCategory = () => {
+    const trimmed = newCategory.trim();
+    if (!trimmed) return;
+    const created = addCustomCategory(trimmed);
+    if (!created) {
+      showErrorToast(
+        t("profile_category_exists", {
+          defaultValue: "Category already exists.",
+        })
+      );
+      return;
+    }
+    setNewCategory("");
+  };
 
   const onSubmit = async (values: FormValues) => {
     return patchUser(values)
@@ -153,6 +179,116 @@ export function EditProfileModal(
             containerProps={{ style: { width: "100%" } }}
             error={errors.displayName?.message}
           />
+
+          <div className="edit-profile-modal__section">
+            <div className="edit-profile-modal__section-header">
+              <h3 className="edit-profile-modal__section-title">
+                {t("profile_collections_title", {
+                  defaultValue: "Collections",
+                })}
+              </h3>
+              <p className="edit-profile-modal__section-subtitle">
+                {t("profile_collections_edit_hint", {
+                  defaultValue:
+                    "Choose which lists appear on your profile and add custom ones.",
+                })}
+              </p>
+            </div>
+
+            <div className="edit-profile-modal__category-list">
+              <CheckboxField
+                label={t("favorites", { defaultValue: "Favorites" })}
+                checked={collectionsState.systemVisibility.favorites}
+                onChange={(event) =>
+                  setSystemVisibility("favorites", event.target.checked)
+                }
+              />
+              <CheckboxField
+                label={t("profile_category_playing", {
+                  defaultValue: "Playing",
+                })}
+                checked={collectionsState.systemVisibility.playing}
+                onChange={(event) =>
+                  setSystemVisibility("playing", event.target.checked)
+                }
+              />
+              <CheckboxField
+                label={t("profile_category_want_to_play", {
+                  defaultValue: "Want to play",
+                })}
+                checked={collectionsState.systemVisibility.want_to_play}
+                onChange={(event) =>
+                  setSystemVisibility("want_to_play", event.target.checked)
+                }
+              />
+              <CheckboxField
+                label={t("profile_category_dropped", {
+                  defaultValue: "Dropped",
+                })}
+                checked={collectionsState.systemVisibility.dropped}
+                onChange={(event) =>
+                  setSystemVisibility("dropped", event.target.checked)
+                }
+              />
+            </div>
+
+            <div className="edit-profile-modal__custom-category-input">
+              <TextField
+                label={t("profile_category_custom", {
+                  defaultValue: "Custom category",
+                })}
+                placeholder={t("profile_category_custom_placeholder", {
+                  defaultValue: "Add a category",
+                })}
+                value={newCategory}
+                onChange={(event) => setNewCategory(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    event.preventDefault();
+                    handleAddCategory();
+                  }
+                }}
+                containerProps={{ style: { flex: 1 } }}
+              />
+              <Button
+                type="button"
+                className="edit-profile-modal__add-category"
+                onClick={handleAddCategory}
+              >
+                {t("add", { defaultValue: "Add" })}
+              </Button>
+            </div>
+
+            {collectionsState.customCategories.length > 0 && (
+              <div className="edit-profile-modal__custom-category-list">
+                {collectionsState.customCategories.map((category) => (
+                  <div
+                    className="edit-profile-modal__custom-category-row"
+                    key={category.id}
+                  >
+                    <CheckboxField
+                      label={category.label}
+                      checked={category.visible !== false}
+                      onChange={(event) =>
+                        toggleCustomCategoryVisibility(
+                          category.id,
+                          event.target.checked
+                        )
+                      }
+                    />
+                    <button
+                      type="button"
+                      className="edit-profile-modal__custom-category-remove"
+                      onClick={() => removeCustomCategory(category.id)}
+                      aria-label={t("remove", { defaultValue: "Remove" })}
+                    >
+                      <TrashIcon size={14} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
         <small className="edit-profile-modal__hint">

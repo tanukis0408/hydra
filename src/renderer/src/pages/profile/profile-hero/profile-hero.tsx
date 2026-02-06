@@ -1,4 +1,12 @@
-import { useCallback, useContext, useMemo, useState } from "react";
+import axios from "axios";
+import {
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+  useEffect,
+  type CSSProperties,
+} from "react";
 import { userProfileContext } from "@renderer/context";
 import {
   BlockedIcon,
@@ -28,6 +36,11 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import type { FriendRequestAction } from "@types";
+import monsterIncIcon from "@renderer/assets/icons/monster-inc-m.jpg";
+import {
+  localCreatorBadges,
+  type CreatorBadgeMap,
+} from "@renderer/data/creator-badges";
 import { EditProfileModal } from "../edit-profile-modal/edit-profile-modal";
 import Skeleton from "react-loading-skeleton";
 import { UploadBackgroundImageButton } from "../upload-background-image-button/upload-background-image-button";
@@ -43,6 +56,8 @@ export function ProfileHero() {
   const [isPerformingAction, setIsPerformingAction] = useState(false);
   const [isCopyButtonHovered, setIsCopyButtonHovered] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
+  const [creatorBadges, setCreatorBadges] =
+    useState<CreatorBadgeMap>(localCreatorBadges);
 
   const { isMe, getUserProfile, userProfile, heroBackground, backgroundImage } =
     useContext(userProfileContext);
@@ -57,11 +72,63 @@ export function ProfileHero() {
   const { gameRunning } = useAppSelector((state) => state.gameRunning);
 
   const { t } = useTranslation("user_profile");
+  const externalResourcesBaseUrl =
+    import.meta.env.RENDERER_VITE_EXTERNAL_RESOURCES_URL ||
+    "https://hydralinks.pages.dev";
+  const creatorBadgesUrl =
+    import.meta.env.RENDERER_VITE_CREATOR_BADGES_URL ||
+    `${externalResourcesBaseUrl}/creator-badges.json`;
+  const creatorBadge = userProfile?.id
+    ? creatorBadges[userProfile.id]
+    : undefined;
+  const isCreator = Boolean(creatorBadge);
   const { formatDistance } = useDate();
+  const creatorAccent = creatorBadge?.accent ?? "#f00070";
+  const creatorLabel = creatorBadge?.label ?? "#Monster Inc";
+  const creatorIcon = creatorBadge?.iconUrl ?? monsterIncIcon;
 
   const { showSuccessToast, showErrorToast } = useToast();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    let isMounted = true;
+    const cacheKey = "kraken.creatorBadges.v1";
+
+    try {
+      const cached = sessionStorage.getItem(cacheKey);
+      if (cached) {
+        const parsed = JSON.parse(cached) as CreatorBadgeMap;
+        if (isMounted && parsed && typeof parsed === "object") {
+          setCreatorBadges({ ...localCreatorBadges, ...parsed });
+          return;
+        }
+      }
+    } catch {
+      // Ignore cache errors and fetch fresh data.
+    }
+
+    axios
+      .get(creatorBadgesUrl, { timeout: 4000 })
+      .then((response) => {
+        const data = response.data?.profiles ?? response.data;
+        if (!data || typeof data !== "object") return;
+        if (!isMounted) return;
+        setCreatorBadges({ ...localCreatorBadges, ...data });
+        try {
+          sessionStorage.setItem(cacheKey, JSON.stringify(data));
+        } catch {
+          // Ignore cache write errors.
+        }
+      })
+      .catch(() => {
+        // Fallback to local badges only.
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [creatorBadgesUrl]);
 
   const handleSignOut = useCallback(async () => {
     setIsPerformingAction(true);
@@ -339,10 +406,34 @@ export function ProfileHero() {
 
             <div className="profile-hero__information">
               {userProfile ? (
-                <div className="profile-hero__display-name-container">
-                  <h2 className="profile-hero__display-name">
+                <div
+                  className="profile-hero__display-name-container"
+                  style={
+                    isCreator
+                      ? ({ "--creator-accent": creatorAccent } as CSSProperties)
+                      : undefined
+                  }
+                >
+                  <h2
+                    className={`profile-hero__display-name ${
+                      isCreator ? "profile-hero__display-name--monster" : ""
+                    }`}
+                  >
                     {userProfile?.displayName}
                   </h2>
+
+                  {isCreator && (
+                    <div className="profile-hero__monster-signature">
+                      <img
+                        className="profile-hero__monster-icon"
+                        src={creatorIcon}
+                        alt="Monster Inc"
+                      />
+                      <span className="profile-hero__monster-tag">
+                        {creatorLabel}
+                      </span>
+                    </div>
+                  )}
 
                   <motion.button
                     type="button"

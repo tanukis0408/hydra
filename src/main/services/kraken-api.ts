@@ -132,8 +132,10 @@ export class KrakenApi {
   }
 
   static async setupApi() {
+    const fallbackApi = "https://hydra-api-us-east-1.losbroxas.org";
+
     this.instance = axios.create({
-      baseURL: import.meta.env.MAIN_VITE_API_URL,
+      baseURL: import.meta.env.MAIN_VITE_API_URL || fallbackApi,
       headers: { "User-Agent": `Kraken Launcher v${appVersion}` },
     });
 
