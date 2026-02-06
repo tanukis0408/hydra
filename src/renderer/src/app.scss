@@ -158,6 +158,21 @@ body {
   letter-spacing: g.$letter-spacing-tracking-normal;
 }
 
+html[data-notification-window],
+body[data-notification-window] {
+  background-color: transparent !important;
+}
+
+body[data-notification-window] {
+  overflow: hidden;
+}
+
+body[data-notification-window] #root,
+body[data-notification-window] main {
+  height: auto;
+  background: transparent;
+}
+
 button {
   padding: 0;
   background-color: transparent;

@@ -9,34 +9,54 @@
   z-index: 1;
   position: relative;
   display: block;
+  padding: 0;
+  border-radius: g.$border-radius-lg;
+  background-color: var(--md-sys-color-surface-container);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  box-shadow: g.$shadow-2;
+  transition: transform 0.2s ease, box-shadow 0.2s ease,
+    border-color 0.2s ease;
 
-  // Apply Material You elevated card style
-  @include mixins.card-elevated;
-  // State layer (Material You)
+  // State layer
   &::after {
     content: "";
     position: absolute;
     inset: 0;
-    background-color: g.$on-surface;
+    background-color: color-mix(
+      in srgb,
+      var(--kraken-primary) 14%,
+      transparent
+    );
     opacity: 0;
-    transition: opacity 0.15s ease;
+    transition: opacity 0.2s ease;
     pointer-events: none;
   }
 
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: g.$shadow-3;
+    border-color: color-mix(
+      in srgb,
+      var(--kraken-primary) 25%,
+      var(--md-sys-color-outline-variant)
+    );
+  }
+
   &:hover::after {
-    opacity: 0.06;
+    opacity: 0.08;
   }
 
   &:active::after {
-    opacity: 0.1;
-  }
-
-  &:active {
-    opacity: g.$active-opacity;
+    opacity: 0.12;
   }
 
   &__backdrop {
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--md-sys-color-surface) 5%, transparent) 0%,
+      color-mix(in srgb, var(--md-sys-color-surface) 55%, transparent) 55%,
+      color-mix(in srgb, var(--md-sys-color-surface) 88%, transparent) 100%
+    );
     width: 100%;
     height: 100%;
     display: flex;
@@ -52,25 +72,30 @@
     object-position: center;
     position: absolute;
     z-index: -1;
-    transition: all ease 0.2s;
+    transition: transform 0.25s ease;
   }
 
   &__content {
-    color: g.$on-surface;
-    padding: g.$spacing-unit calc(g.$spacing-unit * 2);
+    color: var(--md-sys-color-on-surface);
+    padding: calc(g.$spacing-unit * 2);
     display: flex;
     align-items: flex-start;
-    gap: g.$spacing-unit;
+    gap: calc(g.$spacing-unit * 1.5);
     flex-direction: column;
-    transition: all ease 0.2s;
-    transform: translateY(24px);
+    background: color-mix(
+      in srgb,
+      var(--md-sys-color-surface) 80%,
+      transparent
+    );
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--md-sys-color-outline-variant);
   }
 
   &__title {
-    font-size: 16px;
-    font-weight: bold;
+    font-size: g.$body-large;
+    font-weight: 600;
     text-align: left;
-    color: g.$on-surface;
+    color: var(--md-sys-color-on-surface);
   }
 
   &__download-options {
@@ -84,14 +109,14 @@
 
   &__specifics {
     display: flex;
-    gap: calc(g.$spacing-unit * 2);
+    gap: calc(g.$spacing-unit * 1.5);
     justify-content: center;
   }
 
   &__specifics-item {
     gap: g.$spacing-unit;
     display: flex;
-    color: g.$on-surface-variant;
+    color: var(--md-sys-color-on-surface-variant);
     font-size: 12px;
     align-items: center;
 
@@ -104,7 +129,7 @@
     display: flex;
     align-items: center;
     gap: g.$spacing-unit;
-    color: g.$on-surface-variant;
+    color: var(--md-sys-color-on-surface-variant);
   }
 
   &__shop-icon {
@@ -114,14 +139,11 @@
   }
 
   &__no-download-label {
-    color: g.$on-surface-variant;
-    font-weight: bold;
+    color: var(--md-sys-color-on-surface-variant);
+    font-weight: 600;
   }
 
   &:hover &__cover {
     transform: scale(1.05);
-  }
-  &:hover &__content {
-    transform: translateY(0px);
   }
 }

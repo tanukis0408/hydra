@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.0 — Aqua (release candidate) (2026-02-05)
+## 1.0.0 — Aqua (2026-02-05)
 
 - Rebrand: Hydra -> Kraken (UI title, appId, productName and icons)
 - Added theme provider and `ThemeToggle` component (light/dark)

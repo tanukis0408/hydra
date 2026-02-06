@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { useTranslation } from "react-i18next";
 import {
   AchievementCustomNotificationPosition,
@@ -37,6 +43,19 @@ export function AchievementNotification() {
   const visibleAnimation = useRef(-1);
 
   const [shadowRootRef, setShadowRootRef] = useState<HTMLElement | null>(null);
+
+  useLayoutEffect(() => {
+    const root = document.documentElement;
+    const body = document.body;
+
+    root.dataset.notificationWindow = "achievement";
+    body.dataset.notificationWindow = "achievement";
+
+    return () => {
+      delete root.dataset.notificationWindow;
+      delete body.dataset.notificationWindow;
+    };
+  }, []);
 
   const playAudio = useCallback(async () => {
     const soundUrl = await getAchievementSoundUrl();
