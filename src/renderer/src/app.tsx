@@ -63,6 +63,8 @@ const MATERIAL_YOU_VARIABLES = [
   "--kraken-on-tertiary-container",
 ] as const;
 
+const SESSION_HIGHLIGHTS_MIN_MS = 60 * 1000;
+
 const applyMaterialPalette = (
   root: HTMLElement,
   palette: ReturnType<typeof buildMaterialYouPalette>
@@ -227,7 +229,7 @@ export function App() {
   // Listen for new download options updates
   useDownloadOptionsListener();
 
-  const { t } = useTranslation("app");
+  const { t } = useTranslation(["app", "user_profile"]);
 
   const { clearDownload, setLastPacket } = useDownload();
 
@@ -259,6 +261,7 @@ export function App() {
   );
 
   const toast = useAppSelector((state) => state.toast);
+  const gameRunning = useAppSelector((state) => state.gameRunning.gameRunning);
 
   const { showSuccessToast } = useToast();
 
@@ -272,6 +275,12 @@ export function App() {
   const [emergencyUpdate, setEmergencyUpdate] = useState<{
     version: string;
     downloaded: boolean;
+  } | null>(null);
+  const sessionRef = useRef<{
+    id: string;
+    title: string;
+    achievements: number;
+    lastDurationMs: number;
   } | null>(null);
 
   useEffect(() => {
@@ -510,15 +519,108 @@ export function App() {
     audio.play();
   }, []);
 
+  const formatSessionDuration = useCallback(
+    (durationMs: number) => {
+      const totalMinutes = Math.max(1, Math.floor(durationMs / 60000));
+      const hours = Math.floor(totalMinutes / 60);
+      const minutes = totalMinutes % 60;
+
+      if (hours <= 0) {
+        return t("user_profile:amount_minutes_short", {
+          amount: totalMinutes,
+        });
+      }
+
+      if (minutes === 0) {
+        return t("user_profile:amount_hours_short", { amount: hours });
+      }
+
+      return `${t("user_profile:amount_hours_short", {
+        amount: hours,
+      })} ${t("user_profile:amount_minutes_short", {
+        amount: minutes,
+      })}`;
+    },
+    [t]
+  );
+
+  const showSessionHighlights = useCallback(
+    (session: {
+      title: string;
+      achievements: number;
+      lastDurationMs: number;
+    }) => {
+      if (session.lastDurationMs < SESSION_HIGHLIGHTS_MIN_MS) return;
+
+      const duration = formatSessionDuration(session.lastDurationMs);
+      const message =
+        session.achievements > 0
+          ? t("session_highlights_message_with_achievements", {
+              duration,
+              game: session.title,
+              achievements: session.achievements,
+            })
+          : t("session_highlights_message", {
+              duration,
+              game: session.title,
+            });
+
+      showSuccessToast(t("session_highlights_title"), message, 6500);
+    },
+    [formatSessionDuration, showSuccessToast, t]
+  );
+
   useEffect(() => {
-    const unsubscribe = window.electron.onAchievementUnlocked(() => {
-      playAudio();
-    });
+    const unsubscribe = window.electron.onAchievementUnlocked(
+      (_position, achievements) => {
+        playAudio();
+
+        if (!sessionRef.current) return;
+
+        const unlockedCount = Array.isArray(achievements)
+          ? achievements.length
+          : 1;
+
+        sessionRef.current.achievements += unlockedCount;
+      }
+    );
 
     return () => {
       unsubscribe();
     };
   }, [playAudio]);
+
+  useEffect(() => {
+    if (gameRunning) {
+      if (
+        sessionRef.current &&
+        sessionRef.current.id !== gameRunning.id
+      ) {
+        showSessionHighlights(sessionRef.current);
+        sessionRef.current = null;
+      }
+
+      if (!sessionRef.current) {
+        sessionRef.current = {
+          id: gameRunning.id,
+          title: gameRunning.title,
+          achievements: 0,
+          lastDurationMs: gameRunning.sessionDurationInMillis,
+        };
+        return;
+      }
+
+      sessionRef.current.title = gameRunning.title;
+      sessionRef.current.lastDurationMs =
+        gameRunning.sessionDurationInMillis;
+      return;
+    }
+
+    if (sessionRef.current) {
+      showSessionHighlights(sessionRef.current);
+      sessionRef.current = null;
+    }
+  }, [gameRunning, showSessionHighlights]);
 
   useEffect(() => {
     if (!preferencesLoaded) return;
@@ -628,7 +730,7 @@ export function App() {
 
         <ReleaseNotesModal
           visible={showReleaseNotes && !showWelcomeModal}
-          version={appVersion ?? "1.0.0"}
+          version={appVersion ?? "1.0.1"}
           onClose={handleReleaseNotesClose}
         />
 

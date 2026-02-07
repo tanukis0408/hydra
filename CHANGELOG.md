@@ -1,10 +1,12 @@
 # Changelog
 
-## 1.0.0-hotfix (2026-02-06)
+## 1.0.1 - Breakwater (2026-02-06)
 
 - Added emergency updates (mandatory): auto-download, non-dismissible modal, auto-install countdown
 - Polished avatars: adaptive shape, crisp rendering, initials fallback, creator ring
 - Fixed profile avatar upload fallback when image processing fails
+- Added Session Highlights toast after gameplay sessions
+- Added Migration Wizard (Settings) to refresh metadata/covers and scan installed games
 
 ## 1.0.0 - Aqua (2026-02-06)
 

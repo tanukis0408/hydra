@@ -1,7 +1,10 @@
 {
   "language_name": "English",
   "app": {
-    "successfully_signed_in": "Successfully signed in"
+    "successfully_signed_in": "Successfully signed in",
+    "session_highlights_title": "Session highlights",
+    "session_highlights_message": "{{duration}} in {{game}}",
+    "session_highlights_message_with_achievements": "{{duration}} in {{game}} · +{{achievements}} achievements"
   },
   "home": {
     "surprise_me": "Surprise me",
@@ -647,7 +650,24 @@
     "downloads": "Downloads",
     "use_native_http_downloader": "Use native HTTP downloader (experimental)",
     "cannot_change_downloader_while_downloading": "Cannot change this setting while a download is in progress",
-    "create_start_menu_shortcut_on_download": "Create Start Menu shortcut when game finishes downloading"
+    "create_start_menu_shortcut_on_download": "Create Start Menu shortcut when game finishes downloading",
+    "migration_wizard": "Migration wizard",
+    "migration_wizard_description": "Import metadata and covers from Steam/Epic and scan for installed games.",
+    "migration_wizard_open": "Open wizard",
+    "migration_wizard_intro_title": "Migration wizard",
+    "migration_wizard_intro_body": "Update metadata, covers and executable paths using Steam/Epic sources when available.",
+    "migration_wizard_select_title": "Choose what to import",
+    "migration_wizard_import_metadata": "Import metadata and covers (Steam/Epic)",
+    "migration_wizard_scan_installed": "Scan installed games for executables",
+    "migration_wizard_run": "Run migration",
+    "migration_wizard_running": "Running...",
+    "migration_wizard_done_title": "Migration complete",
+    "migration_wizard_done_body": "Updated library data and assets.",
+    "migration_wizard_done_scan": "Found {{found}} of {{total}} executables.",
+    "migration_wizard_failed": "Migration failed. Please try again.",
+    "migration_wizard_back": "Back",
+    "migration_wizard_next": "Next",
+    "migration_wizard_finish": "Done"
   },
   "notifications": {
     "download_complete": "Download complete",

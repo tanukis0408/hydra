@@ -1,7 +1,10 @@
 {
   "language_name": "Русский",
   "app": {
-    "successfully_signed_in": "Успешный вход"
+    "successfully_signed_in": "Успешный вход",
+    "session_highlights_title": "Итоги сессии",
+    "session_highlights_message": "{{duration}} в {{game}}",
+    "session_highlights_message_with_achievements": "{{duration}} в {{game}} · +{{achievements}} достижений"
   },
   "home": {
     "surprise_me": "Удиви меня",
@@ -444,6 +447,23 @@
   },
   "settings": {
     "downloads_path": "Путь загрузок",
+    "migration_wizard": "Мастер миграции",
+    "migration_wizard_description": "Импорт метаданных и обложек из Steam/Epic, а также поиск установленных игр.",
+    "migration_wizard_open": "Открыть мастер",
+    "migration_wizard_intro_title": "Мастер миграции",
+    "migration_wizard_intro_body": "Обновляет метаданные, обложки и пути к exe из источников Steam/Epic, если доступны.",
+    "migration_wizard_select_title": "Выберите, что импортировать",
+    "migration_wizard_import_metadata": "Импортировать метаданные и обложки (Steam/Epic)",
+    "migration_wizard_scan_installed": "Сканировать установленные игры и exe",
+    "migration_wizard_run": "Запустить миграцию",
+    "migration_wizard_running": "Выполняется...",
+    "migration_wizard_done_title": "Миграция завершена",
+    "migration_wizard_done_body": "Данные и ассеты библиотеки обновлены.",
+    "migration_wizard_done_scan": "Найдено {{found}} из {{total}} exe.",
+    "migration_wizard_failed": "Не удалось выполнить миграцию. Попробуйте ещё раз.",
+    "migration_wizard_back": "Назад",
+    "migration_wizard_next": "Далее",
+    "migration_wizard_finish": "Готово",
     "change": "Изменить",
     "notifications": "Уведомления",
     "enable_download_notifications": "По завершении загрузки",

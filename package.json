@@ -1,7 +1,7 @@
 {
   "name": "krakenlauncher",
-  "version": "1.0.0",
-  "description": "Kraken Launcher - Aqua",
+  "version": "1.0.1",
+  "description": "Kraken Launcher - Breakwater",
   "main": "./out/main/index.js",
   "author": "Los Broxas",
   "repository": {

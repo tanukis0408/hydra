@@ -190,4 +190,14 @@
     display: flex;
     gap: g.$spacing-unit;
   }
+
+  &__migration-description {
+    font-size: 14px;
+    color: g.$muted-color;
+    line-height: 1.5;
+  }
+
+  &__migration-button {
+    align-self: flex-start;
+  }
 }

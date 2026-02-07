@@ -1,0 +1,60 @@
+@use "../../scss/g.scss" as g;
+
+.migration-wizard {
+  display: flex;
+  flex-direction: column;
+  gap: g.$spacing-unit;
+  color: g.$body-color;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: g.$spacing-unit;
+  }
+
+  &__description {
+    color: g.$muted-color;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  &__actions {
+    display: flex;
+    gap: g.$spacing-unit;
+    margin-top: g.$spacing-unit;
+  }
+
+  &__result {
+    font-size: 13px;
+    color: g.$muted-color;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: g.$spacing-unit;
+  }
+
+  &__steps {
+    display: flex;
+    gap: 6px;
+  }
+
+  &__step {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.15);
+    transition: background 0.2s ease;
+
+    &--active {
+      background: g.$muted-color;
+    }
+  }
+
+  &__footer-actions {
+    display: flex;
+    gap: g.$spacing-unit;
+  }
+}

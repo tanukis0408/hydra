@@ -27,6 +27,7 @@ import {
 } from "@primer/octicons-react";
 import { logger } from "@renderer/logger";
 import { AchievementCustomNotificationPosition } from "@types";
+import { MigrationWizardModal } from "@renderer/pages/shared-modals/migration-wizard-modal";
 
 interface LanguageOption {
   option: string;
@@ -52,6 +53,7 @@ export function SettingsGeneral() {
 
   const [canInstallCommonRedist, setCanInstallCommonRedist] = useState(false);
   const [installingCommonRedist, setInstallingCommonRedist] = useState(false);
+  const [showMigrationWizard, setShowMigrationWizard] = useState(false);
 
   const [form, setForm] = useState<{
     downloadsPath: string;
@@ -510,6 +512,21 @@ export function SettingsGeneral() {
         </>
       )}
 
+      <h2 className="settings-general__section-title">
+        {t("migration_wizard")}
+      </h2>
+
+      <p className="settings-general__migration-description">
+        {t("migration_wizard_description")}
+      </p>
+
+      <Button
+        className="settings-general__migration-button"
+        onClick={() => setShowMigrationWizard(true)}
+      >
+        {t("migration_wizard_open")}
+      </Button>
+
       <h2 className="settings-general__section-title">{t("common_redist")}</h2>
 
       <p className="settings-general__common-redist-description">
@@ -526,6 +543,11 @@ export function SettingsGeneral() {
           ? t("installing_common_redist")
           : t("install_common_redist")}
       </Button>
+
+      <MigrationWizardModal
+        visible={showMigrationWizard}
+        onClose={() => setShowMigrationWizard(false)}
+      />
     </div>
   );
 }
